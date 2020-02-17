@@ -1,0 +1,4 @@
+coverage/
+dist/
+docs/dist
+dist-es5-module/
