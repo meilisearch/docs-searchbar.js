@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  
   <head>
     <meta charset="utf-8" />
-    <title>DocSearch playground</title>
+    <title>MeiliSearch4Docs playground</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://127.0.0.1:8080/docsearch.min.css" />
+    <link rel="stylesheet" href="http://127.0.0.1:8080/meilisearch4docs.min.css" />
   </head>
-  
   <body>
     <div class="container">
       <div class="mt-1">
@@ -15,16 +13,18 @@
       </div>
       <div class="col-md-12">
         <div class="input-group">
-          <input type="search" placeholder="DocSearch input" class="form-control" id="q">
+          <input type="search" placeholder="MeiliSearch4Docs input" class="form-control" id="q">
         </div>
       </div>
     </div>
     <!-- at the end of the BODY -->
-    <script src="http://127.0.0.1:8080/docsearch.js"></script>
+    <script src="http://127.0.0.1:8080/meilisearch4docs.js"></script>
     <script>
-      docsearch({
-        apiKey: '25626fae796133dc1e734c6bcaaeac3c',
-        indexName: 'docsearch',
+      meilisearch4docs({
+        // Test with MeiliSearch Documentation
+        meilisearchHostUrl: 'https://e10b17e6.getmeili.com',
+        apiKey: 'R62XWZPJG794YB5VFOADHTNQEKLCISM01U38',
+        indexUid: '9tz3lqoi',
         inputSelector: '#q',
         handleSelected(input, event, suggestion, datasetNumber, context) {
           console.info(input);
@@ -37,7 +37,6 @@
       });
     </script>
     <style>
-
       .container {
         margin: 10%;
       }

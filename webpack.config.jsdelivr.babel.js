@@ -6,8 +6,8 @@ export default {
   devtool: 'source-map',
   output: {
     path: join(__dirname, 'dist/cdn'),
-    filename: 'docsearch.js',
-    library: 'docsearch',
+    filename: 'meilisearch4docs.js',
+    library: 'meilisearch4docs',
     libraryTarget: 'umd',
   },
   module: {

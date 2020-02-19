@@ -1,4 +1,4 @@
-const prefix = 'algolia-docsearch';
+const prefix = 'meilisearch4docs';
 const suggestionPrefix = `${prefix}-suggestion`;
 const footerPrefix = `${prefix}-footer`;
 
@@ -70,7 +70,7 @@ const templates = {
   `,
   footer: `
     <div class="${footerPrefix}">
-      Search by <a class="${footerPrefix}--logo" href="https://www.algolia.com/docsearch">Algolia</a>
+      Powered by <a href="https://www.meilisearch.com" target="_blank">MeiliSearch</a>
     </div>
   `,
   empty: `
@@ -89,7 +89,7 @@ const templates = {
   searchBox: `
   <form novalidate="novalidate" onsubmit="return false;" class="searchbox">
     <div role="search" class="searchbox__wrapper">
-      <input id="docsearch" type="search" name="search" placeholder="Search the docs" autocomplete="off" required="required" class="searchbox__input"/>
+      <input id="meilisearch4docs" type="search" name="search" placeholder="Search the docs" autocomplete="off" required="required" class="searchbox__input"/>
       <button type="submit" title="Submit your search query." class="searchbox__submit" >
         <svg width=12 height=12 role="img" aria-label="Search">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-search-13"></use>
