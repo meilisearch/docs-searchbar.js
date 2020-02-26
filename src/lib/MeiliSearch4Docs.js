@@ -155,9 +155,7 @@ class MeiliSearch4Docs {
 
     if (typeof args.inputSelector !== 'string') {
       throw new Error(
-        `Error: inputSelector:${
-          args.inputSelector
-        }  must be a string. Each selector must match only one element and separated by ','`
+        `Error: inputSelector:${args.inputSelector}  must be a string. Each selector must match only one element and separated by ','`
       );
     }
 
@@ -298,7 +296,9 @@ class MeiliSearch4Docs {
         displayTitle && displayTitle !== '' && displayTitle !== subcategory;
       const isLvl1 =
         !isLvl2 &&
-        (subcategory && subcategory !== '' && subcategory !== category);
+        subcategory &&
+        subcategory !== '' &&
+        subcategory !== category;
       const isLvl0 = !isLvl1 && !isLvl2;
 
       return {
