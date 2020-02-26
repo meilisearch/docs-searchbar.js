@@ -1,0 +1,23 @@
+name: Tests-Lint
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+    steps:
+    - uses: actions/checkout@v2
+    - name: Read .nvmrc
+      run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+      id: nvm
+    - name: Use Node.js (.nvmrc)
+      uses: actions/setup-node@v1
+      with:
+        node-version: "${{ steps.nvm.outputs.NVMRC }}"      
+    - run: yarn install
+    - run: yarn run build
+    - run: yarn run test 
+    - run: yarn run lint
+    - run: yarn run prettier-ci
+      env:
+        CI: true
