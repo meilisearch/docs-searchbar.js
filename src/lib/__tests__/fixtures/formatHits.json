@@ -1,175 +1,92 @@
 [
   {
-    "hierarchy": {
-      "lvl0": "Ruby",
-      "lvl1": "API",
-      "lvl2": "Search",
-      "lvl3": null,
-      "lvl4": null,
-      "lvl5": null
-    },
+    "hierarchy_lvl0": "Ruby",
+    "hierarchy_lvl1": "API",
+    "hierarchy_lvl2": "Search",
+    "hierarchy_lvl3": null,
+    "hierarchy_lvl4": null,
+    "hierarchy_lvl5": null,
     "content": "Search with Ruby API",
-    "_snippetResult": {
-      "content": {
-        "value": "<mark>Search</mark> with Ruby API"
-      }
-    },
-    "_highlightResult": {
-      "hierarchy": {
-        "lvl0": {
-          "value": "Ruby"
-        },
-        "lvl1": {
-          "value": "API"
-        },
-        "lvl2": {
-          "value": "Search"
-        },
-        "lvl3": null,
-        "lvl4": null,
-        "lvl5": null
-      },
-      "content": {
-        "value": "<mark>Search</mark> with Ruby API"
-      }
+    "_formatted": {
+      "hierarchy_lvl0": "Ruby",
+      "hierarchy_lvl1": "API",
+      "hierarchy_lvl2": "Search",
+      "hierarchy_lvl3": null,
+      "hierarchy_lvl4": null,
+      "hierarchy_lvl5": null,
+      "content": "<mark>Search</mark> with Ruby API"
     }
   },
   {
-    "hierarchy": {
-      "lvl0": "PHP",
-      "lvl1": "Wordpress",
-      "lvl2": "Indexing",
-      "lvl3": null,
-      "lvl4": null,
-      "lvl5": null
-    },
+    "hierarchy_lvl0": "PHP",
+    "hierarchy_lvl1": "Wordpress",
+    "hierarchy_lvl2": "Indexing",
+    "hierarchy_lvl3": null,
+    "hierarchy_lvl4": null,
+    "hierarchy_lvl5": null,
     "content": "Indexing in Wordpress with PHP",
-    "_snippetResult": {
-      "content": {
-        "value": "<mark>Indexing</mark> in Wordpress with PHP"
-      }
-    },
-    "_highlightResult": {
-      "hierarchy": {
-        "lvl0": {
-          "value": "PHP"
-        },
-        "lvl1": {
-          "value": "Wordpress"
-        },
-        "lvl2": {
-          "value": "<mark>Indexing</mark>"
-        },
-        "lvl3": null,
-        "lvl4": null,
-        "lvl5": null
-      },
-      "content": {
-        "value": "<mark>Indexing</mark> in Wordpress with PHP"
-      }
+    "_formatted": {
+      "hierarchy_lvl0": "PHP",
+      "hierarchy_lvl1": "Wordpress",
+      "hierarchy_lvl2": "<mark>Indexing</mark>",
+      "hierarchy_lvl3": null,
+      "hierarchy_lvl4": null,
+      "hierarchy_lvl5": null,
+      "content": "<mark>Indexing</mark> in Wordpress with PHP"
     }
   },
   {
-    "hierarchy": {
-      "lvl0": "Go",
-      "lvl1": "API",
-      "lvl2": "Geosearch",
-      "lvl3": null,
-      "lvl4": null,
-      "lvl5": null
-    },
+    "hierarchy_lvl0": "Go",
+    "hierarchy_lvl1": "API",
+    "hierarchy_lvl2": "Geosearch",
+    "hierarchy_lvl3": null,
+    "hierarchy_lvl4": null,
+    "hierarchy_lvl5": null,
     "content": "Doing geosearch with the API in Go",
-    "_snippetResult": {
-      "content": {
-        "value": "Doing <mark>geosearch</mark> with the API in Go"
-      }
-    },
-    "_highlightResult": {
-      "hierarchy": {
-        "lvl0": {
-          "value": "Go"
-        },
-        "lvl1": {
-          "value": "API"
-        },
-        "lvl2": {
-          "value": "<mark>Geosearch</mark>"
-        },
-        "lvl3": null,
-        "lvl4": null,
-        "lvl5": null
-      },
-      "content": {
-        "value": "Doing <mark>geosearch</mark> with the API in Go"
-      }
+    "_formatted": {
+      "hierarchy_lvl0": "Go",
+      "hierarchy_lvl1": "API",
+      "hierarchy_lvl2": "<mark>Geosearch</mark>",
+      "hierarchy_lvl3": null,
+      "hierarchy_lvl4": null,
+      "hierarchy_lvl5": null,
+      "content": "Doing <mark>geosearch</mark> with the API in Go",
     }
   },
   {
-    "hierarchy": {
-      "lvl0": "Ruby",
-      "lvl1": "API",
-      "lvl2": "Geosearch",
-      "lvl3": null,
-      "lvl4": null,
-      "lvl5": null
-    },
+    "hierarchy_lvl0": "Ruby",
+    "hierarchy_lvl1": "API",
+    "hierarchy_lvl2": "Geosearch",
+    "hierarchy_lvl3": null,
+    "hierarchy_lvl4": null,
+    "hierarchy_lvl5": null,
     "content": "Doing geosearch with the API in Ruby",
-    "_snippetResult": {
-      "content": {
-        "value": "Doing <mark>geosearch</mark> with the API in Ruby"
-      }
-    },
-    "_highlightResult": {
-      "hierarchy": {
-        "lvl0": {
-          "value": "Ruby"
-        },
-        "lvl1": {
-          "value": "API"
-        },
-        "lvl2": {
-          "value": "<mark>Geosearch</mark>"
-        },
-        "lvl3": null,
-        "lvl4": null,
-        "lvl5": null
-      },
-      "content": {
-        "value": "Doing <mark>geosearch</mark> with the API in Ruby"
-      }
+    "_formatted": {
+      "hierarchy_lvl0": "Ruby",
+      "hierarchy_lvl1": "API",
+      "hierarchy_lvl2": "<mark>Geosearch</mark>",
+      "hierarchy_lvl3": null,
+      "hierarchy_lvl4": null,
+      "hierarchy_lvl5": null,
+      "content": "Doing <mark>geosearch</mark> with the API in Ruby",
     }
   },
   {
-    "hierarchy": {
-      "lvl0": "PHP",
-      "lvl1": "Magento",
-      "lvl2": null,
-      "lvl3": null,
-      "lvl4": null,
-      "lvl5": null
-    },
+    "hierarchy_lvl0": "PHP",
+    "hierarchy_lvl1": "Magento",
+    "hierarchy_lvl2": null,
+    "hierarchy_lvl3": null,
+    "hierarchy_lvl4": null,
+    "hierarchy_lvl5": null,
     "content": "Searching in Magento with PHP",
-    "_snippetResult": {
-      "content": {
-        "value": "Searching in <mark>Magento</mark> with PHP"
-      }
-    },
-    "_highlightResult": {
-      "hierarchy": {
-        "lvl0": {
-          "value": "PHP"
-        },
-        "lvl1": {
-          "value": "Magento"
-        },
-        "lvl2": null,
-        "lvl3": null,
-        "lvl4": null,
-        "lvl5": null
-      },
-      "content": {
-        "value": "Searching in <mark>Magento</mark> with PHP"
-      }
+    "_formatted": {
+      "hierarchy_lvl0": "PHP",
+      "hierarchy_lvl1": "Magento",
+      "hierarchy_lvl2": null,
+      "hierarchy_lvl3": null,
+      "hierarchy_lvl4": null,
+      "hierarchy_lvl5": null,
+      "content": "Searching in <mark>Magento</mark> with PHP"
     }
   }
 ]

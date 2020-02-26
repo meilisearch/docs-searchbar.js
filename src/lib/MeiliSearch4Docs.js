@@ -1,41 +1,38 @@
 import Hogan from 'hogan.js';
-import algoliasearch from 'algoliasearch/lite';
 import autocomplete from 'autocomplete.js';
 import templates from './templates';
 import utils from './utils';
-import version from './version';
 import $ from './zepto';
+import Meili from 'meilisearch';
 
 /**
  * Adds an autocomplete dropdown to an input field
- * @function DocSearch
- * @param  {string} options.apiKey         Read-only API key
- * @param  {string} options.indexName      Name of the index to target
- * @param  {string} options.inputSelector  CSS selector that targets the input
- * @param  {string} [options.appId]  Lets you override the applicationId used.
- * If using the default Algolia Crawler, you should not have to change this
- * value.
- * @param  {Object} [options.algoliaOptions] Options to pass the underlying Algolia client
+ * @function MeiliSearch4Docs
+ * @param  {string} options.meilisearchHostUrl    URL where MeiliSearch instance is hosted
+ * @param  {string} options.apiKey                Read-only API key
+ * @param  {string} options.indexUid              UID of the index to target
+ * @param  {string} options.inputSelector         CSS selector that targets the input
+ * @param  {Object} [options.meilisearchOptions]  Options to pass the underlying MeiliSearch client
  * @param  {Object} [options.autocompleteOptions] Options to pass to the underlying autocomplete instance
  * @return {Object}
  */
 const usage = `Usage:
   documentationSearch({
+  meilisearchHostUrl,
   apiKey,
-  indexName,
+  indexUid,
   inputSelector,
-  [ appId ],
-  [ algoliaOptions.{hitsPerPage} ]
+  [ meilisearchOptions.{limit} ]
   [ autocompleteOptions.{hint,debug} ]
 })`;
-class DocSearch {
+class MeiliSearch4Docs {
   constructor({
+    meilisearchHostUrl,
     apiKey,
-    indexName,
+    indexUid,
     inputSelector,
-    appId = 'BH4D9OD16A',
     debug = false,
-    algoliaOptions = {},
+    meilisearchOptions = {},
     queryDataCallback = null,
     autocompleteOptions = {
       debug: false,
@@ -48,12 +45,13 @@ class DocSearch {
     enhancedSearchInput = false,
     layout = 'columns',
   }) {
-    DocSearch.checkArguments({
+    MeiliSearch4Docs.checkArguments({
+      meilisearchHostUrl,
       apiKey,
-      indexName,
+      indexUid,
       inputSelector,
       debug,
-      algoliaOptions,
+      meilisearchOptions,
       queryDataCallback,
       autocompleteOptions,
       transformData,
@@ -64,10 +62,16 @@ class DocSearch {
     });
 
     this.apiKey = apiKey;
-    this.appId = appId;
-    this.indexName = indexName;
-    this.input = DocSearch.getInputFromSelector(inputSelector);
-    this.algoliaOptions = { hitsPerPage: 5, ...algoliaOptions };
+    this.meilisearchHostUrl = meilisearchHostUrl;
+    this.indexUid = indexUid;
+    this.input = MeiliSearch4Docs.getInputFromSelector(inputSelector);
+    this.meilisearchOptions = {
+      limit: 5,
+      attributesToHighlight: ['*'],
+      attributesToCrop: ['content'],
+      cropLength: 30,
+      ...meilisearchOptions,
+    };
     this.queryDataCallback = queryDataCallback || null;
     const autocompleteOptionsDebug =
       autocompleteOptions && autocompleteOptions.debug
@@ -80,26 +84,35 @@ class DocSearch {
       this.autocompleteOptions.cssClasses || {};
     this.autocompleteOptions.cssClasses.prefix =
       this.autocompleteOptions.cssClasses.prefix || 'ds';
-    const inputAriaLabel = this.input && typeof this.input.attr === 'function' && this.input.attr('aria-label');
-    this.autocompleteOptions.ariaLabel = 
-      this.autocompleteOptions.ariaLabel || inputAriaLabel || "search input";
+    this.autocompleteOptions.cssClasses.root =
+      this.autocompleteOptions.cssClasses.root || 'meilisearch-autocomplete';
+    const inputAriaLabel =
+      this.input &&
+      typeof this.input.attr === 'function' &&
+      this.input.attr('aria-label');
+    this.autocompleteOptions.ariaLabel =
+      this.autocompleteOptions.ariaLabel || inputAriaLabel || 'search input';
 
     this.isSimpleLayout = layout === 'simple';
 
-    this.client = algoliasearch(this.appId, this.apiKey);
-    this.client.addAlgoliaAgent(`docsearch.js ${version}`);
+    this.client = new Meili({
+      host: meilisearchHostUrl,
+      apiKey: this.apiKey,
+    });
 
     if (enhancedSearchInput) {
-      this.input = DocSearch.injectSearchBox(this.input);
+      this.input = MeiliSearch4Docs.injectSearchBox(this.input);
     }
 
     this.autocomplete = autocomplete(this.input, autocompleteOptions, [
       {
         source: this.getAutocompleteSource(transformData, queryHook),
         templates: {
-          suggestion: DocSearch.getSuggestionTemplate(this.isSimpleLayout),
+          suggestion: MeiliSearch4Docs.getSuggestionTemplate(
+            this.isSimpleLayout
+          ),
           footer: templates.footer,
-          empty: DocSearch.getEmptyTemplate(),
+          empty: MeiliSearch4Docs.getEmptyTemplate(),
         },
       },
     ]);
@@ -109,7 +122,7 @@ class DocSearch {
 
     // We prevent default link clicking if a custom handleSelected is defined
     if (customHandleSelected) {
-      $('.algolia-autocomplete').on('click', '.ds-suggestions a', event => {
+      $('.meilisearch-autocomplete').on('click', '.ds-suggestions a', event => {
         event.preventDefault();
       });
     }
@@ -125,7 +138,7 @@ class DocSearch {
     );
 
     if (enhancedSearchInput) {
-      DocSearch.bindSearchBoxEvent();
+      MeiliSearch4Docs.bindSearchBoxEvent();
     }
   }
 
@@ -136,7 +149,7 @@ class DocSearch {
    * @returns {void}
    */
   static checkArguments(args) {
-    if (!args.apiKey || !args.indexName) {
+    if (!args.apiKey || !args.indexUid || !args.meilisearchHostUrl) {
       throw new Error(usage);
     }
 
@@ -148,7 +161,7 @@ class DocSearch {
       );
     }
 
-    if (!DocSearch.getInputFromSelector(args.inputSelector)) {
+    if (!MeiliSearch4Docs.getInputFromSelector(args.inputSelector)) {
       throw new Error(
         `Error: No input element in the page matches ${args.inputSelector}`
       );
@@ -167,13 +180,13 @@ class DocSearch {
 
   static bindSearchBoxEvent() {
     $('.searchbox [type="reset"]').on('click', function() {
-      $('input#docsearch').focus();
+      $('input#meilisearch4docs').focus();
       $(this).addClass('hide');
       autocomplete.autocomplete.setVal('');
     });
 
-    $('input#docsearch').on('keyup', () => {
-      const searchbox = document.querySelector('input#docsearch');
+    $('input#meilisearch4docs').on('keyup', () => {
+      const searchbox = document.querySelector('input#meilisearch4docs');
       const reset = document.querySelector('.searchbox [type="reset"]');
       reset.className = 'searchbox__reset';
       if (searchbox.value.length === 0) {
@@ -196,7 +209,7 @@ class DocSearch {
 
   /**
    * Returns the `source` method to be passed to autocomplete.js. It will query
-   * the Algolia index and call the callbacks with the formatted hits.
+   * the MeiliSearch index and call the callbacks with the formatted hits.
    * @function getAutocompleteSource
    * @param  {function} transformData An optional function to transform the hits
    * @param {function} queryHook An optional function to transform the query
@@ -211,22 +224,21 @@ class DocSearch {
       }
 
       this.client
-        .search([
-          {
-            indexName: this.indexName,
-            query,
-            params: this.algoliaOptions,
-          },
-        ])
+        // eslint-disable-next-line new-cap
+        .Index(this.indexUid)
+        .search(query, this.meilisearchOptions)
         .then(data => {
-          if (this.queryDataCallback && typeof this.queryDataCallback == "function") {
-            this.queryDataCallback(data)
+          if (
+            this.queryDataCallback &&
+            typeof this.queryDataCallback === 'function'
+          ) {
+            this.queryDataCallback(data);
           }
-          let hits = data.results[0].hits;
+          let hits = data.hits;
           if (transformData) {
             hits = transformData(hits) || hits;
           }
-          callback(DocSearch.formatHits(hits));
+          callback(MeiliSearch4Docs.formatHits(hits));
         });
     };
   }
@@ -236,14 +248,16 @@ class DocSearch {
   static formatHits(receivedHits) {
     const clonedHits = utils.deepClone(receivedHits);
     const hits = clonedHits.map(hit => {
-      if (hit._highlightResult) {
+      if (hit._formatted) {
+        const cleanFormatted = utils.replaceNullString(hit._formatted);
         // eslint-disable-next-line no-param-reassign
-        hit._highlightResult = utils.mergeKeyWithParent(
-          hit._highlightResult,
-          'hierarchy'
+        hit._formatted = utils.renameKeysWithLevels(
+          cleanFormatted,
+          'hierarchy_'
         );
       }
-      return utils.mergeKeyWithParent(hit, 'hierarchy');
+      const cleanHit = utils.replaceNullString(hit);
+      return utils.renameKeysWithLevels(cleanHit, 'hierarchy_');
     });
 
     // Group hits by category / subcategory
@@ -260,7 +274,7 @@ class DocSearch {
 
     // Translate hits into smaller objects to be send to the template
     return groupedHits.map(hit => {
-      const url = DocSearch.formatURL(hit);
+      const url = MeiliSearch4Docs.formatURL(hit);
       const category = utils.getHighlightedValue(hit, 'lvl0');
       const subcategory = utils.getHighlightedValue(hit, 'lvl1') || category;
       const displayTitle = utils
@@ -312,9 +326,7 @@ class DocSearch {
       else if (anchor) return `${hit.url}#${hit.anchor}`;
       return url;
     } else if (anchor) return `#${hit.anchor}`;
-    /* eslint-disable */
     console.warn('no anchor nor url for : ', JSON.stringify(hit));
-    /* eslint-enable */
     return null;
   }
 
@@ -352,13 +364,13 @@ class DocSearch {
 
     const alignClass =
       middleOfInput - middleOfWindow >= 0
-        ? 'algolia-autocomplete-right'
-        : 'algolia-autocomplete-left';
+        ? 'meilisearch-autocomplete-right'
+        : 'meilisearch-autocomplete-left';
     const otherAlignClass =
       middleOfInput - middleOfWindow < 0
-        ? 'algolia-autocomplete-right'
-        : 'algolia-autocomplete-left';
-    const autocompleteWrapper = $('.algolia-autocomplete');
+        ? 'meilisearch-autocomplete-right'
+        : 'meilisearch-autocomplete-left';
+    const autocompleteWrapper = $('.meilisearch-autocomplete');
     if (!autocompleteWrapper.hasClass(alignClass)) {
       autocompleteWrapper.addClass(alignClass);
     }
@@ -369,4 +381,4 @@ class DocSearch {
   }
 }
 
-export default DocSearch;
+export default MeiliSearch4Docs;
