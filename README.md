@@ -13,7 +13,6 @@ The best way to handle your search bar documentation with [MeiliSearch](https://
   - [Serve](#serve)
   - [Test](#test)
 - [Contributing](#contributing)
-- [Release](#release)
 - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -85,11 +84,6 @@ Don't hesitate if you have any question.<br>
 You can create an issue and start a discussion, or contact us at [bonjour@meilisearch.com](mailito:bonjour@meilisearch.com).
 
 All the MeiliSearch team thanks for your interest! ♥️
-
-## Release
-
-`npm run release` will guide you through the release process.<br>
-Note that you have to use `npm` and not `yarn` for this one otherwise it won't deploy to npm.
 
 ## Credits
 
