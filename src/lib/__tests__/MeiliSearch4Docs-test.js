@@ -1,11 +1,12 @@
 /* eslint no-new:0 */
 /* eslint-disable max-len */
+/* eslint-disable camelcase */
 import sinon from 'sinon';
 import $ from '../zepto';
-import DocSearch from '../DocSearch';
+import MeiliSearch4Docs from '../MeiliSearch4Docs';
 /**
  * Pitfalls:
- * Whenever you call new DocSearch(), it will add the a new dropdown markup to
+ * Whenever you call new MeiliSearch4Docs(), it will add the a new dropdown markup to
  * the page. Because we are clearing the document.body.innerHTML between each
  * test, it usually is not a problem.
  * Except that autocomplete.js remembers internally how many times it has been
@@ -15,7 +16,7 @@ import DocSearch from '../DocSearch';
  * tests.
  **/
 
-describe('DocSearch', () => {
+describe('MeiliSearch4Docs', () => {
   beforeEach(() => {
     // Note: If you edit this HTML while doing TDD with `npm run test:watch`,
     // you will have to restart `npm run test:watch` for the new HTML to be
@@ -34,40 +35,36 @@ describe('DocSearch', () => {
   });
 
   describe('constructor', () => {
-    let AlgoliaSearch;
-    let algoliasearch;
+    let MeiliSearch;
+    let meilisearch;
     let AutoComplete;
     let autocomplete;
     let defaultOptions;
 
     beforeEach(() => {
-      algoliasearch = {
-        algolia: 'client',
-        addAlgoliaAgent: sinon.spy(),
-      };
-      AlgoliaSearch = sinon.stub().returns(algoliasearch);
-      autocomplete = {
-        on: sinon.spy(),
-      };
+      meilisearch = { meilisearch: 'client' };
+      MeiliSearch = sinon.stub().returns(meilisearch);
+      autocomplete = { on: sinon.spy() };
       AutoComplete = sinon.stub().returns(autocomplete);
       defaultOptions = {
-        indexName: 'indexName',
+        meilisearchHostUrl: 'https://test.getmeili.com',
         apiKey: 'apiKey',
+        indexUid: 'indexUID',
         inputSelector: '#input',
       };
 
-      sinon.spy(DocSearch, 'checkArguments');
-      sinon.stub(DocSearch, 'getInputFromSelector').returns(true);
+      sinon.spy(MeiliSearch4Docs, 'checkArguments');
+      sinon.stub(MeiliSearch4Docs, 'getInputFromSelector').returns(true);
 
-      DocSearch.__Rewire__('algoliasearch', AlgoliaSearch);
-      DocSearch.__Rewire__('autocomplete', AutoComplete);
+      MeiliSearch4Docs.__Rewire__('Meili', MeiliSearch);
+      MeiliSearch4Docs.__Rewire__('autocomplete', AutoComplete);
     });
 
     afterEach(() => {
-      DocSearch.checkArguments.restore();
-      DocSearch.getInputFromSelector.restore();
-      DocSearch.__ResetDependency__('algoliasearch');
-      DocSearch.__ResetDependency__('autocomplete');
+      MeiliSearch4Docs.checkArguments.restore();
+      MeiliSearch4Docs.getInputFromSelector.restore();
+      MeiliSearch4Docs.__ResetDependency__('meilisearch');
+      MeiliSearch4Docs.__ResetDependency__('autocomplete');
     });
 
     it('should call checkArguments', () => {
@@ -75,82 +72,70 @@ describe('DocSearch', () => {
       const options = defaultOptions;
 
       // When
-      new DocSearch(options);
+      new MeiliSearch4Docs(options);
 
       // Then
-      expect(DocSearch.checkArguments.calledOnce).toBe(true);
+      expect(MeiliSearch4Docs.checkArguments.calledOnce).toBe(true);
     });
     it('should pass main options as instance properties', () => {
       // Given
       const options = defaultOptions;
 
       // When
-      const actual = new DocSearch(options);
+      const actual = new MeiliSearch4Docs(options);
 
       // Then
-      expect(actual.indexName).toEqual('indexName');
+      expect(actual.meilisearchHostUrl).toEqual('https://test.getmeili.com');
+      expect(actual.indexUid).toEqual('indexUID');
       expect(actual.apiKey).toEqual('apiKey');
     });
-    it('should set docsearch App Id as default', () => {
-      // Given
-      const options = defaultOptions;
-
-      // When
-      const actual = new DocSearch(options);
-
-      // Then
-      expect(actual.appId).toEqual('BH4D9OD16A');
-    });
-    it('should allow overriding appId', () => {
-      // Given
-      const options = { ...defaultOptions, appId: 'foo' };
-
-      // When
-      const actual = new DocSearch(options);
-
-      // Then
-      expect(actual.appId).toEqual('foo');
-    });
-    it('should allow customize algoliaOptions without loosing default options', () => {
+    it('should allow customize meilisearchOptions without loosing default options', () => {
       // Given
       const options = {
-        algoliaOptions: {
-          facetFilters: ['version:1.0'],
+        meilisearchOptions: {
+          cropLength: 50,
         },
         ...defaultOptions,
       };
 
       // When
-      const actual = new DocSearch(options);
+      const actual = new MeiliSearch4Docs(options);
 
       // Then
-      expect(actual.algoliaOptions).toEqual({
-        hitsPerPage: 5,
-        facetFilters: ['version:1.0'],
+      expect(actual.meilisearchOptions).toEqual({
+        limit: 5,
+        attributesToCrop: ['content'],
+        attributesToHighlight: ['*'],
+        cropLength: 50,
       });
     });
-    it('should allow customize hitsPerPage', () => {
+    it('should allow customize limit', () => {
       // Given
       const options = {
-        algoliaOptions: {
-          hitsPerPage: 10,
+        meilisearchOptions: {
+          limit: 10,
         },
         ...defaultOptions,
       };
 
       // When
-      const actual = new DocSearch(options);
+      const actual = new MeiliSearch4Docs(options);
 
       // Then
-      expect(actual.algoliaOptions).toEqual({ hitsPerPage: 10 });
+      expect(actual.meilisearchOptions).toEqual({
+        limit: 10,
+        attributesToHighlight: ['*'],
+        attributesToCrop: ['content'],
+        cropLength: 30,
+      });
     });
     it('should pass the input element as an instance property', () => {
       // Given
       const options = defaultOptions;
-      DocSearch.getInputFromSelector.returns($('<span>foo</span>'));
+      MeiliSearch4Docs.getInputFromSelector.returns($('<span>foo</span>'));
 
       // When
-      const actual = new DocSearch(options);
+      const actual = new MeiliSearch4Docs(options);
 
       // Then
       const $inputs = actual.input;
@@ -161,43 +146,41 @@ describe('DocSearch', () => {
       // Given
       const options = {
         ...defaultOptions,
-        algoliaOptions: { anOption: 42 },
+        meilisearchOptions: { anOption: 42 },
         autocompleteOptions: { anOption: 44 },
       };
 
       // When
-      const actual = new DocSearch(options);
+      const actual = new MeiliSearch4Docs(options);
 
       // Then
-      expect(typeof actual.algoliaOptions).toEqual('object');
-      expect(actual.algoliaOptions.anOption).toEqual(42);
+      expect(typeof actual.meilisearchOptions).toEqual('object');
+      expect(actual.meilisearchOptions.anOption).toEqual(42);
       expect(actual.autocompleteOptions).toEqual({
         debug: false,
-        cssClasses: { prefix: 'ds' },
+        cssClasses: {
+          root: 'meilisearch-autocomplete',
+          prefix: 'ds',
+        },
         anOption: 44,
         ariaLabel: 'search input',
       });
     });
-    it('should instantiate algoliasearch with the correct values', () => {
+    it('should instantiate meilisearch with the correct values', () => {
       // Given
       const options = defaultOptions;
 
       // When
-      new DocSearch(options);
+      new MeiliSearch4Docs(options);
 
       // Then
-      expect(AlgoliaSearch.calledOnce).toBe(true);
-      expect(AlgoliaSearch.calledWith('BH4D9OD16A', 'apiKey')).toBe(true);
-    });
-    it('should set a custom User-Agent to algoliasearch', () => {
-      // Given
-      const options = defaultOptions;
-
-      // When
-      new DocSearch(options);
-
-      // Then
-      expect(algoliasearch.addAlgoliaAgent.calledOnce).toBe(true);
+      expect(MeiliSearch.calledOnce).toBe(true);
+      expect(
+        MeiliSearch.calledWith({
+          host: 'https://test.getmeili.com',
+          apiKey: 'apiKey',
+        })
+      ).toBe(true);
     });
     it('should instantiate autocomplete.js', () => {
       // Given
@@ -206,19 +189,22 @@ describe('DocSearch', () => {
         autocompleteOptions: { anOption: '44' },
       };
       const $input = $('<input name="foo" />');
-      DocSearch.getInputFromSelector.returns($input);
+      MeiliSearch4Docs.getInputFromSelector.returns($input);
 
       // When
-      new DocSearch(options);
+      new MeiliSearch4Docs(options);
 
       // Then
       expect(AutoComplete.calledOnce).toBe(true);
       expect(
         AutoComplete.calledWith($input, {
           anOption: '44',
-          cssClasses: { prefix: 'ds' },
+          cssClasses: {
+            root: 'meilisearch-autocomplete',
+            prefix: 'ds',
+          },
           debug: false,
-          ariaLabel: 'search input'
+          ariaLabel: 'search input',
         })
       ).toBe(true);
     });
@@ -227,7 +213,7 @@ describe('DocSearch', () => {
       const options = { ...defaultOptions, handleSelected() {} };
 
       // When
-      new DocSearch(options);
+      new MeiliSearch4Docs(options);
 
       // Then
       expect(autocomplete.on.calledTwice).toBe(true);
@@ -238,19 +224,20 @@ describe('DocSearch', () => {
   describe('checkArguments', () => {
     let checkArguments;
     beforeEach(() => {
-      checkArguments = DocSearch.checkArguments;
+      checkArguments = MeiliSearch4Docs.checkArguments;
     });
 
     afterEach(() => {
-      if (DocSearch.getInputFromSelector.restore) {
-        DocSearch.getInputFromSelector.restore();
+      if (MeiliSearch4Docs.getInputFromSelector.restore) {
+        MeiliSearch4Docs.getInputFromSelector.restore();
       }
     });
 
-    it('should throw an error if no apiKey defined', () => {
+    it('should throw an error if no meilisearchHostUrl defined', () => {
       // Given
       const options = {
-        indexName: 'indexName',
+        apiKey: 'apiKey',
+        indexUid: 'indexUID',
       };
 
       // When
@@ -258,9 +245,22 @@ describe('DocSearch', () => {
         checkArguments(options);
       }).toThrow(/^Usage:/);
     });
-    it('should throw an error if no indexName defined', () => {
+    it('should throw an error if no apiKey defined', () => {
       // Given
       const options = {
+        meilisearchHostUrl: 'test.com',
+        indexUid: 'indexUID',
+      };
+
+      // When
+      expect(() => {
+        checkArguments(options);
+      }).toThrow(/^Usage:/);
+    });
+    it('should throw an error if no indexUid defined', () => {
+      // Given
+      const options = {
+        meilisearchHostUrl: 'test.com',
         apiKey: 'apiKey',
       };
 
@@ -272,10 +272,11 @@ describe('DocSearch', () => {
     it('should throw an error if no selector matches', () => {
       // Given
       const options = {
+        meilisearchHostUrl: 'test.com',
         apiKey: 'apiKey',
-        indexName: 'indexName',
+        indexUid: 'indexUID',
       };
-      sinon.stub(DocSearch, 'getInputFromSelector').returns(false);
+      sinon.stub(MeiliSearch4Docs, 'getInputFromSelector').returns(false);
 
       // When
       expect(() => {
@@ -287,7 +288,7 @@ describe('DocSearch', () => {
   describe('getInputFromSelector', () => {
     let getInputFromSelector;
     beforeEach(() => {
-      getInputFromSelector = DocSearch.getInputFromSelector;
+      getInputFromSelector = MeiliSearch4Docs.getInputFromSelector;
     });
 
     it('should return null if no element matches the selector', () => {
@@ -324,33 +325,35 @@ describe('DocSearch', () => {
 
   describe('getAutocompleteSource', () => {
     let client;
-    let AlgoliaSearch;
-    let docsearch;
+    let MeiliSearch;
+    let meilisearch4docs;
     beforeEach(() => {
       client = {
-        algolia: 'client',
-        addAlgoliaAgent: sinon.spy(),
-        search: sinon.stub().returns({
-          then: sinon.spy(),
+        meilisearch: 'client',
+        Index: sinon.stub().returns({
+          search: sinon.stub().returns({
+            then: sinon.spy(),
+          }),
         }),
       };
-      AlgoliaSearch = sinon.stub().returns(client);
-      DocSearch.__Rewire__('algoliasearch', AlgoliaSearch);
+      MeiliSearch = sinon.stub().returns(client);
+      MeiliSearch4Docs.__Rewire__('Meili', MeiliSearch);
 
-      docsearch = new DocSearch({
-        indexName: 'indexName',
+      meilisearch4docs = new MeiliSearch4Docs({
+        meilisearchHostUrl: 'https://test.getmeili.com',
+        indexUid: 'indexUID',
         apiKey: 'apiKey',
         inputSelector: '#input',
       });
     });
 
     afterEach(() => {
-      DocSearch.__ResetDependency__('algoliasearch');
+      MeiliSearch4Docs.__ResetDependency__('meilisearch');
     });
 
     it('returns a function', () => {
       // Given
-      const actual = docsearch.getAutocompleteSource();
+      const actual = meilisearch4docs.getAutocompleteSource();
 
       // When
 
@@ -359,29 +362,35 @@ describe('DocSearch', () => {
     });
 
     describe('the returned function', () => {
-      it('calls the Algolia client with the correct parameters', () => {
+      it('calls the MeiliSearch client with the correct parameters', () => {
         // Given
-        const actual = docsearch.getAutocompleteSource();
+        const actual = meilisearch4docs.getAutocompleteSource();
 
         // When
         actual('query');
 
         // Then
-        expect(client.search.calledOnce).toBe(true);
-        // expect(resolvedQuery.calledOnce).toBe(true);
-        const expectedArguments = {
-          indexName: 'indexName',
-          query: 'query',
-          params: { hitsPerPage: 5 },
+        expect(client.Index.calledOnce).toBe(true);
+        // eslint-disable-next-line new-cap
+        expect(client.Index('indexUID').search.calledOnce).toBe(true);
+        const expectedParams = {
+          limit: 5,
+          attributesToHighlight: ['*'],
+          attributesToCrop: ['content'],
+          cropLength: 30,
         };
-        expect(client.search.calledWith([expectedArguments])).toBe(true);
+        expect(client.Index.calledWith('indexUID')).toBe(true);
+        expect(
+          // eslint-disable-next-line new-cap
+          client.Index('indexUid').search.calledWith('query', expectedParams)
+        ).toBe(true);
       });
     });
 
     describe('when queryHook is used', () => {
-      it('calls the Algolia client with the correct parameters', () => {
+      it('calls the MeiliSearch client with the correct parameters', () => {
         // Given
-        const actual = docsearch.getAutocompleteSource(
+        const actual = meilisearch4docs.getAutocompleteSource(
           false,
           query => `${query} modified`
         );
@@ -390,14 +399,22 @@ describe('DocSearch', () => {
         actual('query');
 
         // Then
-        expect(client.search.calledOnce).toBe(true);
-        // expect(resolvedQuery.calledOnce).toBe(true);
-        const expectedArguments = {
-          indexName: 'indexName',
-          query: 'query modified',
-          params: { hitsPerPage: 5 },
+        expect(client.Index.calledOnce).toBe(true);
+        // eslint-disable-next-line new-cap
+        expect(client.Index('indexUID').search.calledOnce).toBe(true);
+        const expectedParams = {
+          limit: 5,
+          attributesToHighlight: ['*'],
+          attributesToCrop: ['content'],
+          cropLength: 30,
         };
-        expect(client.search.calledWith([expectedArguments])).toBe(true);
+        expect(
+          client
+            // eslint-disable-next-line new-cap
+            .Index('indexUID')
+            .search.calledWith('query modified', expectedParams)
+        ).toBe(true);
+        expect(client.Index.calledWith('indexUID')).toBe(true);
       });
     });
   });
@@ -406,13 +423,14 @@ describe('DocSearch', () => {
     it('should change the location if no handleSelected specified', () => {
       // Given
       const options = {
+        meilisearchHostUrl: 'test.com',
         apiKey: 'key',
-        indexName: 'foo',
+        indexUid: 'foo',
         inputSelector: '#input',
       };
 
       // When
-      const ds = new DocSearch(options);
+      const ds = new MeiliSearch4Docs(options);
       ds.autocomplete.trigger('autocomplete:selected', {
         url: 'https://website.com/doc/page',
       });
@@ -428,8 +446,9 @@ describe('DocSearch', () => {
       // Given
       const customHandleSelected = jest.fn();
       const options = {
+        meilisearchHostUrl: 'test.com',
         apiKey: 'key',
-        indexName: 'foo',
+        indexUid: 'foo',
         inputSelector: '#input',
         handleSelected: customHandleSelected,
       };
@@ -444,7 +463,7 @@ describe('DocSearch', () => {
       });
 
       // When
-      const ds = new DocSearch(options);
+      const ds = new MeiliSearch4Docs(options);
       ds.autocomplete.trigger('autocomplete:selected', {
         url: 'https://website.com/doc/page',
       });
@@ -461,16 +480,17 @@ describe('DocSearch', () => {
     it('should prevent all clicks on links if a custom handleSelected is specified', () => {
       // Given
       const options = {
+        meilisearchHostUrl: 'test.com',
         apiKey: 'key',
-        indexName: 'foo',
+        indexUid: 'foo',
         inputSelector: '#input',
         handleSelected: jest.fn(),
       };
 
       // Building a dropdown with links inside
-      const ds = new DocSearch(options);
+      const ds = new MeiliSearch4Docs(options);
       ds.autocomplete.trigger('autocomplete:shown');
-      const dataset = $('.algolia-autocomplete');
+      const dataset = $('.meilisearch-autocomplete');
       const suggestions = $('<div class="ds-suggestions"></div>');
       const testLink = $('<a href="#">test link</a>');
       dataset.append(suggestions);
@@ -489,8 +509,9 @@ describe('DocSearch', () => {
     describe('default handleSelected', () => {
       it('enterKey: should change the page', () => {
         const options = {
+          meilisearchHostUrl: 'test.com',
           apiKey: 'key',
-          indexName: 'foo',
+          indexUid: 'foo',
           inputSelector: '#input',
         };
         const mockSetVal = jest.fn();
@@ -498,7 +519,7 @@ describe('DocSearch', () => {
         const mockSuggestion = { url: 'www.example.com' };
         const mockContext = { selectionMethod: 'enterKey' };
 
-        new DocSearch(options).handleSelected(
+        new MeiliSearch4Docs(options).handleSelected(
           mockInput,
           undefined, // Event
           mockSuggestion,
@@ -516,15 +537,16 @@ describe('DocSearch', () => {
       });
       it('click: should not change the page', () => {
         const options = {
+          meilisearchHostUrl: 'test.com',
           apiKey: 'key',
-          indexName: 'foo',
+          indexUid: 'foo',
           inputSelector: '#input',
         };
         const mockSetVal = jest.fn();
         const mockInput = { setVal: mockSetVal };
         const mockContext = { selectionMethod: 'click' };
 
-        new DocSearch(options).handleSelected(
+        new MeiliSearch4Docs(options).handleSelected(
           mockInput,
           undefined, // Event
           undefined, // Suggestion
@@ -545,18 +567,19 @@ describe('DocSearch', () => {
     it('should add an alignment class', () => {
       // Given
       const options = {
+        meilisearchHostUrl: 'test.com',
         apiKey: 'key',
-        indexName: 'foo',
+        indexUid: 'foo',
         inputSelector: '#input',
       };
 
       // When
-      const ds = new DocSearch(options);
+      const ds = new MeiliSearch4Docs(options);
 
       ds.autocomplete.trigger('autocomplete:shown');
 
-      expect($('.algolia-autocomplete').attr('class')).toEqual(
-        'algolia-autocomplete algolia-autocomplete-right'
+      expect($('.meilisearch-autocomplete').attr('class')).toEqual(
+        'meilisearch-autocomplete meilisearch-autocomplete-right'
       );
     });
   });
@@ -566,19 +589,17 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(input).not.toBe(actual);
@@ -587,39 +608,33 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'Geo-search',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'Geo-search',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Python',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Python',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].isCategoryHeader).toEqual(true);
@@ -629,39 +644,33 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Python',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Python',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'Geo-search',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'Geo-search',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].category).toEqual('Ruby');
@@ -672,39 +681,33 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Python',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Python',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'Geo-search',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'Geo-search',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].isSubCategoryHeader).toEqual(true);
@@ -714,49 +717,41 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: 'Foo',
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: 'Foo',
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Python',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Python',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: 'Bar',
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: 'Bar',
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'Geo-search',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'Geo-search',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].isSubCategoryHeader).toEqual(true);
@@ -768,95 +763,41 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: 'Foo',
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
-          _highlightResult: {
-            hierarchy: {
-              lvl0: {
-                value: '<mark>Ruby</mark>',
-              },
-              lvl1: {
-                value: '<mark>API</mark>',
-              },
-            },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: 'Foo',
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
+          _formatted: {
+            hierarchy_lvl0: '<mark>Ruby</mark>',
+            hierarchy_lvl1: '<mark>API</mark>',
           },
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].category).toEqual('<mark>Ruby</mark>');
       expect(actual[0].subcategory).toEqual('<mark>API</mark>');
     });
-
-    it('should use highlighted camel if exists and matchLevel not none', () => {
-      // Given
-      const input = [
-        {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: 'Foo',
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
-          _highlightResult: {
-            // eslint-disable-next-line camelcase
-            hierarchy_camel: {
-              lvl0: {
-                value: '<mark>Python</mark>',
-                matchLevel: 'full',
-              },
-              lvl1: {
-                value: '<mark>API2</mark>',
-                matchLevel: 'full',
-              },
-            },
-            hierarchy: {
-              lvl0: {
-                value: '<mark>Ruby</mark>',
-              },
-              lvl1: {
-                value: '<mark>API</mark>',
-              },
-            },
-          },
-        },
-      ];
-
-      // When
-      const actual = DocSearch.formatHits(input);
-
-      // Then
-      expect(actual[0].category).toEqual('<mark>Python</mark>');
-      expect(actual[0].subcategory).toEqual('<mark>API2</mark>');
-    });
     it('should use lvl2 as title', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: 'Foo',
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: 'Foo',
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].title).toEqual('Foo');
@@ -865,19 +806,17 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].title).toEqual('API');
@@ -886,19 +825,17 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: null,
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: null,
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].title).toEqual('Ruby');
@@ -907,19 +844,17 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: 'Geo-search',
-            lvl3: 'Foo',
-            lvl4: 'Bar',
-            lvl5: 'Baz',
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: 'Geo-search',
+          hierarchy_lvl3: 'Foo',
+          hierarchy_lvl4: 'Bar',
+          hierarchy_lvl5: 'Baz',
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       const separator =
         '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>';
@@ -932,41 +867,25 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: 'Geo-search',
-            lvl3: 'Foo',
-            lvl4: 'Bar',
-            lvl5: 'Baz',
-          },
-          _highlightResult: {
-            hierarchy: {
-              lvl0: {
-                value: '<mark>Ruby</mark>',
-              },
-              lvl1: {
-                value: '<mark>API</mark>',
-              },
-              lvl2: {
-                value: '<mark>Geo-search</mark>',
-              },
-              lvl3: {
-                value: '<mark>Foo</mark>',
-              },
-              lvl4: {
-                value: '<mark>Bar</mark>',
-              },
-              lvl5: {
-                value: '<mark>Baz</mark>',
-              },
-            },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: 'Geo-search',
+          hierarchy_lvl3: 'Foo',
+          hierarchy_lvl4: 'Bar',
+          hierarchy_lvl5: 'Baz',
+          _formatted: {
+            hierarchy_lvl0: '<mark>Ruby</mark>',
+            hierarchy_lvl1: '<mark>API</mark>',
+            hierarchy_lvl2: '<mark>Geo-search</mark>',
+            hierarchy_lvl3: '<mark>Foo</mark>',
+            hierarchy_lvl4: '<mark>Bar</mark>',
+            hierarchy_lvl5: '<mark>Baz</mark>',
           },
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       const separator =
         '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>';
@@ -978,25 +897,21 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
           content: 'foo bar',
-          _snippetResult: {
-            content: {
-              value: 'lorem <mark>foo</mark> bar ipsum.',
-            },
+          _formatted: {
+            content: 'lorem <mark>foo</mark> bar ipsum.',
           },
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].text).toEqual('…lorem <mark>foo</mark> bar ipsum.');
@@ -1005,14 +920,12 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
           content: 'foo bar',
           url: 'http://foo.bar/',
           anchor: 'anchor',
@@ -1020,7 +933,7 @@ describe('DocSearch', () => {
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].url).toEqual('http://foo.bar/#anchor');
@@ -1029,14 +942,12 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
           content: 'foo bar',
           url: 'http://foo.bar/#anchor',
           anchor: 'anchor',
@@ -1044,7 +955,7 @@ describe('DocSearch', () => {
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].url).toEqual('http://foo.bar/#anchor');
@@ -1053,21 +964,19 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
           content: 'foo bar',
           url: 'http://foo.bar/',
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].url).toEqual(input[0].url);
@@ -1076,21 +985,19 @@ describe('DocSearch', () => {
       // Given
       const input = [
         {
-          hierarchy: {
-            lvl0: 'Ruby',
-            lvl1: 'API',
-            lvl2: null,
-            lvl3: null,
-            lvl4: null,
-            lvl5: null,
-          },
+          hierarchy_lvl0: 'Ruby',
+          hierarchy_lvl1: 'API',
+          hierarchy_lvl2: null,
+          hierarchy_lvl3: null,
+          hierarchy_lvl4: null,
+          hierarchy_lvl5: null,
           content: 'foo bar',
           anchor: 'anchor',
         },
       ];
 
       // When
-      const actual = DocSearch.formatHits(input);
+      const actual = MeiliSearch4Docs.formatHits(input);
 
       // Then
       expect(actual[0].url).toEqual(`#${input[0].anchor}`);
@@ -1106,7 +1013,7 @@ describe('DocSearch', () => {
       };
 
       // When
-      const actual = DocSearch.formatURL(input);
+      const actual = MeiliSearch4Docs.formatURL(input);
 
       // Then
       expect(actual).toEqual('url#anchor');
@@ -1119,7 +1026,7 @@ describe('DocSearch', () => {
       };
 
       // When
-      const actual = DocSearch.formatURL(input);
+      const actual = MeiliSearch4Docs.formatURL(input);
 
       // Then
       expect(actual).toEqual('url');
@@ -1132,7 +1039,7 @@ describe('DocSearch', () => {
       };
 
       // When
-      const actual = DocSearch.formatURL(input);
+      const actual = MeiliSearch4Docs.formatURL(input);
 
       // Then
       expect(actual).toEqual('#anchor');
@@ -1146,7 +1053,7 @@ describe('DocSearch', () => {
       };
 
       // When
-      const actual = DocSearch.formatURL(input);
+      const actual = MeiliSearch4Docs.formatURL(input);
 
       // Then
       expect(actual).toEqual('url#anchor');
@@ -1157,7 +1064,7 @@ describe('DocSearch', () => {
       const input = {};
 
       // When
-      const actual = DocSearch.formatURL(input);
+      const actual = MeiliSearch4Docs.formatURL(input);
 
       // Then
       expect(actual).toEqual(null);
@@ -1168,7 +1075,7 @@ describe('DocSearch', () => {
       const input = {};
 
       // When
-      DocSearch.formatURL(input);
+      MeiliSearch4Docs.formatURL(input);
 
       // Then
       expect(window.console.warn.calledOnce).toBe(true);
@@ -1180,16 +1087,16 @@ describe('DocSearch', () => {
       const templates = {
         suggestion: '<div></div>',
       };
-      DocSearch.__Rewire__('templates', templates);
+      MeiliSearch4Docs.__Rewire__('templates', templates);
     });
     afterEach(() => {
-      DocSearch.__ResetDependency__('templates');
+      MeiliSearch4Docs.__ResetDependency__('templates');
     });
     it('should return a function', () => {
       // Given
 
       // When
-      const actual = DocSearch.getSuggestionTemplate();
+      const actual = MeiliSearch4Docs.getSuggestionTemplate();
 
       // Then
       expect(actual).toBeInstanceOf(Function);
@@ -1202,13 +1109,13 @@ describe('DocSearch', () => {
         Hogan = {
           compile: sinon.stub().returns({ render }),
         };
-        DocSearch.__Rewire__('Hogan', Hogan);
+        MeiliSearch4Docs.__Rewire__('Hogan', Hogan);
       });
       it('should compile the suggestion template', () => {
         // Given
 
         // When
-        DocSearch.getSuggestionTemplate();
+        MeiliSearch4Docs.getSuggestionTemplate();
 
         // Then
         expect(Hogan.compile.calledOnce).toBe(true);
@@ -1216,7 +1123,7 @@ describe('DocSearch', () => {
       });
       it('should call render on a Hogan template', () => {
         // Given
-        const actual = DocSearch.getSuggestionTemplate();
+        const actual = MeiliSearch4Docs.getSuggestionTemplate();
 
         // When
         actual({ foo: 'bar' });

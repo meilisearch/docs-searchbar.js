@@ -2,8 +2,8 @@
 
 set -e # exit when error
 
-NAME='docsearch'
-LICENSE="/*! ${NAME} ${VERSION:-UNRELEASED} | © Algolia | github.com/algolia/docsearch */"
+NAME='meilisearch4docs'
+LICENSE="/*! ${NAME} ${VERSION:-UNRELEASED} | © Meili | github.com/meilisearch/meilisearch4docs */"
 DIST_DIR="dist/cdn"
 DIST_DIR_NPM="dist/npm"
 DIST_FILE="$DIST_DIR/${NAME}.css"
@@ -12,7 +12,7 @@ DIST_FILE_MAP="$DIST_DIR/${NAME}.min.css.map"
 
 mkdir -p "$DIST_DIR"
 
-# ./dist/cdn/docsearch.css
+# ./dist/cdn/meilisearch4docs.css
 echo "$LICENSE" > "$DIST_FILE";
 node-sass --output-style expanded ./src/styles/main.scss \
   | postcss --use autoprefixer -o "$DIST_FILE"
@@ -20,7 +20,7 @@ node-sass --output-style expanded ./src/styles/main.scss \
 # copy styles
 cp -r src/styles $DIST_DIR_NPM
 
-# ./dist/cdn/docsearch.min.css
+# ./dist/cdn/meilisearch4docs.min.css
 postcss "$DIST_FILE" --use cssnano --map "$DIST_FILE_MAP" -o "$DIST_FILE_MIN"
 
 gzip_size=$(gzip -9 < $DIST_FILE_MIN | wc -c | pretty-bytes)

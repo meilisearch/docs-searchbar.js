@@ -227,10 +227,8 @@ describe('utils', () => {
     it('should return the highlighted version if exists', () => {
       // Given
       const input = {
-        _highlightResult: {
-          text: {
-            value: '<mark>foo</mark>',
-          },
+        _formatted: {
+          text: '<mark>foo</mark>',
         },
         text: 'foo',
       };
@@ -244,7 +242,7 @@ describe('utils', () => {
     it('should return the default key if no highlighted value', () => {
       // Given
       const input = {
-        _highlightResult: {
+        _formatted: {
           text: {},
         },
         text: 'foo',
@@ -286,10 +284,8 @@ describe('utils', () => {
     it('should return the key value if no snippet for this key', () => {
       // Given
       const input = {
-        _snippetResult: {
-          content: {
-            value: '<mark>Bar</mark>',
-          },
+        _formatted: {
+          content: '<mark>Bar</mark>',
         },
         text: 'Foo',
         content: 'Bar',
@@ -304,10 +300,8 @@ describe('utils', () => {
     it('should add ellipsis at the start if snippet does not start with a capital letter', () => {
       // Given
       const input = {
-        _snippetResult: {
-          text: {
-            value: 'this is the <mark>end</mark> of a sentence.',
-          },
+        _formatted: {
+          text: 'this is the <mark>end</mark> of a sentence.',
         },
         text: 'this is the end of a sentence.',
       };
@@ -321,10 +315,8 @@ describe('utils', () => {
     it('should add ellipsis at the end if snippet does not end with a terminal point', () => {
       // Given
       const input = {
-        _snippetResult: {
-          text: {
-            value: 'This is an <mark>finished</mark> sentence',
-          },
+        _formatted: {
+          text: 'This is an <mark>finished</mark> sentence',
         },
         text: 'This is an <mark>finished</mark> sentence',
       };

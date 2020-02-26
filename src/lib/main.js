@@ -1,8 +1,8 @@
 import toFactory from 'to-factory';
-import DocSearch from './DocSearch';
+import MeiliSearch4Docs from './MeiliSearch4Docs';
 import version from './version';
 
-const docsearch = toFactory(DocSearch);
-docsearch.version = version;
+const meilisearch4docs = toFactory(MeiliSearch4Docs);
+meilisearch4docs.version = version;
 
-export default docsearch;
+export default meilisearch4docs;
