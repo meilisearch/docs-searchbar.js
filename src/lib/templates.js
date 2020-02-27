@@ -70,7 +70,10 @@ const templates = {
   `,
   footer: `
     <div class="${footerPrefix}">
-      Powered by <a href="https://www.meilisearch.com" target="_blank">MeiliSearch</a>
+      Powered by
+      <a href="https://www.meilisearch.com" target="_blank">
+        <img src="https://res.cloudinary.com/meilisearch/image/upload/v1582710599/Logo_fumols.svg" height="20" width="97" class="meilisearch4docs-footer-logo"/>
+       </a>
     </div>
   `,
   empty: `
