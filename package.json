@@ -1,7 +1,7 @@
 {
-  "name": "meilisearch4docs",
+  "name": "docs-searchbar.js",
   "version": "1.0.0",
-  "description": "Add an autocomplete dropdown to your documentation with MeiliSearch",
+  "description": "Add search bar with a search-as-you-type experience to your documentation using MeiliSearch",
   "main": "dist/npm/index.js",
   "scripts": {
     "build": "./scripts/build",
@@ -25,18 +25,7 @@
   ],
   "author": "MeiliSearch <bonjour@meilisearch.com> (https://github.com/meilisearch/)",
   "license": "MIT",
-  "repository": "meilisearch/meilisearch4docs",
-  "renovate": {
-    "extends": [
-      "config:library",
-      "schedule:weekends",
-      ":automergeMinor",
-      ":automergeBranchPush",
-      ":semanticCommits",
-      ":rebaseStalePrs",
-      ":timezone(Europe/Paris)"
-    ]
-  },
+  "repository": "meilisearch/docs-searchbar.js",
   "devDependencies": {
     "autoprefixer": "9.1.1",
     "babel-cli": "6.26.0",

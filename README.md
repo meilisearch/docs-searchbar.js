@@ -1,4 +1,4 @@
-# MeiliSearch4Docs <!-- omit in toc -->
+# Docs SearchBar <!-- omit in toc -->
 
 The best way to handle your search bar documentation with [MeiliSearch](https://github.com/meilisearch/MeiliSearch).
 
@@ -48,10 +48,7 @@ The command itself is split into `yarn run build:js` and `yarn run build:css` if
 
 ### Serve
 
-Set the env var `$BROWSER`.<br>
-This variable will be use in `${BROWSER} scripts/playground.html` to open the playground.
-
-Then run:
+Run:
 
 ```bash
 $ yarn run serve
@@ -91,6 +88,6 @@ Based on [Algolia DocSearch repository][3] from [this commit][4].<br>
 Due to a lot of future changes on this repository compared to the original one, we don't maintain it as an official fork.
 
 [1]: https://github.com/creationix/nvm#install-script
-[2]: https://github.com/meilisearch/meilisearch4docs/issues
+[2]: https://github.com/meilisearch/docs-searchbar.js/issues
 [3]: https://github.com/algolia/docsearch
 [4]: https://github.com/algolia/docsearch/commit/4c32b6f80b753f592de83351116664bf74b10297

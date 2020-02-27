@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>MeiliSearch4Docs playground</title>
+    <title>Docs SearchBar playground</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://127.0.0.1:8080/meilisearch4docs.min.css" />
+    <link rel="stylesheet" href="http://127.0.0.1:8080/docs-searchbar.min.css" />
   </head>
   <body>
     <div class="container">
@@ -13,14 +13,14 @@
       </div>
       <div class="col-md-12">
         <div class="input-group">
-          <input type="search" placeholder="MeiliSearch4Docs input" class="form-control" id="q">
+          <input type="search" placeholder="docs-searchbar input" class="form-control" id="q">
         </div>
       </div>
     </div>
     <!-- at the end of the BODY -->
-    <script src="http://127.0.0.1:8080/meilisearch4docs.js"></script>
+    <script src="http://127.0.0.1:8080/docs-searchbar.js"></script>
     <script>
-      meilisearch4docs({
+      docsSearchBar({
         // Test with MeiliSearch Documentation
         meilisearchHostUrl: 'https://e10b17e6.getmeili.com',
         apiKey: 'R62XWZPJG794YB5VFOADHTNQEKLCISM01U38',
