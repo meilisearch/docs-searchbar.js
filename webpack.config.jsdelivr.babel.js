@@ -6,8 +6,8 @@ export default {
   devtool: 'source-map',
   output: {
     path: join(__dirname, 'dist/cdn'),
-    filename: 'meilisearch4docs.js',
-    library: 'meilisearch4docs',
+    filename: 'docs-searchbar.js',
+    library: 'docsSearchBar',
     libraryTarget: 'umd',
   },
   module: {

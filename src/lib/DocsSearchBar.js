@@ -7,7 +7,7 @@ import Meili from 'meilisearch';
 
 /**
  * Adds an autocomplete dropdown to an input field
- * @function MeiliSearch4Docs
+ * @function DocsSearchBar
  * @param  {string} options.meilisearchHostUrl    URL where MeiliSearch instance is hosted
  * @param  {string} options.apiKey                Read-only API key
  * @param  {string} options.indexUid              UID of the index to target
@@ -25,7 +25,7 @@ const usage = `Usage:
   [ meilisearchOptions.{limit} ]
   [ autocompleteOptions.{hint,debug} ]
 })`;
-class MeiliSearch4Docs {
+class DocsSearchBar {
   constructor({
     meilisearchHostUrl,
     apiKey,
@@ -45,7 +45,7 @@ class MeiliSearch4Docs {
     enhancedSearchInput = false,
     layout = 'columns',
   }) {
-    MeiliSearch4Docs.checkArguments({
+    DocsSearchBar.checkArguments({
       meilisearchHostUrl,
       apiKey,
       indexUid,
@@ -64,7 +64,7 @@ class MeiliSearch4Docs {
     this.apiKey = apiKey;
     this.meilisearchHostUrl = meilisearchHostUrl;
     this.indexUid = indexUid;
-    this.input = MeiliSearch4Docs.getInputFromSelector(inputSelector);
+    this.input = DocsSearchBar.getInputFromSelector(inputSelector);
     this.meilisearchOptions = {
       limit: 5,
       attributesToHighlight: ['*'],
@@ -83,7 +83,7 @@ class MeiliSearch4Docs {
     this.autocompleteOptions.cssClasses =
       this.autocompleteOptions.cssClasses || {};
     this.autocompleteOptions.cssClasses.prefix =
-      this.autocompleteOptions.cssClasses.prefix || 'ds';
+      this.autocompleteOptions.cssClasses.prefix || 'dsb';
     this.autocompleteOptions.cssClasses.root =
       this.autocompleteOptions.cssClasses.root || 'meilisearch-autocomplete';
     const inputAriaLabel =
@@ -92,6 +92,8 @@ class MeiliSearch4Docs {
       this.input.attr('aria-label');
     this.autocompleteOptions.ariaLabel =
       this.autocompleteOptions.ariaLabel || inputAriaLabel || 'search input';
+    this.autocompleteOptions.keyboardShortcuts = this.autocompleteOptions
+      .keyboardShortcuts || ['s', '/'];
 
     this.isSimpleLayout = layout === 'simple';
 
@@ -101,18 +103,16 @@ class MeiliSearch4Docs {
     });
 
     if (enhancedSearchInput) {
-      this.input = MeiliSearch4Docs.injectSearchBox(this.input);
+      this.input = DocsSearchBar.injectSearchBox(this.input);
     }
 
     this.autocomplete = autocomplete(this.input, autocompleteOptions, [
       {
         source: this.getAutocompleteSource(transformData, queryHook),
         templates: {
-          suggestion: MeiliSearch4Docs.getSuggestionTemplate(
-            this.isSimpleLayout
-          ),
+          suggestion: DocsSearchBar.getSuggestionTemplate(this.isSimpleLayout),
           footer: templates.footer,
-          empty: MeiliSearch4Docs.getEmptyTemplate(),
+          empty: DocsSearchBar.getEmptyTemplate(),
         },
       },
     ]);
@@ -122,9 +122,13 @@ class MeiliSearch4Docs {
 
     // We prevent default link clicking if a custom handleSelected is defined
     if (customHandleSelected) {
-      $('.meilisearch-autocomplete').on('click', '.ds-suggestions a', event => {
-        event.preventDefault();
-      });
+      $('.meilisearch-autocomplete').on(
+        'click',
+        `.${this.autocompleteOptions.cssClasses.prefix}-suggestions a`,
+        event => {
+          event.preventDefault();
+        }
+      );
     }
 
     this.autocomplete.on(
@@ -138,7 +142,7 @@ class MeiliSearch4Docs {
     );
 
     if (enhancedSearchInput) {
-      MeiliSearch4Docs.bindSearchBoxEvent();
+      DocsSearchBar.bindSearchBoxEvent();
     }
   }
 
@@ -159,7 +163,7 @@ class MeiliSearch4Docs {
       );
     }
 
-    if (!MeiliSearch4Docs.getInputFromSelector(args.inputSelector)) {
+    if (!DocsSearchBar.getInputFromSelector(args.inputSelector)) {
       throw new Error(
         `Error: No input element in the page matches ${args.inputSelector}`
       );
@@ -178,13 +182,13 @@ class MeiliSearch4Docs {
 
   static bindSearchBoxEvent() {
     $('.searchbox [type="reset"]').on('click', function() {
-      $('input#meilisearch4docs').focus();
+      $('input#docs-searchbar').focus();
       $(this).addClass('hide');
       autocomplete.autocomplete.setVal('');
     });
 
-    $('input#meilisearch4docs').on('keyup', () => {
-      const searchbox = document.querySelector('input#meilisearch4docs');
+    $('input#docs-searchbar').on('keyup', () => {
+      const searchbox = document.querySelector('input#docs-searchbar');
       const reset = document.querySelector('.searchbox [type="reset"]');
       reset.className = 'searchbox__reset';
       if (searchbox.value.length === 0) {
@@ -236,7 +240,7 @@ class MeiliSearch4Docs {
           if (transformData) {
             hits = transformData(hits) || hits;
           }
-          callback(MeiliSearch4Docs.formatHits(hits));
+          callback(DocsSearchBar.formatHits(hits));
         });
     };
   }
@@ -272,7 +276,7 @@ class MeiliSearch4Docs {
 
     // Translate hits into smaller objects to be send to the template
     return groupedHits.map(hit => {
-      const url = MeiliSearch4Docs.formatURL(hit);
+      const url = DocsSearchBar.formatURL(hit);
       const category = utils.getHighlightedValue(hit, 'lvl0');
       const subcategory = utils.getHighlightedValue(hit, 'lvl1') || category;
       const displayTitle = utils
@@ -381,4 +385,4 @@ class MeiliSearch4Docs {
   }
 }
 
-export default MeiliSearch4Docs;
+export default DocsSearchBar;

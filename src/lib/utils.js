@@ -121,7 +121,7 @@ const utils = {
       if (typeof key === 'string') {
         key = key.toLowerCase();
       }
-      // fix #171 the given data type of meilisearch4docs hits might be conflict with the properties of the native Object,
+      // fix #171 the given data type of docsSearchBar hits might be conflict with the properties of the native Object,
       // such as the constructor, so we need to do this check.
       if (!Object.prototype.hasOwnProperty.call(newCollection, key)) {
         newCollection[key] = [];
@@ -260,7 +260,7 @@ const utils = {
    **/
   replaceHtmlTagsToHighlight(str) {
     return str
-      .replace('<em>', '<span class="meilisearch4docs-suggestion--highlight">')
+      .replace('<em>', '<span class="docs-search-bar-suggestion--highlight">')
       .replace('</em>', '</span>');
   },
   /*

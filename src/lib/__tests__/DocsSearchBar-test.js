@@ -3,20 +3,20 @@
 /* eslint-disable camelcase */
 import sinon from 'sinon';
 import $ from '../zepto';
-import MeiliSearch4Docs from '../MeiliSearch4Docs';
+import DocsSearchBar from '../DocsSearchBar';
 /**
  * Pitfalls:
- * Whenever you call new MeiliSearch4Docs(), it will add the a new dropdown markup to
+ * Whenever you call new DocsSearchBar(), it will add the a new dropdown markup to
  * the page. Because we are clearing the document.body.innerHTML between each
  * test, it usually is not a problem.
  * Except that autocomplete.js remembers internally how many times it has been
  * called, and adds this number to classes of elements it creates.
- * DO NOT rely on any .ds-dataset-X, .ds-suggestions-X, etc classes where X is
+ * DO NOT rely on any .dsb-dataset-X, .dsb-suggestions-X, etc classes where X is
  * a number. This will change if you add or remove tests and will break your
  * tests.
  **/
 
-describe('MeiliSearch4Docs', () => {
+describe('DocsSearchBar', () => {
   beforeEach(() => {
     // Note: If you edit this HTML while doing TDD with `npm run test:watch`,
     // you will have to restart `npm run test:watch` for the new HTML to be
@@ -53,18 +53,18 @@ describe('MeiliSearch4Docs', () => {
         inputSelector: '#input',
       };
 
-      sinon.spy(MeiliSearch4Docs, 'checkArguments');
-      sinon.stub(MeiliSearch4Docs, 'getInputFromSelector').returns(true);
+      sinon.spy(DocsSearchBar, 'checkArguments');
+      sinon.stub(DocsSearchBar, 'getInputFromSelector').returns(true);
 
-      MeiliSearch4Docs.__Rewire__('Meili', MeiliSearch);
-      MeiliSearch4Docs.__Rewire__('autocomplete', AutoComplete);
+      DocsSearchBar.__Rewire__('Meili', MeiliSearch);
+      DocsSearchBar.__Rewire__('autocomplete', AutoComplete);
     });
 
     afterEach(() => {
-      MeiliSearch4Docs.checkArguments.restore();
-      MeiliSearch4Docs.getInputFromSelector.restore();
-      MeiliSearch4Docs.__ResetDependency__('meilisearch');
-      MeiliSearch4Docs.__ResetDependency__('autocomplete');
+      DocsSearchBar.checkArguments.restore();
+      DocsSearchBar.getInputFromSelector.restore();
+      DocsSearchBar.__ResetDependency__('meilisearch');
+      DocsSearchBar.__ResetDependency__('autocomplete');
     });
 
     it('should call checkArguments', () => {
@@ -72,17 +72,17 @@ describe('MeiliSearch4Docs', () => {
       const options = defaultOptions;
 
       // When
-      new MeiliSearch4Docs(options);
+      new DocsSearchBar(options);
 
       // Then
-      expect(MeiliSearch4Docs.checkArguments.calledOnce).toBe(true);
+      expect(DocsSearchBar.checkArguments.calledOnce).toBe(true);
     });
     it('should pass main options as instance properties', () => {
       // Given
       const options = defaultOptions;
 
       // When
-      const actual = new MeiliSearch4Docs(options);
+      const actual = new DocsSearchBar(options);
 
       // Then
       expect(actual.meilisearchHostUrl).toEqual('https://test.getmeili.com');
@@ -99,7 +99,7 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const actual = new MeiliSearch4Docs(options);
+      const actual = new DocsSearchBar(options);
 
       // Then
       expect(actual.meilisearchOptions).toEqual({
@@ -119,7 +119,7 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const actual = new MeiliSearch4Docs(options);
+      const actual = new DocsSearchBar(options);
 
       // Then
       expect(actual.meilisearchOptions).toEqual({
@@ -132,10 +132,10 @@ describe('MeiliSearch4Docs', () => {
     it('should pass the input element as an instance property', () => {
       // Given
       const options = defaultOptions;
-      MeiliSearch4Docs.getInputFromSelector.returns($('<span>foo</span>'));
+      DocsSearchBar.getInputFromSelector.returns($('<span>foo</span>'));
 
       // When
-      const actual = new MeiliSearch4Docs(options);
+      const actual = new DocsSearchBar(options);
 
       // Then
       const $inputs = actual.input;
@@ -151,7 +151,7 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const actual = new MeiliSearch4Docs(options);
+      const actual = new DocsSearchBar(options);
 
       // Then
       expect(typeof actual.meilisearchOptions).toEqual('object');
@@ -160,10 +160,11 @@ describe('MeiliSearch4Docs', () => {
         debug: false,
         cssClasses: {
           root: 'meilisearch-autocomplete',
-          prefix: 'ds',
+          prefix: 'dsb',
         },
         anOption: 44,
         ariaLabel: 'search input',
+        keyboardShortcuts: ['s', '/'],
       });
     });
     it('should instantiate meilisearch with the correct values', () => {
@@ -171,7 +172,7 @@ describe('MeiliSearch4Docs', () => {
       const options = defaultOptions;
 
       // When
-      new MeiliSearch4Docs(options);
+      new DocsSearchBar(options);
 
       // Then
       expect(MeiliSearch.calledOnce).toBe(true);
@@ -189,10 +190,10 @@ describe('MeiliSearch4Docs', () => {
         autocompleteOptions: { anOption: '44' },
       };
       const $input = $('<input name="foo" />');
-      MeiliSearch4Docs.getInputFromSelector.returns($input);
+      DocsSearchBar.getInputFromSelector.returns($input);
 
       // When
-      new MeiliSearch4Docs(options);
+      new DocsSearchBar(options);
 
       // Then
       expect(AutoComplete.calledOnce).toBe(true);
@@ -201,10 +202,11 @@ describe('MeiliSearch4Docs', () => {
           anOption: '44',
           cssClasses: {
             root: 'meilisearch-autocomplete',
-            prefix: 'ds',
+            prefix: 'dsb',
           },
           debug: false,
           ariaLabel: 'search input',
+          keyboardShortcuts: ['s', '/'],
         })
       ).toBe(true);
     });
@@ -213,7 +215,7 @@ describe('MeiliSearch4Docs', () => {
       const options = { ...defaultOptions, handleSelected() {} };
 
       // When
-      new MeiliSearch4Docs(options);
+      new DocsSearchBar(options);
 
       // Then
       expect(autocomplete.on.calledTwice).toBe(true);
@@ -224,12 +226,12 @@ describe('MeiliSearch4Docs', () => {
   describe('checkArguments', () => {
     let checkArguments;
     beforeEach(() => {
-      checkArguments = MeiliSearch4Docs.checkArguments;
+      checkArguments = DocsSearchBar.checkArguments;
     });
 
     afterEach(() => {
-      if (MeiliSearch4Docs.getInputFromSelector.restore) {
-        MeiliSearch4Docs.getInputFromSelector.restore();
+      if (DocsSearchBar.getInputFromSelector.restore) {
+        DocsSearchBar.getInputFromSelector.restore();
       }
     });
 
@@ -276,7 +278,7 @@ describe('MeiliSearch4Docs', () => {
         apiKey: 'apiKey',
         indexUid: 'indexUID',
       };
-      sinon.stub(MeiliSearch4Docs, 'getInputFromSelector').returns(false);
+      sinon.stub(DocsSearchBar, 'getInputFromSelector').returns(false);
 
       // When
       expect(() => {
@@ -288,7 +290,7 @@ describe('MeiliSearch4Docs', () => {
   describe('getInputFromSelector', () => {
     let getInputFromSelector;
     beforeEach(() => {
-      getInputFromSelector = MeiliSearch4Docs.getInputFromSelector;
+      getInputFromSelector = DocsSearchBar.getInputFromSelector;
     });
 
     it('should return null if no element matches the selector', () => {
@@ -326,7 +328,7 @@ describe('MeiliSearch4Docs', () => {
   describe('getAutocompleteSource', () => {
     let client;
     let MeiliSearch;
-    let meilisearch4docs;
+    let docsSearchBar;
     beforeEach(() => {
       client = {
         meilisearch: 'client',
@@ -337,9 +339,9 @@ describe('MeiliSearch4Docs', () => {
         }),
       };
       MeiliSearch = sinon.stub().returns(client);
-      MeiliSearch4Docs.__Rewire__('Meili', MeiliSearch);
+      DocsSearchBar.__Rewire__('Meili', MeiliSearch);
 
-      meilisearch4docs = new MeiliSearch4Docs({
+      docsSearchBar = new DocsSearchBar({
         meilisearchHostUrl: 'https://test.getmeili.com',
         indexUid: 'indexUID',
         apiKey: 'apiKey',
@@ -348,12 +350,12 @@ describe('MeiliSearch4Docs', () => {
     });
 
     afterEach(() => {
-      MeiliSearch4Docs.__ResetDependency__('meilisearch');
+      DocsSearchBar.__ResetDependency__('meilisearch');
     });
 
     it('returns a function', () => {
       // Given
-      const actual = meilisearch4docs.getAutocompleteSource();
+      const actual = docsSearchBar.getAutocompleteSource();
 
       // When
 
@@ -364,7 +366,7 @@ describe('MeiliSearch4Docs', () => {
     describe('the returned function', () => {
       it('calls the MeiliSearch client with the correct parameters', () => {
         // Given
-        const actual = meilisearch4docs.getAutocompleteSource();
+        const actual = docsSearchBar.getAutocompleteSource();
 
         // When
         actual('query');
@@ -390,7 +392,7 @@ describe('MeiliSearch4Docs', () => {
     describe('when queryHook is used', () => {
       it('calls the MeiliSearch client with the correct parameters', () => {
         // Given
-        const actual = meilisearch4docs.getAutocompleteSource(
+        const actual = docsSearchBar.getAutocompleteSource(
           false,
           query => `${query} modified`
         );
@@ -430,8 +432,8 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const ds = new MeiliSearch4Docs(options);
-      ds.autocomplete.trigger('autocomplete:selected', {
+      const dsb = new DocsSearchBar(options);
+      dsb.autocomplete.trigger('autocomplete:selected', {
         url: 'https://website.com/doc/page',
       });
 
@@ -463,8 +465,8 @@ describe('MeiliSearch4Docs', () => {
       });
 
       // When
-      const ds = new MeiliSearch4Docs(options);
-      ds.autocomplete.trigger('autocomplete:selected', {
+      const dsb = new DocsSearchBar(options);
+      dsb.autocomplete.trigger('autocomplete:selected', {
         url: 'https://website.com/doc/page',
       });
 
@@ -488,10 +490,10 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // Building a dropdown with links inside
-      const ds = new MeiliSearch4Docs(options);
-      ds.autocomplete.trigger('autocomplete:shown');
+      const dsb = new DocsSearchBar(options);
+      dsb.autocomplete.trigger('autocomplete:shown');
       const dataset = $('.meilisearch-autocomplete');
-      const suggestions = $('<div class="ds-suggestions"></div>');
+      const suggestions = $('<div class="dsb-suggestions"></div>');
       const testLink = $('<a href="#">test link</a>');
       dataset.append(suggestions);
       suggestions.append(testLink);
@@ -519,7 +521,7 @@ describe('MeiliSearch4Docs', () => {
         const mockSuggestion = { url: 'www.example.com' };
         const mockContext = { selectionMethod: 'enterKey' };
 
-        new MeiliSearch4Docs(options).handleSelected(
+        new DocsSearchBar(options).handleSelected(
           mockInput,
           undefined, // Event
           mockSuggestion,
@@ -546,7 +548,7 @@ describe('MeiliSearch4Docs', () => {
         const mockInput = { setVal: mockSetVal };
         const mockContext = { selectionMethod: 'click' };
 
-        new MeiliSearch4Docs(options).handleSelected(
+        new DocsSearchBar(options).handleSelected(
           mockInput,
           undefined, // Event
           undefined, // Suggestion
@@ -574,9 +576,9 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const ds = new MeiliSearch4Docs(options);
+      const dsb = new DocsSearchBar(options);
 
-      ds.autocomplete.trigger('autocomplete:shown');
+      dsb.autocomplete.trigger('autocomplete:shown');
 
       expect($('.meilisearch-autocomplete').attr('class')).toEqual(
         'meilisearch-autocomplete meilisearch-autocomplete-right'
@@ -599,7 +601,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(input).not.toBe(actual);
@@ -634,7 +636,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].isCategoryHeader).toEqual(true);
@@ -670,7 +672,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].category).toEqual('Ruby');
@@ -707,7 +709,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].isSubCategoryHeader).toEqual(true);
@@ -751,7 +753,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].isSubCategoryHeader).toEqual(true);
@@ -777,7 +779,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].category).toEqual('<mark>Ruby</mark>');
@@ -797,7 +799,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].title).toEqual('Foo');
@@ -816,7 +818,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].title).toEqual('API');
@@ -835,7 +837,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].title).toEqual('Ruby');
@@ -854,7 +856,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       const separator =
         '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>';
@@ -885,7 +887,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       const separator =
         '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>';
@@ -911,7 +913,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].text).toEqual('…lorem <mark>foo</mark> bar ipsum.');
@@ -933,7 +935,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].url).toEqual('http://foo.bar/#anchor');
@@ -955,7 +957,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].url).toEqual('http://foo.bar/#anchor');
@@ -976,7 +978,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].url).toEqual(input[0].url);
@@ -997,7 +999,7 @@ describe('MeiliSearch4Docs', () => {
       ];
 
       // When
-      const actual = MeiliSearch4Docs.formatHits(input);
+      const actual = DocsSearchBar.formatHits(input);
 
       // Then
       expect(actual[0].url).toEqual(`#${input[0].anchor}`);
@@ -1013,7 +1015,7 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const actual = MeiliSearch4Docs.formatURL(input);
+      const actual = DocsSearchBar.formatURL(input);
 
       // Then
       expect(actual).toEqual('url#anchor');
@@ -1026,7 +1028,7 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const actual = MeiliSearch4Docs.formatURL(input);
+      const actual = DocsSearchBar.formatURL(input);
 
       // Then
       expect(actual).toEqual('url');
@@ -1039,7 +1041,7 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const actual = MeiliSearch4Docs.formatURL(input);
+      const actual = DocsSearchBar.formatURL(input);
 
       // Then
       expect(actual).toEqual('#anchor');
@@ -1053,7 +1055,7 @@ describe('MeiliSearch4Docs', () => {
       };
 
       // When
-      const actual = MeiliSearch4Docs.formatURL(input);
+      const actual = DocsSearchBar.formatURL(input);
 
       // Then
       expect(actual).toEqual('url#anchor');
@@ -1064,7 +1066,7 @@ describe('MeiliSearch4Docs', () => {
       const input = {};
 
       // When
-      const actual = MeiliSearch4Docs.formatURL(input);
+      const actual = DocsSearchBar.formatURL(input);
 
       // Then
       expect(actual).toEqual(null);
@@ -1075,7 +1077,7 @@ describe('MeiliSearch4Docs', () => {
       const input = {};
 
       // When
-      MeiliSearch4Docs.formatURL(input);
+      DocsSearchBar.formatURL(input);
 
       // Then
       expect(window.console.warn.calledOnce).toBe(true);
@@ -1087,16 +1089,16 @@ describe('MeiliSearch4Docs', () => {
       const templates = {
         suggestion: '<div></div>',
       };
-      MeiliSearch4Docs.__Rewire__('templates', templates);
+      DocsSearchBar.__Rewire__('templates', templates);
     });
     afterEach(() => {
-      MeiliSearch4Docs.__ResetDependency__('templates');
+      DocsSearchBar.__ResetDependency__('templates');
     });
     it('should return a function', () => {
       // Given
 
       // When
-      const actual = MeiliSearch4Docs.getSuggestionTemplate();
+      const actual = DocsSearchBar.getSuggestionTemplate();
 
       // Then
       expect(actual).toBeInstanceOf(Function);
@@ -1109,13 +1111,13 @@ describe('MeiliSearch4Docs', () => {
         Hogan = {
           compile: sinon.stub().returns({ render }),
         };
-        MeiliSearch4Docs.__Rewire__('Hogan', Hogan);
+        DocsSearchBar.__Rewire__('Hogan', Hogan);
       });
       it('should compile the suggestion template', () => {
         // Given
 
         // When
-        MeiliSearch4Docs.getSuggestionTemplate();
+        DocsSearchBar.getSuggestionTemplate();
 
         // Then
         expect(Hogan.compile.calledOnce).toBe(true);
@@ -1123,7 +1125,7 @@ describe('MeiliSearch4Docs', () => {
       });
       it('should call render on a Hogan template', () => {
         // Given
-        const actual = MeiliSearch4Docs.getSuggestionTemplate();
+        const actual = DocsSearchBar.getSuggestionTemplate();
 
         // When
         actual({ foo: 'bar' });
