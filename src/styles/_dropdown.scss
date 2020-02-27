@@ -493,11 +493,15 @@
 
     // powered by
     .meilisearch4docs-footer {
-      width: 160px;
+      width: 180px;
       height: 20px;
       z-index: 2000;
       margin-top: $padding/1.5;
       float: right;
+    }
+
+    .meilisearch4docs-footer-logo {
+      margin-bottom: 4px;
     }
   }
 }
