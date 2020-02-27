@@ -1,4 +1,4 @@
-# Docs SearchBar <!-- omit in toc -->
+# docs-searchbar.js <!-- omit in toc -->
 
 The best way to handle your search bar documentation with [MeiliSearch](https://github.com/meilisearch/MeiliSearch).
 
