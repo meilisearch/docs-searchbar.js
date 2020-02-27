@@ -72,7 +72,7 @@ const templates = {
     <div class="${footerPrefix}">
       Powered by
       <a href="https://www.meilisearch.com" target="_blank">
-        <img src="https://res.cloudinary.com/meilisearch/image/upload/v1582710599/Logo_fumols.svg" height="20" width="97" class="meilisearch4docs-footer-logo"/>
+        <img src="https://res.cloudinary.com/meilisearch/image/upload/v1582710599/Logo_fumols.svg" height="20" width="97" class="${footerPrefix}-logo"/>
        </a>
     </div>
   `,
@@ -92,7 +92,7 @@ const templates = {
   searchBox: `
   <form novalidate="novalidate" onsubmit="return false;" class="searchbox">
     <div role="search" class="searchbox__wrapper">
-      <input id="docs-searchbar" type="search" name="search" placeholder="Search the docs" autocomplete="off" required="required" class="searchbox__input"/>
+      <input id="${suggestionPrefix}" type="search" name="search" placeholder="Search the docs" autocomplete="off" required="required" class="searchbox__input"/>
       <button type="submit" title="Submit your search query." class="searchbox__submit" >
         <svg width=12 height=12 role="img" aria-label="Search">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-search-13"></use>
