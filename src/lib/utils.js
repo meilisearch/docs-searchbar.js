@@ -260,7 +260,7 @@ const utils = {
    **/
   replaceHtmlTagsToHighlight(str) {
     return str
-      .replace('<em>', '<span class="docs-search-bar-suggestion--highlight">')
+      .replace('<em>', '<span class="docs-searchbar-suggestion--highlight">')
       .replace('</em>', '</span>');
   },
   /*
