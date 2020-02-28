@@ -260,8 +260,8 @@ const utils = {
    **/
   replaceHtmlTagsToHighlight(str) {
     return str
-      .replace('<em>', '<span class="docs-searchbar-suggestion--highlight">')
-      .replace('</em>', '</span>');
+      .replace(/<em>/g, '<span class="docs-searchbar-suggestion--highlight">')
+      .replace(/<\/em>/g, '</span>');
   },
   /*
    * Returns the snippeted value of the specified key in the specified object.
