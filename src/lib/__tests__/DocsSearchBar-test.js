@@ -47,7 +47,7 @@ describe('DocsSearchBar', () => {
       autocomplete = { on: sinon.spy() };
       AutoComplete = sinon.stub().returns(autocomplete);
       defaultOptions = {
-        meilisearchHostUrl: 'https://test.getmeili.com',
+        hostUrl: 'https://test.getmeili.com',
         apiKey: 'apiKey',
         indexUid: 'indexUID',
         inputSelector: '#input',
@@ -85,7 +85,7 @@ describe('DocsSearchBar', () => {
       const actual = new DocsSearchBar(options);
 
       // Then
-      expect(actual.meilisearchHostUrl).toEqual('https://test.getmeili.com');
+      expect(actual.hostUrl).toEqual('https://test.getmeili.com');
       expect(actual.indexUid).toEqual('indexUID');
       expect(actual.apiKey).toEqual('apiKey');
     });
@@ -235,7 +235,7 @@ describe('DocsSearchBar', () => {
       }
     });
 
-    it('should throw an error if no meilisearchHostUrl defined', () => {
+    it('should throw an error if no hostUrl defined', () => {
       // Given
       const options = {
         apiKey: 'apiKey',
@@ -250,7 +250,7 @@ describe('DocsSearchBar', () => {
     it('should throw an error if no apiKey defined', () => {
       // Given
       const options = {
-        meilisearchHostUrl: 'test.com',
+        hostUrl: 'test.com',
         indexUid: 'indexUID',
       };
 
@@ -262,7 +262,7 @@ describe('DocsSearchBar', () => {
     it('should throw an error if no indexUid defined', () => {
       // Given
       const options = {
-        meilisearchHostUrl: 'test.com',
+        hostUrl: 'test.com',
         apiKey: 'apiKey',
       };
 
@@ -274,7 +274,7 @@ describe('DocsSearchBar', () => {
     it('should throw an error if no selector matches', () => {
       // Given
       const options = {
-        meilisearchHostUrl: 'test.com',
+        hostUrl: 'test.com',
         apiKey: 'apiKey',
         indexUid: 'indexUID',
       };
@@ -342,7 +342,7 @@ describe('DocsSearchBar', () => {
       DocsSearchBar.__Rewire__('Meili', MeiliSearch);
 
       docsSearchBar = new DocsSearchBar({
-        meilisearchHostUrl: 'https://test.getmeili.com',
+        hostUrl: 'https://test.getmeili.com',
         indexUid: 'indexUID',
         apiKey: 'apiKey',
         inputSelector: '#input',
@@ -425,7 +425,7 @@ describe('DocsSearchBar', () => {
     it('should change the location if no handleSelected specified', () => {
       // Given
       const options = {
-        meilisearchHostUrl: 'test.com',
+        hostUrl: 'test.com',
         apiKey: 'key',
         indexUid: 'foo',
         inputSelector: '#input',
@@ -448,7 +448,7 @@ describe('DocsSearchBar', () => {
       // Given
       const customHandleSelected = jest.fn();
       const options = {
-        meilisearchHostUrl: 'test.com',
+        hostUrl: 'test.com',
         apiKey: 'key',
         indexUid: 'foo',
         inputSelector: '#input',
@@ -482,7 +482,7 @@ describe('DocsSearchBar', () => {
     it('should prevent all clicks on links if a custom handleSelected is specified', () => {
       // Given
       const options = {
-        meilisearchHostUrl: 'test.com',
+        hostUrl: 'test.com',
         apiKey: 'key',
         indexUid: 'foo',
         inputSelector: '#input',
@@ -511,7 +511,7 @@ describe('DocsSearchBar', () => {
     describe('default handleSelected', () => {
       it('enterKey: should change the page', () => {
         const options = {
-          meilisearchHostUrl: 'test.com',
+          hostUrl: 'test.com',
           apiKey: 'key',
           indexUid: 'foo',
           inputSelector: '#input',
@@ -539,7 +539,7 @@ describe('DocsSearchBar', () => {
       });
       it('click: should not change the page', () => {
         const options = {
-          meilisearchHostUrl: 'test.com',
+          hostUrl: 'test.com',
           apiKey: 'key',
           indexUid: 'foo',
           inputSelector: '#input',
@@ -569,7 +569,7 @@ describe('DocsSearchBar', () => {
     it('should add an alignment class', () => {
       // Given
       const options = {
-        meilisearchHostUrl: 'test.com',
+        hostUrl: 'test.com',
         apiKey: 'key',
         indexUid: 'foo',
         inputSelector: '#input',

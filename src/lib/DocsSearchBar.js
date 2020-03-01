@@ -8,7 +8,7 @@ import Meili from 'meilisearch';
 /**
  * Adds an autocomplete dropdown to an input field
  * @function DocsSearchBar
- * @param  {string} options.meilisearchHostUrl    URL where MeiliSearch instance is hosted
+ * @param  {string} options.hostUrl               URL where MeiliSearch instance is hosted
  * @param  {string} options.apiKey                Read-only API key
  * @param  {string} options.indexUid              UID of the index to target
  * @param  {string} options.inputSelector         CSS selector that targets the input
@@ -18,7 +18,7 @@ import Meili from 'meilisearch';
  */
 const usage = `Usage:
   documentationSearch({
-  meilisearchHostUrl,
+  hostUrl,
   apiKey,
   indexUid,
   inputSelector,
@@ -27,7 +27,7 @@ const usage = `Usage:
 })`;
 class DocsSearchBar {
   constructor({
-    meilisearchHostUrl,
+    hostUrl,
     apiKey,
     indexUid,
     inputSelector,
@@ -46,7 +46,7 @@ class DocsSearchBar {
     layout = 'columns',
   }) {
     DocsSearchBar.checkArguments({
-      meilisearchHostUrl,
+      hostUrl,
       apiKey,
       indexUid,
       inputSelector,
@@ -62,7 +62,7 @@ class DocsSearchBar {
     });
 
     this.apiKey = apiKey;
-    this.meilisearchHostUrl = meilisearchHostUrl;
+    this.hostUrl = hostUrl;
     this.indexUid = indexUid;
     this.input = DocsSearchBar.getInputFromSelector(inputSelector);
     this.meilisearchOptions = {
@@ -98,7 +98,7 @@ class DocsSearchBar {
     this.isSimpleLayout = layout === 'simple';
 
     this.client = new Meili({
-      host: meilisearchHostUrl,
+      host: hostUrl,
       apiKey: this.apiKey,
     });
 
@@ -153,7 +153,7 @@ class DocsSearchBar {
    * @returns {void}
    */
   static checkArguments(args) {
-    if (!args.apiKey || !args.indexUid || !args.meilisearchHostUrl) {
+    if (!args.apiKey || !args.indexUid || !args.hostUrl) {
       throw new Error(usage);
     }
 
