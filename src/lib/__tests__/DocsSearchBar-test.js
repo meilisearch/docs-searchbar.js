@@ -56,7 +56,7 @@ describe('DocsSearchBar', () => {
       sinon.spy(DocsSearchBar, 'checkArguments');
       sinon.stub(DocsSearchBar, 'getInputFromSelector').returns(true);
 
-      DocsSearchBar.__Rewire__('Meili', MeiliSearch);
+      DocsSearchBar.__Rewire__('MeiliSearch', MeiliSearch);
       DocsSearchBar.__Rewire__('autocomplete', AutoComplete);
     });
 
@@ -332,14 +332,14 @@ describe('DocsSearchBar', () => {
     beforeEach(() => {
       client = {
         meilisearch: 'client',
-        Index: sinon.stub().returns({
+        getIndex: sinon.stub().returns({
           search: sinon.stub().returns({
             then: sinon.spy(),
           }),
         }),
       };
       MeiliSearch = sinon.stub().returns(client);
-      DocsSearchBar.__Rewire__('Meili', MeiliSearch);
+      DocsSearchBar.__Rewire__('MeiliSearch', MeiliSearch);
 
       docsSearchBar = new DocsSearchBar({
         hostUrl: 'https://test.getmeili.com',
@@ -372,19 +372,17 @@ describe('DocsSearchBar', () => {
         actual('query');
 
         // Then
-        expect(client.Index.calledOnce).toBe(true);
-        // eslint-disable-next-line new-cap
-        expect(client.Index('indexUID').search.calledOnce).toBe(true);
+        expect(client.getIndex.calledOnce).toBe(true);
+        expect(client.getIndex('indexUID').search.calledOnce).toBe(true);
         const expectedParams = {
           limit: 5,
           attributesToHighlight: ['*'],
           attributesToCrop: ['content'],
           cropLength: 30,
         };
-        expect(client.Index.calledWith('indexUID')).toBe(true);
+        expect(client.getIndex.calledWith('indexUID')).toBe(true);
         expect(
-          // eslint-disable-next-line new-cap
-          client.Index('indexUid').search.calledWith('query', expectedParams)
+          client.getIndex('indexUid').search.calledWith('query', expectedParams)
         ).toBe(true);
       });
     });
@@ -401,9 +399,9 @@ describe('DocsSearchBar', () => {
         actual('query');
 
         // Then
-        expect(client.Index.calledOnce).toBe(true);
+        expect(client.getIndex.calledOnce).toBe(true);
         // eslint-disable-next-line new-cap
-        expect(client.Index('indexUID').search.calledOnce).toBe(true);
+        expect(client.getIndex('indexUID').search.calledOnce).toBe(true);
         const expectedParams = {
           limit: 5,
           attributesToHighlight: ['*'],
@@ -413,10 +411,10 @@ describe('DocsSearchBar', () => {
         expect(
           client
             // eslint-disable-next-line new-cap
-            .Index('indexUID')
+            .getIndex('indexUID')
             .search.calledWith('query modified', expectedParams)
         ).toBe(true);
-        expect(client.Index.calledWith('indexUID')).toBe(true);
+        expect(client.getIndex.calledWith('indexUID')).toBe(true);
       });
     });
   });
