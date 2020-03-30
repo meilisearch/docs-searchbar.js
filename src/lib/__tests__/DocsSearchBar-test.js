@@ -400,7 +400,6 @@ describe('DocsSearchBar', () => {
 
         // Then
         expect(client.getIndex.calledOnce).toBe(true);
-        // eslint-disable-next-line new-cap
         expect(client.getIndex('indexUID').search.calledOnce).toBe(true);
         const expectedParams = {
           limit: 5,
@@ -410,7 +409,6 @@ describe('DocsSearchBar', () => {
         };
         expect(
           client
-            // eslint-disable-next-line new-cap
             .getIndex('indexUID')
             .search.calledWith('query modified', expectedParams)
         ).toBe(true);
