@@ -3,7 +3,7 @@ import autocomplete from 'autocomplete.js';
 import templates from './templates';
 import utils from './utils';
 import $ from './zepto';
-import Meili from 'meilisearch';
+import MeiliSearch from 'meilisearch';
 
 /**
  * Adds an autocomplete dropdown to an input field
@@ -97,7 +97,7 @@ class DocsSearchBar {
 
     this.isSimpleLayout = layout === 'simple';
 
-    this.client = new Meili({
+    this.client = new MeiliSearch({
       host: hostUrl,
       apiKey: this.apiKey,
     });
@@ -226,8 +226,7 @@ class DocsSearchBar {
       }
 
       this.client
-        // eslint-disable-next-line new-cap
-        .Index(this.indexUid)
+        .getIndex(this.indexUid)
         .search(query, this.meilisearchOptions)
         .then(data => {
           if (
