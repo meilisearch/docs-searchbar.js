@@ -12,6 +12,7 @@ The best way to handle your search bar documentation with [MeiliSearch](https://
   - [Build](#build)
   - [Serve](#serve)
   - [Test](#test)
+  - [Release](#release)
 - [Contributing](#contributing)
 - [Credits](#credits)
 
@@ -66,6 +67,27 @@ $ yarn run test
 # With auto-reload:
 $ yarn run test:watch
 ```
+
+### Release
+
+MeiliSearch tools follow the [Semantic Versioning Convention](https://semver.org/).
+
+You must do a PR modifying the file `package.json` with the right version.
+
+```javascript
+"version": X.X.X
+```
+
+Once the changes are merged on `master`, in your terminal, you must be on the `master` branch and push a new tag with the right version:
+
+```bash
+$ git checkout master
+$ git pull origin master
+$ git tag vX.X.X
+$ git push --tag origin master
+```
+
+A GitHub Action will be triggered and push the package on [npm](https://www.npmjs.com/package/docs-searchbar.js).
 
 ## Contributing
 
