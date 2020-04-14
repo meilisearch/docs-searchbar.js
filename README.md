@@ -72,10 +72,14 @@ $ yarn run test:watch
 
 MeiliSearch tools follow the [Semantic Versioning Convention](https://semver.org/).
 
-You must do a PR modifying the file `package.json` with the right version.
+You must do a PR modifying the files `package.json` and `src/lib/version.js` with the right version.
 
 ```javascript
 "version": X.X.X
+```
+
+```javascript
+export default "X.X.X";
 ```
 
 Once the changes are merged on `master`, in your terminal, you must be on the `master` branch and push a new tag with the right version:
