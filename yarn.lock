@@ -5446,7 +5446,7 @@ mdn-data@^1.0.0, mdn-data@~1.1.0:
   resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-1.1.4.tgz#50b5d4ffc4575276573c4eedb8780812a8419f01"
   integrity sha512-FSYbp3lyKjyj3E7fMl6rYvUdX0FBXaluGqlFoYESWQlyUTq8R+wp0rkFxoYFqZlHCvsUXGjyJmLQSnXToYhOSA==
 
-meilisearch@0.9.0:
+meilisearch@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.9.0.tgz#d34ac13ddc408c98034afe9ff51e899059933e6a"
   integrity sha512-0qMriySpFjzK8NwgV4MmbZKE3OH5p+aKeDeFFB3vOE+ByLrdqKxAgDh7h+r+Ttaf0pmgkT2juOZtSEdighKKDg==
