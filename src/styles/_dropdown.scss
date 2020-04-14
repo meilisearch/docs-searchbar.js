@@ -230,7 +230,7 @@
         &--highlight {
           color: set-highlight($highlight-opacity, $main-color);
           background: rgba(mix($main-color, #fff, 60%), $highlight-opacity);
-          padding: 0.1em 0.05em;
+          padding: 0em 0.05em;
         }
 
         &--category-header
