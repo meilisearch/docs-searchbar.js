@@ -92,8 +92,9 @@ class DocsSearchBar {
       this.input.attr('aria-label');
     this.autocompleteOptions.ariaLabel =
       this.autocompleteOptions.ariaLabel || inputAriaLabel || 'search input';
-    this.autocompleteOptions.keyboardShortcuts = this.autocompleteOptions
-      .keyboardShortcuts || ['s', '/'];
+    this.autocompleteOptions.keyboardShortcuts = this.parseHotkeysAutocompleteOptions(
+      this.autocompleteOptions.keyboardShortcuts
+    ) || ['s', 191];
 
     this.isSimpleLayout = layout === 'simple';
 
@@ -381,6 +382,13 @@ class DocsSearchBar {
     if (autocompleteWrapper.hasClass(otherAlignClass)) {
       autocompleteWrapper.removeClass(otherAlignClass);
     }
+  }
+
+  parseHotkeysAutocompleteOptions(hotkeys) {
+    if (hotkeys === undefined || hotkeys === null) {
+      return null;
+    }
+    return hotkeys.map(item => (item === '/' ? 191 : item));
   }
 }
 

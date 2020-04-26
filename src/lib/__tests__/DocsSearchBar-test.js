@@ -164,7 +164,7 @@ describe('DocsSearchBar', () => {
         },
         anOption: 44,
         ariaLabel: 'search input',
-        keyboardShortcuts: ['s', '/'],
+        keyboardShortcuts: ['s', 191],
       });
     });
     it('should instantiate meilisearch with the correct values', () => {
@@ -206,7 +206,7 @@ describe('DocsSearchBar', () => {
           },
           debug: false,
           ariaLabel: 'search input',
-          keyboardShortcuts: ['s', '/'],
+          keyboardShortcuts: ['s', 191],
         })
       ).toBe(true);
     });
