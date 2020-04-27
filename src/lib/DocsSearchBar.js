@@ -22,8 +22,8 @@ const usage = `Usage:
   apiKey,
   indexUid,
   inputSelector,
-  [ meilisearchOptions.{limit} ]
-  [ autocompleteOptions.{hint,debug} ]
+  [ meilisearchOptions ]
+  [ autocompleteOptions ]
 })`;
 class DocsSearchBar {
   constructor({
@@ -34,11 +34,7 @@ class DocsSearchBar {
     debug = false,
     meilisearchOptions = {},
     queryDataCallback = null,
-    autocompleteOptions = {
-      debug: false,
-      hint: false,
-      autoselect: true,
-    },
+    autocompleteOptions = {},
     transformData = false,
     queryHook = false,
     handleSelected = false,
@@ -73,25 +69,24 @@ class DocsSearchBar {
       ...meilisearchOptions,
     };
     this.queryDataCallback = queryDataCallback || null;
-    const autocompleteOptionsDebug =
-      autocompleteOptions && autocompleteOptions.debug
-        ? autocompleteOptions.debug
-        : false;
-    // eslint-disable-next-line no-param-reassign
-    autocompleteOptions.debug = debug || autocompleteOptionsDebug;
-    this.autocompleteOptions = autocompleteOptions;
-    this.autocompleteOptions.cssClasses =
-      this.autocompleteOptions.cssClasses || {};
-    this.autocompleteOptions.cssClasses.prefix =
-      this.autocompleteOptions.cssClasses.prefix || 'dsb';
-    this.autocompleteOptions.cssClasses.root =
-      this.autocompleteOptions.cssClasses.root || 'meilisearch-autocomplete';
+    this.autocompleteOptions = {
+      debug,
+      hint: false,
+      autoselect: true,
+      ...autocompleteOptions,
+    };
     const inputAriaLabel =
       this.input &&
       typeof this.input.attr === 'function' &&
       this.input.attr('aria-label');
     this.autocompleteOptions.ariaLabel =
       this.autocompleteOptions.ariaLabel || inputAriaLabel || 'search input';
+    this.autocompleteOptions.cssClasses =
+      this.autocompleteOptions.cssClasses || {};
+    this.autocompleteOptions.cssClasses.prefix =
+      this.autocompleteOptions.cssClasses.prefix || 'dsb';
+    this.autocompleteOptions.cssClasses.root =
+      this.autocompleteOptions.cssClasses.root || 'meilisearch-autocomplete';
     this.autocompleteOptions.keyboardShortcuts = this.parseHotkeysAutocompleteOptions(
       this.autocompleteOptions.keyboardShortcuts
     ) || ['s', 191];
@@ -107,7 +102,7 @@ class DocsSearchBar {
       this.input = DocsSearchBar.injectSearchBox(this.input);
     }
 
-    this.autocomplete = autocomplete(this.input, autocompleteOptions, [
+    this.autocomplete = autocomplete(this.input, this.autocompleteOptions, [
       {
         source: this.getAutocompleteSource(transformData, queryHook),
         templates: {
