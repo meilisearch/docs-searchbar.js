@@ -158,6 +158,8 @@ describe('DocsSearchBar', () => {
       expect(actual.meilisearchOptions.anOption).toEqual(42);
       expect(actual.autocompleteOptions).toEqual({
         debug: false,
+        hint: false,
+        autoselect: true,
         cssClasses: {
           root: 'meilisearch-autocomplete',
           prefix: 'dsb',
@@ -205,6 +207,8 @@ describe('DocsSearchBar', () => {
             prefix: 'dsb',
           },
           debug: false,
+          hint: false,
+          autoselect: true,
           ariaLabel: 'search input',
           keyboardShortcuts: ['s', 191],
         })
