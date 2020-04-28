@@ -26,6 +26,11 @@
   "files": [
     "dist/"
   ],
+  "resolutions": {
+    "braces": "^2.3.2",
+    "node-sass": "^4.13.1",
+    "mem": "^4.0.0"
+  },
   "author": "MeiliSearch <bonjour@meilisearch.com> (https://github.com/meilisearch/)",
   "license": "MIT",
   "repository": "meilisearch/docs-searchbar.js",
