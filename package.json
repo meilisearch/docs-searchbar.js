@@ -68,7 +68,7 @@
     "autocomplete.js": "0.36.0",
     "concurrently": "^5.1.0",
     "hogan.js": "^3.0.2",
-    "meilisearch": "^0.9.0",
+    "meilisearch": "^0.10.0",
     "request": "^2.87.0",
     "stack-utils": "^1.0.1",
     "to-factory": "^1.0.0",
