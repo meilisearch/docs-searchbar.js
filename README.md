@@ -254,7 +254,7 @@ MeiliSearch tools follow the [Semantic Versioning Convention](https://semver.org
 You must do a PR modifying the files `package.json` and `src/lib/version.js` with the right version.
 
 ```javascript
-"version": X.X.X
+"version": "X.X.X",
 ```
 
 ```javascript
