@@ -30,6 +30,7 @@ If you use Vuepress for your documentation, you might check out our [Vuepress pl
   - [Before using the library](#before-using-the-library)
   - [Basic Usage](#basic-usage)
   - [Customization](#customization)
+- [Compatibility with MeiliSearch](#compatibility-with-meilisearch)
 - [Development Workflow](#development-workflow)
 - [Credits](#credits)
 
@@ -204,6 +205,12 @@ As a more concrete example, you can [check out the configuration](https://github
 ##### More Examples <!-- omit in toc -->
 
 Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L77-L177) applied in the MeiliSearch plugin for Vuepress.
+
+## Compatibility with MeiliSearch
+
+This package is compatible with the following MeiliSearch versions:
+
+- `v0.10.X`
 
 ## Development Workflow
 
