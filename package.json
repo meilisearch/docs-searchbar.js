@@ -1,7 +1,7 @@
 {
   "name": "docs-searchbar.js",
-  "version": "1.1.5",
-  "description": "Add search bar with a search-as-you-type experience to your documentation using MeiliSearch",
+  "version": "1.1.6",
+  "description": "Add a relevant search bar to your documentation using MeiliSearch",
   "keywords": [
     "documentation",
     "searchbar",
@@ -73,7 +73,7 @@
     "autocomplete.js": "0.36.0",
     "concurrently": "^5.1.0",
     "hogan.js": "^3.0.2",
-    "meilisearch": "^0.10.0",
+    "meilisearch": "^0.11.0",
     "request": "^2.87.0",
     "stack-utils": "^1.0.1",
     "to-factory": "^1.0.0",
