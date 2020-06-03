@@ -220,6 +220,7 @@ Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-m
 
 This package is compatible with the following MeiliSearch versions:
 
+- `v0.11.X`
 - `v0.10.X`
 
 ## Development Workflow
