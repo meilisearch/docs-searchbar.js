@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.svg" alt="MeiliSearch" width="200" height="200" />
+</p>
+
 <h1 align="center">docs-searchbar.js</h1>
 
 <h4 align="center">
@@ -22,7 +26,7 @@
 
 ![docs-searchbar.js example](/assets/docs-searchbar-example.png)
 
-If you use Vuepress for your documentation, you might check out our [Vuepress plugin for MeiliSearch](https://github.com/meilisearch/vuepress-plugin-meilisearch).
+💡 If you use VuePress for your website, you might check out our [VuePress plugin for MeiliSearch](https://github.com/meilisearch/vuepress-plugin-meilisearch).
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -38,11 +42,11 @@ If you use Vuepress for your documentation, you might check out our [Vuepress pl
 
 ### Before using the library
 
-The goal of this library is to provide very easy integration of a search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a MeiliSearch instance.
+The goal of this library is to provide a front-end search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a MeiliSearch instance.
 
 Luckily, we provide all the tools that you need, and can help you through the whole process, if you follow [this guide](https://docs.meilisearch.com/resources/howtos/search_bar_for_docs.html) 🚀
 
-As a first introduction, you might only want to test this library without connecting it to your website.<br>
+However, as a first introduction, you might only want to test this library without connecting it to your website.<br>
 You can do it by running the playground provided in this repository:
 
 ```bash
@@ -52,6 +56,12 @@ $ yarn serve
 
 The data comes from MeiliSearch documentation.<br>
 Type `create an indxe` to live the MeiliSearch experience with the [typo tolerance](https://docs.meilisearch.com/guides/advanced_guides/typotolerance.html).
+
+#### Use your own scraper
+
+We recommend using the [`docs-scraper` tool](https://github.com/meilisearch/docs-scraper) to scrape your website, but this is not mandatory.
+
+If you already have your own scraper but you still want to use MeiliSearch and `docs-searchbar.js`, check out [this discussion](https://github.com/meilisearch/docs-searchbar.js/issues/40).
 
 ### Basic Usage
 
@@ -161,7 +171,7 @@ docsSearchBar({
 
 Here is a basic [HTML file](scripts/playground.html) used in the playground of this repository.
 
-As a more concrete example, you can [check out the configuration](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L64) applied in the MeiliSearch plugin for Vuepress.
+As a more concrete example, you can [check out the configuration](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L64) applied in the MeiliSearch plugin for VuePress.
 
 #### Styling <!-- omit in toc -->
 
@@ -204,7 +214,7 @@ As a more concrete example, you can [check out the configuration](https://github
 
 ##### More Examples <!-- omit in toc -->
 
-Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L77-L177) applied in the MeiliSearch plugin for Vuepress.
+Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L77-L177) applied in the MeiliSearch plugin for VuePress.
 
 ## Compatibility with MeiliSearch
 
