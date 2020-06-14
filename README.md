@@ -26,7 +26,7 @@
 
 ![docs-searchbar.js example](/assets/docs-searchbar-example.png)
 
-💡 If you use VuePress for your website, you might check out our [VuePress plugin for MeiliSearch](https://github.com/meilisearch/vuepress-plugin-meilisearch).
+💡 If you use VuePress for your website, you should check out our [VuePress plugin for MeiliSearch](https://github.com/meilisearch/vuepress-plugin-meilisearch).
 
 ## Table of Contents <!-- omit in toc -->
 
