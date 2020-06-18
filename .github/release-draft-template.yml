@@ -22,3 +22,5 @@ sort-direction: 'ascending'
 replacers:
   - search: '/(?:and )?@dependabot-preview(?:\[bot\])?,?/g'
     replace: ''
+  - search: '/(?:and )?@dependabot(?:\[bot\])?,?/g'
+    replace: ''
