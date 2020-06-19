@@ -2,8 +2,6 @@ const prefix = 'docs-searchbar';
 const suggestionPrefix = `${prefix}-suggestion`;
 const footerPrefix = `${prefix}-footer`;
 
-/* eslint-disable max-len */
-
 const templates = {
   suggestion: `
   <a class="${suggestionPrefix}

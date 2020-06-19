@@ -1,5 +1,4 @@
 /* eslint no-new:0 */
-/* eslint-disable max-len */
 /* eslint-disable camelcase */
 import sinon from 'sinon';
 import $ from '../zepto';
