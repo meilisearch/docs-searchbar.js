@@ -84,7 +84,7 @@ If you already have your own scraper but you still want to use MeiliSearch and `
         apiKey: "XXX",
         indexUid: "docs",
         inputSelector: "#search-bar-input",
-        debug: true // Set debug to true if you want to inspect the dropdown
+        debug: true, // Set debug to true if you want to inspect the dropdown
       });
     </script>
   </body>
@@ -126,7 +126,7 @@ When calling the `docsSearchBar` method, you can add optional fields:
 ```javascript
 docsSearchBar({
   // ...
-  handleSelected: function(input, event, suggestion, datasetNumber, context) {
+  handleSelected: function (input, event, suggestion, datasetNumber, context) {
     // Prevents the default behavior on click and rather opens the suggestion
     // in a new tab.
     if (context.selectionMethod === "click") {
@@ -135,7 +135,7 @@ docsSearchBar({
       const windowReference = window.open(suggestion.url, "_blank");
       windowReference.focus();
     }
-  }
+  },
 });
 ```
 
@@ -162,8 +162,8 @@ For example, you might want to increase the number of results displayed in the d
 ```javascript
 docsSearchBar({
   meilsearchOptions: {
-    limit: 10
-  }
+    limit: 10,
+  },
 });
 ```
 

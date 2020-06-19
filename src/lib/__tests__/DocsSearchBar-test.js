@@ -395,7 +395,7 @@ describe('DocsSearchBar', () => {
         // Given
         const actual = docsSearchBar.getAutocompleteSource(
           false,
-          query => `${query} modified`
+          (query) => `${query} modified`
         );
 
         // When
@@ -436,7 +436,7 @@ describe('DocsSearchBar', () => {
         url: 'https://website.com/doc/page',
       });
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         expect(window.location.assign).toHaveBeenCalledWith(
           'https://website.com/doc/page'
         );
@@ -469,7 +469,7 @@ describe('DocsSearchBar', () => {
         url: 'https://website.com/doc/page',
       });
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         expect(customHandleSelected).toHaveBeenCalledWith(
           expectedInput,
           expectedEvent,
@@ -502,7 +502,7 @@ describe('DocsSearchBar', () => {
       clickEvent.preventDefault = jest.fn();
       testLink.trigger(clickEvent);
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         expect(clickEvent.preventDefault).toHaveBeenCalled();
         resolve();
       });
@@ -528,7 +528,7 @@ describe('DocsSearchBar', () => {
           mockContext
         );
 
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           expect(mockSetVal).toHaveBeenCalledWith('');
           expect(window.location.assign).toHaveBeenCalledWith(
             'www.example.com'
@@ -555,7 +555,7 @@ describe('DocsSearchBar', () => {
           mockContext
         );
 
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           expect(mockSetVal).not.toHaveBeenCalled();
           expect(window.location.assign).not.toHaveBeenCalled();
           resolve();

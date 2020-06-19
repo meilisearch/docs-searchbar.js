@@ -121,7 +121,7 @@ class DocsSearchBar {
       $('.meilisearch-autocomplete').on(
         'click',
         `.${this.autocompleteOptions.cssClasses.prefix}-suggestions a`,
-        event => {
+        (event) => {
           event.preventDefault();
         }
       );
@@ -168,16 +168,13 @@ class DocsSearchBar {
 
   static injectSearchBox(input) {
     input.before(templates.searchBox);
-    const newInput = input
-      .prev()
-      .prev()
-      .find('input');
+    const newInput = input.prev().prev().find('input');
     input.remove();
     return newInput;
   }
 
   static bindSearchBoxEvent() {
-    $('.searchbox [type="reset"]').on('click', function() {
+    $('.searchbox [type="reset"]').on('click', function () {
       $('input#docs-searchbar').focus();
       $(this).addClass('hide');
       autocomplete.autocomplete.setVal('');
@@ -224,7 +221,7 @@ class DocsSearchBar {
       this.client
         .getIndex(this.indexUid)
         .search(query, this.meilisearchOptions)
-        .then(data => {
+        .then((data) => {
           if (
             this.queryDataCallback &&
             typeof this.queryDataCallback === 'function'
@@ -244,7 +241,7 @@ class DocsSearchBar {
   // a Hogan template
   static formatHits(receivedHits) {
     const clonedHits = utils.deepClone(receivedHits);
-    const hits = clonedHits.map(hit => {
+    const hits = clonedHits.map((hit) => {
       if (hit._formatted) {
         const cleanFormatted = utils.replaceNullString(hit._formatted);
         // eslint-disable-next-line no-param-reassign
@@ -270,7 +267,7 @@ class DocsSearchBar {
     groupedHits = utils.flattenAndFlagFirst(groupedHits, 'isCategoryHeader');
 
     // Translate hits into smaller objects to be send to the template
-    return groupedHits.map(hit => {
+    return groupedHits.map((hit) => {
       const url = DocsSearchBar.formatURL(hit);
       const category = utils.getHighlightedValue(hit, 'lvl0');
       const subcategory = utils.getHighlightedValue(hit, 'lvl1') || category;
@@ -330,7 +327,7 @@ class DocsSearchBar {
   }
 
   static getEmptyTemplate() {
-    return args => Hogan.compile(templates.empty).render(args);
+    return (args) => Hogan.compile(templates.empty).render(args);
   }
 
   static getSuggestionTemplate(isSimpleLayout) {
@@ -338,7 +335,7 @@ class DocsSearchBar {
       ? templates.suggestionSimple
       : templates.suggestion;
     const template = Hogan.compile(stringTemplate);
-    return suggestion => template.render(suggestion);
+    return (suggestion) => template.render(suggestion);
   }
 
   handleSelected(input, event, suggestion, datasetNumber, context = {}) {
@@ -383,7 +380,7 @@ class DocsSearchBar {
     if (hotkeys === undefined || hotkeys === null) {
       return null;
     }
-    return hotkeys.map(item => (item === '/' ? 191 : item));
+    return hotkeys.map((item) => (item === '/' ? 191 : item));
   }
 }
 
