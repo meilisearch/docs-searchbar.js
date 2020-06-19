@@ -70,7 +70,7 @@
   },
   "peerDependencies": {},
   "dependencies": {
-    "autocomplete.js": "0.36.0",
+    "autocomplete.js": "0.37.1",
     "concurrently": "^5.1.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "hogan.js": "^3.0.2",
