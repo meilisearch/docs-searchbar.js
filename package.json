@@ -56,7 +56,7 @@
     "jsdom": "11.12.0",
     "json": "9.0.6",
     "live-server": "1.2.1",
-    "mversion": "1.13.0",
+    "mversion": "2.0.0",
     "node-sass": "4.14.1",
     "onchange": "4.1.0",
     "postcss-cli": "6.1.2",
