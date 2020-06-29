@@ -5599,9 +5599,9 @@ mdn-data@2.0.6:
   integrity sha512-rQvjv71olwNHgiTbfPZFkJtjNMciWgswYeciZhtvWLO8bmX3TnhyA62I6sTWOyZssWHJJjY6/KiWwqQsWWsqOA==
 
 meilisearch@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.11.0.tgz#88b81c9211d32e076ce362cda14d5aa3af38193a"
-  integrity sha512-KMiufxLR9i3sWvD/cEm8PuKvYucd/SVKRfpe7jP7ZCxjXNIljGt2xEocIFpeqfXJZMszOfpmmb4E6nKPfmHOcQ==
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/meilisearch/-/meilisearch-0.11.1.tgz#729645be04778ef8d7cbd322fb9e1e74315e7ac6"
+  integrity sha512-y6+2+2qyt1aOCdKireDTXavTPuhyAeLdtiK0oyRxwRiWpaXgoCDzmjwpuHREqE3ekKJTy1RL7HE4saohNEPeeg==
   dependencies:
     axios "^0.19.2"
 
