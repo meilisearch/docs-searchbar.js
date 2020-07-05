@@ -35,7 +35,7 @@
   - [Basic Usage](#basic-usage)
   - [Customization](#customization)
 - [Compatibility with MeiliSearch](#compatibility-with-meilisearch)
-- [Development Workflow](#development-workflow)
+- [Development Workflow and Contributing](#development-workflow-and-contributing)
 - [Credits](#credits)
 
 ## Installation and Usage
@@ -57,7 +57,7 @@ $ yarn serve
 The data comes from MeiliSearch documentation.<br>
 Type `create an indxe` to live the MeiliSearch experience with the [typo tolerance](https://docs.meilisearch.com/guides/advanced_guides/typotolerance.html).
 
-#### Use your own scraper
+#### Use your own scraper <!-- omit in toc -->
 
 We recommend using the [`docs-scraper` tool](https://github.com/meilisearch/docs-scraper) to scrape your website, but this is not mandatory.
 
@@ -224,90 +224,11 @@ This package is compatible with the following MeiliSearch versions:
 - `v0.11.X`
 - `v0.10.X`
 
-## Development Workflow
+## Development Workflow and Contributing
 
-If you want to contribute, this section describes the steps to follow.
+Any new contribution is more than welcome in this project!
 
-Thank you for your interest in a MeiliSearch tool! ♥️
-
-### Requirements <!-- omit in toc -->
-
-To run this project, you will need:
-
-- Node.js >= v8.7.0, use nvm - [installation instructions](https://github.com/creationix/nvm#install-script)
-- Yarn
-
-### Install <!-- omit in toc -->
-
-Install all the dependencies:
-
-```bash
-$ yarn install
-```
-
-### Build <!-- omit in toc -->
-
-```bash
-$ yarn build
-```
-
-This command will build all files in `./dist`. This includes regular and minified files for `<script>` inclusion, as well as classes `import`.
-
-The command itself is split into `yarn run build:js` and `yarn run build:css` if you want to build a subset.
-
-### Serve <!-- omit in toc -->
-
-A playground is provided to test the library.
-
-```bash
-$ yarn serve
-```
-
-Now, you can have all the files served on `localhost`, along with live-reload.
-
-### Tests and Linter <!-- omit in toc -->
-
-Each PR should pass the tests and the linter to be accepted.
-
-```bash
-# Run all the tests:
-$ yarn test
-# With auto-reload:
-$ yarn test:watch
-# Linter
-$ yarn lint
-# Linter with auto-correct
-$ yarn lint-fix
-# Prettier for markdown (auto-correct)
-$ yarn format:md
-# Prettier for scss (auto-correct)
-$ yarn format:scss
-```
-
-### Release <!-- omit in toc -->
-
-MeiliSearch tools follow the [Semantic Versioning Convention](https://semver.org/).
-
-You must do a PR modifying the files `package.json` and `src/lib/version.js` with the right version.
-
-```javascript
-"version": "X.X.X",
-```
-
-```javascript
-export default "X.X.X";
-```
-
-Once the changes are merged on `master`, in your terminal, you must be on the `master` branch and push a new tag with the right version:
-
-```bash
-$ git checkout master
-$ git pull origin master
-$ git tag vX.X.X
-$ git push --tag origin master
-```
-
-A GitHub Actions will be triggered and push the package on [npm](https://www.npmjs.com/package/docs-searchbar.js).
+If you want to know more about the development workflow or want to contribute, please visit our [contributing guidelines](/CONTRIBUTING.md) for detailed instructions!
 
 ## Credits
 
