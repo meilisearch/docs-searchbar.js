@@ -53,7 +53,7 @@
     "eslint-plugin-jest": "23.20.0",
     "eslint-plugin-prettier": "3.1.4",
     "jest": "23.6.0",
-    "jsdom": "16.3.0",
+    "jsdom": "16.4.0",
     "json": "9.0.6",
     "live-server": "1.2.1",
     "mversion": "2.0.0",
