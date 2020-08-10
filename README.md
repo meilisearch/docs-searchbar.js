@@ -161,7 +161,7 @@ For example, you might want to increase the number of results displayed in the d
 
 ```javascript
 docsSearchBar({
-  meilsearchOptions: {
+  meilisearchOptions: {
     limit: 10,
   },
 });
