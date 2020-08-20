@@ -116,7 +116,7 @@ export default "X.X.X";
 
 Once the changes are merged on `master`, you can publish the current draft release via the [GitHub interface](https://github.com/meilisearch/docs-searchbar.js/releases).
 
-A GitHub Action will be triggered and push the package to [NPM](https://www.npmjs.com/package/docs-searchbar.js).
+A GitHub Action will be triggered and push the package to [npm](https://www.npmjs.com/package/docs-searchbar.js).
 
 ## Git Guidelines
 
