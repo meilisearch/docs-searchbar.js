@@ -22,7 +22,7 @@
 
 **docs-searchbar.js** is a front-end SDK for **MeiliSearch** to handle your search bar documentation.
 
-**MeiliSearch** is a powerful, fast, open-source, easy to use and deploy search engine. Both searching and indexing are highly customizable. Features such as typo-tolerance, filters, and synonyms are provided out-of-the-box. Features such as typo-tolerance, filters, and synonyms are provided out-of-the-box.
+**MeiliSearch** is a powerful, fast, open-source, easy to use and deploy search engine. Both searching and indexing are highly customizable. Features such as typo-tolerance, filters, and synonyms are provided out-of-the-box.
 
 ![docs-searchbar.js example](/assets/docs-searchbar-example.png)
 
