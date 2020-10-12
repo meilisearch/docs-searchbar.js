@@ -1,18 +1,28 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets": {
-          "browsers": ["last 2 versions", "ie >= 9"]
+          "browsers": [
+            "last 2 versions",
+            "ie >= 9"
+          ]
         }
       }
-    ],
-    "stage-3"
+    ]
   ],
   "env": {
     "test": {
-      "plugins": ["babel-plugin-rewire"]
+      "plugins": [
+        "babel-plugin-rewire"
+      ]
     }
-  }
+  },
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-import-meta",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-json-strings"
+  ]
 }
