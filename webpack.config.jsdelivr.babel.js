@@ -17,7 +17,7 @@ export default {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: [ [ '@babel/preset-env', { modules: 'cjs' } ] ],
+          presets: [['@babel/preset-env', { modules: 'cjs' }]],
         },
       },
     ],
