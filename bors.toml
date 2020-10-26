@@ -1,0 +1,3 @@
+status = ["docs-searchbar.js-tests"]
+# 1 hour timeout
+timeout-sec = 3600
