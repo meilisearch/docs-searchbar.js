@@ -56,7 +56,7 @@
     "jsdom": "16.4.0",
     "live-server": "1.2.1",
     "mversion": "2.0.0",
-    "node-sass": "4.14.1",
+    "node-sass": "5.0.0",
     "onchange": "7.1.0",
     "postcss-cli": "7.1.2",
     "prettier": "^2.0.5",
