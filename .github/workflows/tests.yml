@@ -1,4 +1,4 @@
-name: Tests-Lint
+name: Tests
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   tests:
-    name: docs-searchbar.js-tests
+    name: tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -24,10 +24,23 @@ jobs:
         node-version: "${{ steps.nvm.outputs.NVMRC }}"
     - name: Display node version (from .nvmrc)
       run: echo "Using ${{ steps.nvm.outputs.NVMRC }}"
-    - run: yarn install
-    - run: yarn run build
-    - run: yarn run test
-    - run: yarn run lint
-    - run: yarn run prettier-ci
+    - name: Install dependencies
+      run: yarn install
+    - name: Build
+      run: yarn run build
+    - name: Run tests
+      run: yarn run test
+
+  linter:
+    name: linter-check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: yarn install
+    - name: Run linter
+      run: yarn run lint
+    - name: Run prettier
+      run: yarn run prettier-ci
       env:
         CI: true
