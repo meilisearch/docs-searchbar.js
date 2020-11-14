@@ -1,6 +1,6 @@
 import Hogan from 'hogan.js';
 import autocomplete from 'autocomplete.js';
-import templates from './templates';
+import Templates from './templates';
 import utils from './utils';
 import $ from './zepto';
 import MeiliSearch from 'meilisearch';
@@ -56,7 +56,7 @@ class DocsSearchBar {
       enhancedSearchInput,
       layout,
     });
-
+    
     this.apiKey = apiKey;
     this.hostUrl = hostUrl;
     this.indexUid = indexUid;
@@ -75,6 +75,7 @@ class DocsSearchBar {
       autoselect: true,
       ...autocompleteOptions,
     };
+    this.templates = Templates(this.autocompleteOptions.templates || {})
     const inputAriaLabel =
       this.input &&
       typeof this.input.attr === 'function' &&
@@ -99,16 +100,16 @@ class DocsSearchBar {
     });
 
     if (enhancedSearchInput) {
-      this.input = DocsSearchBar.injectSearchBox(this.input);
+      this.input = DocsSearchBar.injectSearchBox(this.input, this.templates);
     }
 
     this.autocomplete = autocomplete(this.input, this.autocompleteOptions, [
       {
         source: this.getAutocompleteSource(transformData, queryHook),
         templates: {
-          suggestion: DocsSearchBar.getSuggestionTemplate(this.isSimpleLayout),
-          footer: templates.footer,
-          empty: DocsSearchBar.getEmptyTemplate(),
+          suggestion: DocsSearchBar.getSuggestionTemplate(this.isSimpleLayout, this.templates),
+          footer: this.templates.footer,
+          empty: DocsSearchBar.getEmptyTemplate(this.templates),
         },
       },
     ]);
@@ -166,7 +167,7 @@ class DocsSearchBar {
     }
   }
 
-  static injectSearchBox(input) {
+  static injectSearchBox(input, templates) {
     input.before(templates.searchBox);
     const newInput = input.prev().prev().find('input');
     input.remove();
@@ -326,11 +327,11 @@ class DocsSearchBar {
     return null;
   }
 
-  static getEmptyTemplate() {
+  static getEmptyTemplate(templates) {
     return (args) => Hogan.compile(templates.empty).render(args);
   }
 
-  static getSuggestionTemplate(isSimpleLayout) {
+  static getSuggestionTemplate(isSimpleLayout, templates) {
     const stringTemplate = isSimpleLayout
       ? templates.suggestionSimple
       : templates.suggestion;

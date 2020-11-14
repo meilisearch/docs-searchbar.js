@@ -105,6 +105,7 @@ The default behavior of this library fits perfectly for a documentation search b
 
 - [Optional parameters](#optional-parameters-) (when calling `docsSearchBar` method)
 - [Styling](#styling-) (with CSS)
+- [Templating](#templating-)
 
 #### Optional parameters <!-- omit in toc -->
 
@@ -162,6 +163,34 @@ For example, you might want to increase the number of results displayed in the d
 docsSearchBar({
   meilisearchOptions: {
     limit: 10,
+  },
+});
+```
+
+##### `Templating` <!-- omit in toc -->
+
+You can override the default mustache templates used by DocsSearch as long as they are formatted with mustache. To see all available templates that can be overridden go to [src/lib/templates.js](src/lib/templates.js).
+
+```javascript
+const mySuggestionTemplate = `
+    <a class="${suggestionPrefix}
+      {{#isCategoryHeader}}${suggestionPrefix}__main{{/isCategoryHeader}}
+      {{#isSubCategoryHeader}}${suggestionPrefix}__secondary{{/isSubCategoryHeader}}
+      "
+      aria-label="Hello World!"
+      href="{{{url}}}"
+      >
+      <div class="${suggestionPrefix}--category-header">
+          <span class="${suggestionPrefix}--category-header-lvl0">{{{category}}}</span>
+      </div>
+    </a>
+    `,
+
+docsSearchBar({
+  autocompleteOptions: {
+    templates: {
+      suggestion: mySuggestionTemplate,
+    },
   },
 });
 ```
