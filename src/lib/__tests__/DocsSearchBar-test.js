@@ -1088,8 +1088,7 @@ describe('DocsSearchBar', () => {
   describe('getSuggestionTemplate', () => {
     let templates;
     beforeEach(() => {
-      templates =  new Templates({suggestion: "<div></div>"});
-      // console.log(templates.suggestion)
+      templates = new Templates({ suggestion: '<div></div>' });
       DocsSearchBar.__Rewire__('templates', templates);
     });
     afterEach(() => {
@@ -1097,7 +1096,7 @@ describe('DocsSearchBar', () => {
     });
     it('should return a function', () => {
       // Given
-      
+
       // When
       const actual = DocsSearchBar.getSuggestionTemplate;
 
