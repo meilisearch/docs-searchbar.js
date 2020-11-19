@@ -226,6 +226,41 @@ describe('DocsSearchBar', () => {
       expect(autocomplete.on.calledTwice).toBe(true);
       expect(autocomplete.on.calledWith('autocomplete:selected')).toBe(true);
     });
+
+    it('should be able to construct default templates when no user customizations are present', () => {
+      // Given
+
+      // When
+      const searchbar = new DocsSearchBar(defaultOptions);
+
+      // Then
+      expect(typeof searchbar.templates.suggestion).toBe('string');
+    });
+
+    it('should be able to construct templates from user customizations', () => {
+      // Given
+      const customizedTemplate = '<div></div>';
+
+      const options = {
+        ...defaultOptions,
+        autocompleteOptions: {
+          templates: {
+            suggestion: customizedTemplate,
+            suggestionSimple: customizedTemplate,
+            footer: customizedTemplate,
+            searchBox: customizedTemplate,
+          },
+        },
+      };
+      // When
+      const searchbar = new DocsSearchBar(options);
+
+      // Then
+      expect(searchbar.templates.suggestion).toBe(customizedTemplate);
+      expect(searchbar.templates.suggestionSimple).toBe(customizedTemplate);
+      expect(searchbar.templates.footer).toBe(customizedTemplate);
+      expect(searchbar.templates.searchBox).toBe(customizedTemplate);
+    });
   });
 
   describe('checkArguments', () => {
