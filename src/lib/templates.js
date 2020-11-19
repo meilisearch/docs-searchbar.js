@@ -2,8 +2,22 @@ const prefix = 'docs-searchbar';
 const suggestionPrefix = `${prefix}-suggestion`;
 const footerPrefix = `${prefix}-footer`;
 
-function templates(options = {suggestion, suggestionSimple, footer, empty, searchBox}){
-  let defaults = {
+let suggestion;
+let suggestionSimple;
+let footer;
+let empty;
+let searchBox;
+
+function templates(
+  options = {
+    suggestion,
+    suggestionSimple,
+    footer,
+    empty,
+    searchBox,
+  }
+) {
+  const defaults = {
     suggestion: `
     <a class="${suggestionPrefix}
       {{#isCategoryHeader}}${suggestionPrefix}__main{{/isCategoryHeader}}

@@ -56,7 +56,7 @@ class DocsSearchBar {
       enhancedSearchInput,
       layout,
     });
-    
+
     this.apiKey = apiKey;
     this.hostUrl = hostUrl;
     this.indexUid = indexUid;
@@ -75,7 +75,7 @@ class DocsSearchBar {
       autoselect: true,
       ...autocompleteOptions,
     };
-    this.templates = Templates(this.autocompleteOptions.templates || {})
+    this.templates = new Templates(this.autocompleteOptions.templates || {});
     const inputAriaLabel =
       this.input &&
       typeof this.input.attr === 'function' &&
@@ -107,7 +107,10 @@ class DocsSearchBar {
       {
         source: this.getAutocompleteSource(transformData, queryHook),
         templates: {
-          suggestion: DocsSearchBar.getSuggestionTemplate(this.isSimpleLayout, this.templates),
+          suggestion: DocsSearchBar.getSuggestionTemplate(
+            this.isSimpleLayout,
+            this.templates
+          ),
           footer: this.templates.footer,
           empty: DocsSearchBar.getEmptyTemplate(this.templates),
         },
