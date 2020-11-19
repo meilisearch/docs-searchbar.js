@@ -3,6 +3,8 @@
 import sinon from 'sinon';
 import $ from '../zepto';
 import DocsSearchBar from '../DocsSearchBar';
+import Templates from '../templates';
+
 /**
  * Pitfalls:
  * Whenever you call new DocsSearchBar(), it will add the a new dropdown markup to
@@ -1084,10 +1086,10 @@ describe('DocsSearchBar', () => {
   });
 
   describe('getSuggestionTemplate', () => {
+    let templates;
     beforeEach(() => {
-      const templates = {
-        suggestion: '<div></div>',
-      };
+      templates =  new Templates({suggestion: "<div></div>"});
+      // console.log(templates.suggestion)
       DocsSearchBar.__Rewire__('templates', templates);
     });
     afterEach(() => {
@@ -1095,9 +1097,9 @@ describe('DocsSearchBar', () => {
     });
     it('should return a function', () => {
       // Given
-
+      
       // When
-      const actual = DocsSearchBar.getSuggestionTemplate();
+      const actual = DocsSearchBar.getSuggestionTemplate;
 
       // Then
       expect(actual).toBeInstanceOf(Function);
@@ -1116,7 +1118,7 @@ describe('DocsSearchBar', () => {
         // Given
 
         // When
-        DocsSearchBar.getSuggestionTemplate();
+        DocsSearchBar.getSuggestionTemplate(false, templates);
 
         // Then
         expect(Hogan.compile.calledOnce).toBe(true);
@@ -1124,7 +1126,7 @@ describe('DocsSearchBar', () => {
       });
       it('should call render on a Hogan template', () => {
         // Given
-        const actual = DocsSearchBar.getSuggestionTemplate();
+        const actual = DocsSearchBar.getSuggestionTemplate(false, templates);
 
         // When
         actual({ foo: 'bar' });
