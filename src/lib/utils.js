@@ -52,7 +52,7 @@ const utils = {
    * @return {Object}
    */
   renameKeysWithLevels(object, prefix) {
-    return Object.keys(object).reduce(function (acc, key) {
+    return Object.keys(object).reduce((acc, key) => {
       const result = acc;
       if (key.startsWith(prefix)) {
         const newKey = key.substring(key.indexOf('lvl'));
@@ -69,7 +69,7 @@ const utils = {
    * @return null or {String}
    */
   replaceNullString(object) {
-    return Object.keys(object).reduce(function (acc, key) {
+    return Object.keys(object).reduce((acc, key) => {
       const result = acc;
       if (typeof object[key] === 'string' && object[key] === 'null') {
         result[key] = null;
