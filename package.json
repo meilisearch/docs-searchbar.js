@@ -29,7 +29,8 @@
   "resolutions": {
     "braces": "^2.3.2",
     "node-sass": "^4.13.1",
-    "mem": "^4.0.0"
+    "mem": "^4.0.0",
+    "yargs-parser": "^13.1.2"
   },
   "author": "MeiliSearch <bonjour@meilisearch.com> (https://github.com/meilisearch/)",
   "license": "MIT",
