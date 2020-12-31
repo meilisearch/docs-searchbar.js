@@ -219,7 +219,7 @@ class DocsSearchBar {
       }
 
       this.client
-        .getIndex(this.indexUid)
+        .index(this.indexUid)
         .search(query, this.meilisearchOptions)
         .then((data) => {
           if (
