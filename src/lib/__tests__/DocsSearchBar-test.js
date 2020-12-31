@@ -335,7 +335,7 @@ describe('DocsSearchBar', () => {
     beforeEach(() => {
       client = {
         meilisearch: 'client',
-        getIndex: sinon.stub().returns({
+        index: sinon.stub().returns({
           search: sinon.stub().returns({
             then: sinon.spy(),
           }),
@@ -375,17 +375,17 @@ describe('DocsSearchBar', () => {
         actual('query');
 
         // Then
-        expect(client.getIndex.calledOnce).toBe(true);
-        expect(client.getIndex('indexUID').search.calledOnce).toBe(true);
+        expect(client.index.calledOnce).toBe(true);
+        expect(client.index('indexUID').search.calledOnce).toBe(true);
         const expectedParams = {
           limit: 5,
           attributesToHighlight: ['*'],
           attributesToCrop: ['content'],
           cropLength: 30,
         };
-        expect(client.getIndex.calledWith('indexUID')).toBe(true);
+        expect(client.index.calledWith('indexUID')).toBe(true);
         expect(
-          client.getIndex('indexUid').search.calledWith('query', expectedParams)
+          client.index('indexUid').search.calledWith('query', expectedParams)
         ).toBe(true);
       });
     });
@@ -402,8 +402,8 @@ describe('DocsSearchBar', () => {
         actual('query');
 
         // Then
-        expect(client.getIndex.calledOnce).toBe(true);
-        expect(client.getIndex('indexUID').search.calledOnce).toBe(true);
+        expect(client.index.calledOnce).toBe(true);
+        expect(client.index('indexUID').search.calledOnce).toBe(true);
         const expectedParams = {
           limit: 5,
           attributesToHighlight: ['*'],
@@ -412,10 +412,10 @@ describe('DocsSearchBar', () => {
         };
         expect(
           client
-            .getIndex('indexUID')
+            .index('indexUID')
             .search.calledWith('query modified', expectedParams)
         ).toBe(true);
-        expect(client.getIndex.calledWith('indexUID')).toBe(true);
+        expect(client.index.calledWith('indexUID')).toBe(true);
       });
     });
   });
