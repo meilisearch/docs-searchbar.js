@@ -142,7 +142,6 @@ Once the changes are merged on `master`, you can publish the current draft relea
 
 GitHub Actions will be triggered and push the package to [npm](https://www.npmjs.com/package/docs-searchbar.js).
 
-
 <hr>
 
 Thank you again for reading this through, we can not wait to begin to work with you if you made your way through this contributing guide ❤️
