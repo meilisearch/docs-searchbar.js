@@ -37,10 +37,10 @@
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
-    "@babel/eslint-parser": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@babel/register": "^7.12.10",
     "autoprefixer": "9.8.5",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "24.9.0",
     "babel-loader": "8.2.1",
     "babel-plugin-rewire": "1.2.0",
