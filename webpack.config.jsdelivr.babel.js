@@ -10,6 +10,10 @@ export default {
     filename: 'docs-searchbar.js',
     library: 'docsSearchBar',
     libraryTarget: 'umd',
+    libraryExport: 'default',
+  },
+  externals: {
+    docsSearchBar: 'docsSearchBar',
   },
   module: {
     rules: [
