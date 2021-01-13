@@ -26,11 +26,11 @@ uglifyjs "${DIST_FILE}" \
   --verbose
 
 # docs-searchbar as several ES5 files, to be `require`d
-babel -q index.js -o "$DIST_DIR_NPM/index.js"
+babel --quiet index.js -o "$DIST_DIR_NPM/index.js"
 declare -a sources=("src")
 for source in "${sources[@]}"
 do
-  babel -q --out-dir "$DIST_DIR_NPM/${source}" ${source}
+  babel --quiet --out-dir "$DIST_DIR_NPM/${source}" ${source}
 done
 
 gzip_size=$(gzip -9 < $DIST_FILE_MIN | wc -c | pretty-bytes)

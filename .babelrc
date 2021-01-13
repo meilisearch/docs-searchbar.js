@@ -1,14 +1,13 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets": {
           "browsers": ["last 2 versions", "ie >= 9"]
         }
-      }
-    ],
-    "stage-3"
+      },
+    ]
   ],
   "env": {
     "test": {
