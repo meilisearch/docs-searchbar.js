@@ -29,8 +29,10 @@ describe('DocsSearchBar', () => {
 
     // We prevent the logging of expected errors
     window.console.warn = sinon.spy();
-
-    window.location.assign = jest.fn();
+    Object.defineProperty(window, 'location', {
+      writable: true,
+      value: { assign: jest.fn() },
+    });
   });
 
   describe('constructor', () => {
