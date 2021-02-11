@@ -3,7 +3,7 @@ import autocomplete from 'autocomplete.js';
 import templates from './templates';
 import utils from './utils';
 import $ from './zepto';
-import MeiliSearch from 'meilisearch';
+import { MeiliSearch } from 'meilisearch';
 
 /**
  * Adds an autocomplete dropdown to an input field
