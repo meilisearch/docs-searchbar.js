@@ -44,7 +44,7 @@
 
 The goal of this library is to provide a front-end search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a MeiliSearch instance.
 
-Luckily, we provide all the tools that you need, and can help you through the whole process, if you follow [this guide](https://docs.meilisearch.com/resources/howtos/search_bar_for_docs.html) 🚀
+Luckily, we provide all the tools that you need, and can help you through the whole process, if you follow [this guide](https://docs.meilisearch.com/create/how_to/search_bar_for_docs.html) 🚀
 
 However, as a first introduction, you might only want to test this library without connecting it to your website.<br>
 You can do it by running the playground provided in this repository:
@@ -55,7 +55,7 @@ $ yarn serve
 ```
 
 The data comes from MeiliSearch documentation.<br>
-Type `create an indxe` to live the MeiliSearch experience with the [typo tolerance](https://docs.meilisearch.com/guides/advanced_guides/typotolerance.html).
+Type `create an indxe` to live the MeiliSearch experience with the [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
 
 #### Use your own scraper <!-- omit in toc -->
 
@@ -95,10 +95,10 @@ The `hostUrl` and the `apiKey` fields are the credentials of your MeiliSearch in
 `indexUid` is the index identifier in your MeiliSearch instance in which your website content is stored.<br>
 `inputSelector` is the `id` attribute of the HTML search input tag.
 
-_Your documentation content is not indexed yet? Check out [this tutorial](https://docs.meilisearch.com/resources/howtos/search_bar_for_docs.html)._
+_Your documentation content is not indexed yet? Check out [this tutorial](https://docs.meilisearch.com/create/how_to/search_bar_for_docs.html)._
 
 **WARNING: We recommend providing the MeiliSearch public key, which is enough to perform search requests.<br>
-Read more about [MeiliSearch authentication](https://docs.meilisearch.com/guides/advanced_guides/authentication.html).**
+Read more about [MeiliSearch authentication](https://docs.meilisearch.com/reference/features/authentication.html).**
 
 ### Customization
 
@@ -155,7 +155,7 @@ The function is called with the following arguments:
 
 ##### `meilisearchOptions` <!-- omit in toc -->
 
-You can forward search parameters to the MeiliSearch API by using the `meilisearchOptions` key. Checkout out the [MeiliSearch documentation about search parameters](https://docs.meilisearch.com/guides/advanced_guides/search_parameters.html#search-parameters).
+You can forward search parameters to the MeiliSearch API by using the `meilisearchOptions` key. Checkout out the [MeiliSearch documentation about search parameters](https://docs.meilisearch.com/reference/features/search_parameters.html#search-parameters).
 
 For example, you might want to increase the number of results displayed in the dropdown:
 
