@@ -50,8 +50,8 @@ However, as a first introduction, you might only want to test this library witho
 You can do it by running the playground provided in this repository:
 
 ```bash
-$ yarn install
-$ yarn serve
+yarn install
+yarn serve
 ```
 
 The data comes from MeiliSearch documentation.<br>
