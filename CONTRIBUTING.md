@@ -38,13 +38,13 @@ To run this project, you will need:
 Install all the dependencies:
 
 ```bash
-$ yarn install
+yarn install
 ```
 
 ### Build <!-- omit in TOC -->
 
 ```bash
-$ yarn build
+yarn build
 ```
 
 This command will build all files in `./dist`. This includes regular and minified files for `<script>` inclusion, as well as classes `import`.
@@ -56,7 +56,7 @@ The command itself is split into `yarn run build:js` and `yarn run build:css` if
 A playground is provided to test the library.
 
 ```bash
-$ yarn serve
+yarn serve
 ```
 
 Now, you can have all the files served on `localhost`, along with live-reload.
@@ -67,17 +67,17 @@ Each PR should pass the tests and the linter to be accepted.
 
 ```bash
 # Run all the tests
-$ yarn test
+yarn test
 # With auto-reload
-$ yarn test:watch
+yarn test:watch
 # Linter
-$ yarn lint
+yarn lint
 # Linter with auto-correct
-$ yarn lint-fix
+yarn lint-fix
 # Prettier for Markdown (auto-correct)
-$ yarn format:md
+yarn format:md
 # Prettier for SCSS (auto-correct)
-$ yarn format:scss
+yarn format:scss
 ```
 
 ## Git Guidelines
