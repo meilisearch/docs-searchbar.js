@@ -52,7 +52,7 @@
     "eslint-plugin-jest": "^24.1.8",
     "eslint-plugin-prettier": "^3.3.0",
     "jest": "^26.6.3",
-    "jsdom": "^16.5.0",
+    "jsdom": "^16.5.1",
     "live-server": "^1.2.1",
     "mversion": "^2.0.0",
     "node-sass": "^5.0.0",
