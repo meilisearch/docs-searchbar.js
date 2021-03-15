@@ -35,7 +35,7 @@
   "license": "MIT",
   "repository": "meilisearch/docs-searchbar.js",
   "devDependencies": {
-    "@babel/cli": "^7.13.0",
+    "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.8",
     "@babel/preset-env": "^7.13.8",
     "@babel/register": "^7.13.8",
