@@ -1,9 +1,9 @@
 ---
 name: Bug Report 🐞
 about: Create a report to help us improve.
-title: ''
-labels: ''
-assignees: ''
+title: ""
+labels: ""
+assignees: ""
 ---
 
 <!-- This is not an exhaustive model but a help. No step is mandatory. -->
@@ -21,6 +21,7 @@ What happened.
 If applicable, add screenshots or logs to help explain your problem.
 
 **Environment (please complete the following information):**
+
 - OS: [e.g. Debian GNU/Linux]
 - MeiliSearch version: [e.g. v.0.20.0]
 - docs-searchbar.js version: [e.g v1.1.11]
