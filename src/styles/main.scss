@@ -6,6 +6,12 @@ $searchbox: true !default;
 
 @if ($searchbox == true) {
   @include searchbox($searchbox-config...);
+  @media (prefers-color-scheme: dark) {
+    @include searchbox($searchbox-config-dark...);
+  }
 }
 
 @include dropdown($dropdown-config...);
+@media (prefers-color-scheme: dark) {
+  @include dropdown($dropdown-config-dark...);
+}

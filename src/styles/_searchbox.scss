@@ -22,6 +22,7 @@
   $input-width: 350px,
   $input-height: $font-size * 2.4,
   $border-width: 1px,
+  $text-color: #555,
   $border-radius: $input-height / 2,
   $input-border-color: #ccc,
   $input-focus-border-color: #1ec9ea,
@@ -60,6 +61,7 @@
     }
 
     input {
+      color: $text-color;
       display: inline-block;
       box-sizing: border-box;
       transition: box-shadow 0.4s ease, background 0.4s ease;
@@ -95,6 +97,9 @@
 
       &:hover {
         box-shadow: inset 0 0 0 $border-width darken($input-border-color, 10%);
+        @media (prefers-color-scheme: dark) {
+          box-shadow: inset 0 0 0 $border-width lighten($input-border-color, 5%);
+        }
       }
 
       &:focus,

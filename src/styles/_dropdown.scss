@@ -107,7 +107,9 @@
   $highlight-opacity: 0.1,
   $highlight-type: 'underline',
   $code-background: #ebebeb,
-  $responsive-breakpoint: 768px
+  $responsive-breakpoint: 768px,
+  $suggestion-background-color: #f8f8f8,
+  $hover-color-opacity: 0.05
 ) {
   $header-size: 1em;
   $title-size: 0.9em;
@@ -186,12 +188,12 @@
 
         &.dsb-cursor {
           .docs-searchbar-suggestion.suggestion-layout-simple {
-            background-color: rgba($main-color, 0.05);
+            background-color: rgba($main-color, $hover-color-opacity);
           }
 
           .docs-searchbar-suggestion:not(.suggestion-layout-simple) {
             .docs-searchbar-suggestion--content {
-              background-color: rgba($main-color, 0.05);
+              background-color: rgba($main-color, $hover-color-opacity);
             }
           }
         }
@@ -231,6 +233,9 @@
           color: set-highlight($highlight-opacity, $main-color);
           background: rgba(mix($main-color, #fff, 60%), $highlight-opacity);
           padding: 0em 0.05em;
+          @media (prefers-color-scheme: dark) {
+            color: lighten($main-color, 20%);
+          }
         }
 
         &--category-header
@@ -281,6 +286,9 @@
         padding: $padding/4 0;
         font-size: $header-size;
         color: $header-color;
+        @media (prefers-color-scheme: dark) {
+          color: lighten($subtitle-color, 10%);
+        }
       }
 
       &--wrapper {
@@ -409,6 +417,9 @@
         border-bottom: solid 1px #eee;
         padding: $padding/2;
         margin: 0;
+        @media (prefers-color-scheme: dark) {
+          border-bottom: solid 1px lighten($border-color, 10%);
+        }
       }
 
       .docs-searchbar-suggestion {
@@ -428,21 +439,25 @@
           width: 100%;
           border: none;
 
-          &-lvl0 {
+          &-lvl0, &-lvl1 {
             opacity: 0.6;
             font-size: $text-size;
+            @media (prefers-color-scheme: dark) {
+              opacity: unset;
+              color: lighten($subtitle-color, 10%);
+            }
           }
 
           &-lvl1 {
-            opacity: 0.6;
-            font-size: $text-size;
-
             &::before {
               background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 20 38" xmlns="http://www.w3.org/2000/svg"><path d="M1.49 4.31l14 16.126.002-2.624-14 16.074-1.314 1.51 3.017 2.626 1.313-1.508 14-16.075 1.142-1.313-1.14-1.313-14-16.125L3.2.18.18 2.8l1.31 1.51z" fill-rule="evenodd" fill="%231D3657" /></svg>');
               content: '';
               width: 10px;
               height: 10px;
               display: inline-block;
+              @media (prefers-color-scheme: dark) {
+                filter: invert(1);
+              }
             }
           }
         }
@@ -464,12 +479,18 @@
           color: $main-color;
           font-size: $title-size;
           font-weight: normal;
+          @media (prefers-color-scheme: dark) {
+            color: $text-color;
+          }
 
           &::before {
             content: '#';
             font-weight: bold;
             color: $main-color;
             display: inline-block;
+            @media (prefers-color-scheme: dark) {
+              color: $text-color;
+            }
           }
         }
 
@@ -478,7 +499,7 @@
           display: desc($include-desc);
           line-height: 1.4em;
           padding: $padding/3 $padding/2;
-          background: #f8f8f8;
+          background: $suggestion-background-color;
           font-size: $text-size;
           opacity: 0.8;
 
@@ -486,6 +507,9 @@
             color: darken($text-color, 15%);
             font-weight: bold;
             box-shadow: none;
+            @media (prefers-color-scheme: dark) {
+              color: lighten($text-color, 15%);
+            }
           }
         }
       }
@@ -498,10 +522,14 @@
       z-index: 2000;
       margin-top: $padding/1.5;
       float: right;
+      color: $text-color;
     }
 
     .docs-searchbar-footer-logo {
       margin-bottom: 4px;
+      @media (prefers-color-scheme: dark) {
+        filter: invert(1);
+      }
     }
   }
 }
