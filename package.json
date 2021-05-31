@@ -69,7 +69,7 @@
   "peerDependencies": {},
   "dependencies": {
     "autocomplete.js": "^0.38.0",
-    "concurrently": "^6.1.0",
+    "concurrently": "^6.2.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "hogan.js": "^3.0.2",
     "meilisearch": "^0.18.2",
