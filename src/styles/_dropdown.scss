@@ -439,7 +439,8 @@
           width: 100%;
           border: none;
 
-          &-lvl0, &-lvl1 {
+          &-lvl0,
+          &-lvl1 {
             opacity: 0.6;
             font-size: $text-size;
             @media (prefers-color-scheme: dark) {
