@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark light" />
     <title>Docs SearchBar playground</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" />
     <link rel="stylesheet" href="http://127.0.0.1:8080/docs-searchbar.min.css" />
@@ -50,11 +51,17 @@
 
       .searchbox input {
         height: 34px;
-        border-radius:4px;
-        font-size:14px;
+        border-radius: 4px;
+        font-size: 14px;
         padding: 6px 12px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #152028;
+          color: #eaeaea;
+        }
       }
     </style>
   </body>
-
 </html>
