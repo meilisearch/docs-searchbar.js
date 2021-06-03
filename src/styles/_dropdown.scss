@@ -384,11 +384,14 @@
           text-align: left;
           float: left;
           padding: 0;
-
-          color: #02060c;
           font-size: 0.9em;
           font-weight: bold;
           opacity: 0.5;
+          color: #02060c;
+          @media (prefers-color-scheme: dark) {
+            color: $subtitle-color;
+            opacity: unset;
+          }
 
           &:before {
             display: none;
