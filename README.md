@@ -100,6 +100,23 @@ _Your documentation content is not indexed yet? Check out [this tutorial](https:
 **WARNING: We recommend providing the MeiliSearch public key, which is enough to perform search requests.<br>
 Read more about [MeiliSearch authentication](https://docs.meilisearch.com/reference/features/authentication.html).**
 
+#### Styling
+
+To import the provided CSS styling in your project, depending on your environment you should add the following:
+
+ES+ environment
+```js
+import 'docs-searchbar.js/dist/cdn/docs-searchbar.css'
+```
+
+`HTML` in your header
+```html
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.css"
+  />
+```
+
 ### Customization
 
 The default behavior of this library fits perfectly for a documentation search bar, but you might need some customizations.
@@ -169,7 +186,7 @@ docsSearchBar({
 
 ##### More Examples <!-- omit in toc -->
 
-Here is a basic [HTML file](scripts/playground.html) used in the playground of this repository.
+Here is a basic [HTML file](playground/index.html) used in the playground of this repository.
 
 As a more concrete example, you can [check out the configuration](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L64) applied in the MeiliSearch plugin for VuePress.
 
