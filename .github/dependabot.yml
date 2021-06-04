@@ -16,7 +16,20 @@ updates:
       - dependency-name: "babel-eslint"
       - dependency-name: "*prettier*"
 - package-ecosystem: npm
-  directory: "/playground"
+  directory: "/playground/javascript"
+  schedule:
+    interval: weekly
+    time: "04:00"
+  open-pull-requests-limit: 10
+  labels:
+  - skip-changelog
+  - dependencies
+  versioning-strategy: increase
+  rebase-strategy: disabled
+  ignore:
+      - dependency-name: "parcel-bundler"
+- package-ecosystem: npm
+  directory: "/playground/html"
   schedule:
     interval: weekly
     time: "04:00"
