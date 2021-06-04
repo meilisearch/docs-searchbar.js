@@ -105,16 +105,18 @@ Read more about [MeiliSearch authentication](https://docs.meilisearch.com/refere
 To import the provided CSS styling in your project, depending on your environment you should add the following:
 
 ES+ environment
+
 ```js
-import 'docs-searchbar.js/dist/cdn/docs-searchbar.css'
+import "docs-searchbar.js/dist/cdn/docs-searchbar.css";
 ```
 
 `HTML` in your header
+
 ```html
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.css"
-  />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.css"
+/>
 ```
 
 ### Customization
