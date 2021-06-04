@@ -23,6 +23,9 @@
     "test": "./scripts/test",
     "test:watch": "./scripts/test-watch"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "files": [
     "dist/"
   ],
