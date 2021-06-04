@@ -1,0 +1,15 @@
+{
+  "name": "docs-searchbar-playground",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "parcel serve index.html --global docsSearchBar --open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "parcel-bundler": "^1.12.5"
+  }
+}
