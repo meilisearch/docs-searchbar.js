@@ -24,7 +24,7 @@
     "test:watch": "./scripts/test-watch"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=12 <15"
   },
   "files": [
     "dist/"
