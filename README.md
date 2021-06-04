@@ -102,7 +102,7 @@ Read more about [MeiliSearch authentication](https://docs.meilisearch.com/refere
 
 #### Styling
 
-To import the provided CSS styling in your project, depending on your environment you should add the following:
+To import the provided CSS styling in your project, you should add the following depending on your environment:
 
 ES+ environment
 
