@@ -109,7 +109,8 @@
   $code-background: #ebebeb,
   $responsive-breakpoint: 768px,
   $suggestion-background-color: #f8f8f8,
-  $hover-color-opacity: 0.05
+  $hover-color-opacity: 0.05,
+  $dark-mode: false
 ) {
   $header-size: 1em;
   $title-size: 0.9em;
@@ -233,7 +234,7 @@
           color: set-highlight($highlight-opacity, $main-color);
           background: rgba(mix($main-color, #fff, 60%), $highlight-opacity);
           padding: 0em 0.05em;
-          @media (prefers-color-scheme: dark) {
+          @if $dark-mode {
             color: lighten($main-color, 20%);
           }
         }
@@ -286,7 +287,7 @@
         padding: $padding/4 0;
         font-size: $header-size;
         color: $header-color;
-        @media (prefers-color-scheme: dark) {
+        @if $dark-mode {
           color: lighten($subtitle-color, 10%);
         }
       }
@@ -388,7 +389,7 @@
           font-weight: bold;
           opacity: 0.5;
           color: #02060c;
-          @media (prefers-color-scheme: dark) {
+          @if $dark-mode {
             color: $subtitle-color;
             opacity: unset;
           }
@@ -420,7 +421,7 @@
         border-bottom: solid 1px #eee;
         padding: $padding/2;
         margin: 0;
-        @media (prefers-color-scheme: dark) {
+        @if $dark-mode {
           border-bottom: solid 1px lighten($border-color, 10%);
         }
       }
@@ -446,7 +447,7 @@
           &-lvl1 {
             opacity: 0.6;
             font-size: $text-size;
-            @media (prefers-color-scheme: dark) {
+            @if $dark-mode {
               opacity: unset;
               color: lighten($subtitle-color, 10%);
             }
@@ -459,7 +460,7 @@
               width: 10px;
               height: 10px;
               display: inline-block;
-              @media (prefers-color-scheme: dark) {
+              @if $dark-mode {
                 filter: invert(1);
               }
             }
@@ -483,7 +484,7 @@
           color: $main-color;
           font-size: $title-size;
           font-weight: normal;
-          @media (prefers-color-scheme: dark) {
+          @if $dark-mode {
             color: $text-color;
           }
 
@@ -492,7 +493,7 @@
             font-weight: bold;
             color: $main-color;
             display: inline-block;
-            @media (prefers-color-scheme: dark) {
+            @if $dark-mode {
               color: $text-color;
             }
           }
@@ -511,7 +512,7 @@
             color: darken($text-color, 15%);
             font-weight: bold;
             box-shadow: none;
-            @media (prefers-color-scheme: dark) {
+            @if $dark-mode {
               color: lighten($text-color, 15%);
             }
           }
@@ -531,7 +532,7 @@
 
     .docs-searchbar-footer-logo {
       margin-bottom: 4px;
-      @media (prefers-color-scheme: dark) {
+      @if $dark-mode {
         filter: invert(1);
       }
     }

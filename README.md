@@ -186,6 +186,11 @@ docsSearchBar({
 })
 ```
 
+##### `enableDarkMode` <!-- omit in toc -->
+
+Allows you to display the searchbar in dark mode. It is useful if your website has dark mode support and you also want the searchbar to appear in a dark version. 
+You can always edit the style of the searchbar to match the style of your website.
+
 ##### More Examples <!-- omit in toc -->
 
 Here is a basic [HTML file](playground/index.html) used in the playground of this repository.
