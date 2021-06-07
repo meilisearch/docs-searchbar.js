@@ -1,3 +1,7 @@
-status = ['tests', 'linter-check']
+status = [
+    'linter-check',
+    'Tests (Node.js 12)',
+    'Tests (Node.js 14)'
+]
 # 1 hour timeout
 timeout-sec = 3600

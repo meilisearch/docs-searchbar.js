@@ -30,7 +30,7 @@ First of all, thank you for contributing to MeiliSearch! The goal of this docume
 
 To run this project, you will need:
 
-- Node.js >= v8.7.0, use nvm - [installation instructions](https://github.com/creationix/nvm#install-script)
+- Node.js >= v12 and node < 15
 - Yarn
 
 ### Install <!-- omit in TOC -->
