@@ -3,7 +3,7 @@ tag-template: 'v$RESOLVED_VERSION'
 exclude-labels:
   - 'skip-changelog'
 version-resolver:
-  minor:
+  major:
     labels:
       - 'breaking-change'
   default: patch
