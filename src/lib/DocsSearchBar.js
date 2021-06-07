@@ -40,6 +40,7 @@ class DocsSearchBar {
     handleSelected = false,
     enhancedSearchInput = false,
     layout = 'columns',
+    enableDarkMode = false,
   }) {
     DocsSearchBar.checkArguments({
       hostUrl,
@@ -55,6 +56,7 @@ class DocsSearchBar {
       handleSelected,
       enhancedSearchInput,
       layout,
+      enableDarkMode,
     });
 
     this.apiKey = apiKey;
@@ -92,6 +94,16 @@ class DocsSearchBar {
     ) || ['s', 191];
 
     this.isSimpleLayout = layout === 'simple';
+    this.enableDarkMode = enableDarkMode;
+
+    const isSystemInDarkMode =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (this.enableDarkMode && isSystemInDarkMode) {
+      // Check nomenclature des classes
+      const searchbox = document.querySelector('.searchbox');
+      searchbox.className += ' dark';
+    }
 
     this.client = new MeiliSearch({
       host: hostUrl,
@@ -141,6 +153,9 @@ class DocsSearchBar {
       DocsSearchBar.bindSearchBoxEvent();
     }
   }
+
+  // TODO: Check si dark mode est un boolean ou pas
+  // + Issue pour check les autres
 
   /**
    * Checks that the passed arguments are valid. Will throw errors otherwise

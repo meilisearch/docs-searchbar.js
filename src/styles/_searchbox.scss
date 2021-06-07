@@ -36,7 +36,8 @@
   $icon-background: $input-focus-border-color,
   $icon-background-opacity: 0.1,
   $icon-clear: 'sbx-icon-clear-1',
-  $icon-clear-size: $font-size / 1.1
+  $icon-clear-size: $font-size / 1.1,
+  $dark-mode: false
 ) {
   .searchbox {
     display: inline-block;
@@ -97,8 +98,13 @@
 
       &:hover {
         box-shadow: inset 0 0 0 $border-width darken($input-border-color, 10%);
-        @media (prefers-color-scheme: dark) {
-          box-shadow: inset 0 0 0 $border-width lighten($input-border-color, 5%);
+        @if $dark-mode {
+          box-shadow: inset
+            0
+            0
+            0
+            $border-width
+            lighten($input-border-color, 5%);
         }
       }
 
