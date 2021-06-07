@@ -5,13 +5,10 @@
     <meta name="color-scheme" content="dark light" />
     <title>Docs SearchBar playground</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://127.0.0.1:8080/docs-searchbar.min.css" />
+    <link rel="stylesheet" href="../../src/styles/main.scss" />
   </head>
   <body>
     <div class="container">
-      <div class="mt-1">
-        <h1>Assets are served from http://127.0.0.1:8080/ </h1>
-      </div>
       <div class="col-md-12">
         <div class="searchbox">
           <input type="search" placeholder="docs-searchbar input" class="form-control" id="q">
@@ -19,9 +16,9 @@
       </div>
     </div>
     <!-- at the end of the BODY -->
-    <script src="http://127.0.0.1:8080/docs-searchbar.js"></script>
+    <script src="../../index.js"></script>
     <script>
-      docsSearchBar({
+      docsSearchBar.default({
         // Test with MeiliSearch Documentation
         hostUrl: 'https://docs-search-bar.meilisearch.com',
         apiKey: 'd79226ae89f29d4dadba8d0c30c240e435f584fb83a7ae573b13eb62edec35cd',
