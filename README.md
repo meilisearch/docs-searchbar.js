@@ -102,15 +102,15 @@ Read more about [MeiliSearch authentication](https://docs.meilisearch.com/refere
 
 #### Styling
 
-To import the provided CSS styling in your project, depending on your environment you should add the following:
+`docs-searchbar.js` comes with a css template. It has to be added in your project in the following way:
 
-ES+ environment
+In an ES+ environment:
 
 ```js
 import "docs-searchbar.js/dist/cdn/docs-searchbar.css";
 ```
 
-`HTML` in your header
+In a `HTML` file, the `link` tag should be added in your header:
 
 ```html
 <link
