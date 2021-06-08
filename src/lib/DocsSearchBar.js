@@ -89,7 +89,7 @@ class DocsSearchBar {
       this.autocompleteOptions.cssClasses.root || 'meilisearch-autocomplete'
     this.autocompleteOptions.keyboardShortcuts =
       this.parseHotkeysAutocompleteOptions(
-        this.autocompleteOptions.keyboardShortcuts
+        this.autocompleteOptions.keyboardShortcuts,
       ) || ['s', 191]
 
     this.isSimpleLayout = layout === 'simple'
@@ -124,18 +124,18 @@ class DocsSearchBar {
         `.${this.autocompleteOptions.cssClasses.prefix}-suggestions a`,
         (event) => {
           event.preventDefault()
-        }
+        },
       )
     }
 
     this.autocomplete.on(
       'autocomplete:selected',
-      this.handleSelected.bind(null, this.autocomplete.autocomplete)
+      this.handleSelected.bind(null, this.autocomplete.autocomplete),
     )
 
     this.autocomplete.on(
       'autocomplete:shown',
-      this.handleShown.bind(null, this.input)
+      this.handleShown.bind(null, this.input),
     )
 
     if (enhancedSearchInput) {
@@ -156,13 +156,13 @@ class DocsSearchBar {
 
     if (typeof args.inputSelector !== 'string') {
       throw new Error(
-        `Error: inputSelector:${args.inputSelector}  must be a string. Each selector must match only one element and separated by ','`
+        `Error: inputSelector:${args.inputSelector}  must be a string. Each selector must match only one element and separated by ','`,
       )
     }
 
     if (!DocsSearchBar.getInputFromSelector(args.inputSelector)) {
       throw new Error(
-        `Error: No input element in the page matches ${args.inputSelector}`
+        `Error: No input element in the page matches ${args.inputSelector}`,
       )
     }
   }
@@ -248,7 +248,7 @@ class DocsSearchBar {
         // eslint-disable-next-line no-param-reassign
         hit._formatted = utils.renameKeysWithLevels(
           cleanFormatted,
-          'hierarchy_'
+          'hierarchy_',
         )
       }
       const cleanHit = utils.replaceNullString(hit)
@@ -261,7 +261,7 @@ class DocsSearchBar {
       const groupedHitsByLvl1 = utils.groupBy(collection, 'lvl1')
       const flattenedHits = utils.flattenAndFlagFirst(
         groupedHitsByLvl1,
-        'isSubCategoryHeader'
+        'isSubCategoryHeader',
       )
       groupedHits[level] = flattenedHits
     })
@@ -281,7 +281,7 @@ class DocsSearchBar {
           utils.getHighlightedValue(hit, 'lvl6'),
         ])
         .join(
-          '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>'
+          '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>',
         )
       const text = utils.getSnippetedValue(hit, 'content')
       const isTextOrSubcategoryNonEmpty =

@@ -203,7 +203,7 @@ const utils = {
         // eslint-disable-next-line no-param-reassign
         item[flag] = index === 0
         return item
-      })
+      }),
     )
     return this.flatten(values)
   },

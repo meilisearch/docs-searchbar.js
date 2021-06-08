@@ -183,7 +183,7 @@ describe('DocsSearchBar', () => {
         MeiliSearch.calledWith({
           host: 'https://test.getmeili.com',
           apiKey: 'apiKey',
-        })
+        }),
       ).toBe(true)
     })
     it('should instantiate autocomplete.js', () => {
@@ -212,7 +212,7 @@ describe('DocsSearchBar', () => {
           autoselect: true,
           ariaLabel: 'search input',
           keyboardShortcuts: ['s', 191],
-        })
+        }),
       ).toBe(true)
     })
     it('should listen to the selected and shown event of autocomplete', () => {
@@ -387,7 +387,7 @@ describe('DocsSearchBar', () => {
         }
         expect(client.index.calledWith('indexUID')).toBe(true)
         expect(
-          client.index('indexUid').search.calledWith('query', expectedParams)
+          client.index('indexUid').search.calledWith('query', expectedParams),
         ).toBe(true)
       })
     })
@@ -397,7 +397,7 @@ describe('DocsSearchBar', () => {
         // Given
         const actual = docsSearchBar.getAutocompleteSource(
           false,
-          (query) => `${query} modified`
+          (query) => `${query} modified`,
         )
 
         // When
@@ -415,7 +415,7 @@ describe('DocsSearchBar', () => {
         expect(
           client
             .index('indexUID')
-            .search.calledWith('query modified', expectedParams)
+            .search.calledWith('query modified', expectedParams),
         ).toBe(true)
         expect(client.index.calledWith('indexUID')).toBe(true)
       })
@@ -440,7 +440,7 @@ describe('DocsSearchBar', () => {
 
       return new Promise((resolve) => {
         expect(window.location.assign).toHaveBeenCalledWith(
-          'https://website.com/doc/page'
+          'https://website.com/doc/page',
         )
         resolve()
       })
@@ -475,7 +475,7 @@ describe('DocsSearchBar', () => {
         expect(customHandleSelected).toHaveBeenCalledWith(
           expectedInput,
           expectedEvent,
-          expectedSuggestion
+          expectedSuggestion,
         )
         resolve()
       })
@@ -527,7 +527,7 @@ describe('DocsSearchBar', () => {
           undefined, // Event
           mockSuggestion,
           undefined, // Dataset
-          mockContext
+          mockContext,
         )
 
         return new Promise((resolve) => {
@@ -552,7 +552,7 @@ describe('DocsSearchBar', () => {
           undefined, // Event
           undefined, // Suggestion
           undefined, // Dataset
-          mockContext
+          mockContext,
         )
 
         return new Promise((resolve) => {
@@ -580,7 +580,7 @@ describe('DocsSearchBar', () => {
       dsb.autocomplete.trigger('autocomplete:shown')
 
       expect($('.meilisearch-autocomplete').attr('class')).toEqual(
-        'meilisearch-autocomplete meilisearch-autocomplete-right'
+        'meilisearch-autocomplete meilisearch-autocomplete-right',
       )
     })
   })
@@ -861,7 +861,7 @@ describe('DocsSearchBar', () => {
         '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>'
       // Then
       expect(actual[0].title).toEqual(
-        `Geo-search${separator}Foo${separator}Bar${separator}Baz`
+        `Geo-search${separator}Foo${separator}Bar${separator}Baz`,
       )
     })
     it('should concatenate highlighted elements', () => {

@@ -84,7 +84,7 @@ If you already have your own scraper but you still want to use MeiliSearch and `
         apiKey: 'XXX',
         indexUid: 'docs',
         inputSelector: '#search-bar-input',
-        debug: true // Set debug to true if you want to inspect the dropdown
+        debug: true, // Set debug to true if you want to inspect the dropdown
       })
     </script>
   </body>
@@ -154,7 +154,7 @@ docsSearchBar({
       const windowReference = window.open(suggestion.url, '_blank')
       windowReference.focus()
     }
-  }
+  },
 })
 ```
 
@@ -181,8 +181,8 @@ For example, you might want to increase the number of results displayed in the d
 ```javascript
 docsSearchBar({
   meilisearchOptions: {
-    limit: 10
-  }
+    limit: 10,
+  },
 })
 ```
 
