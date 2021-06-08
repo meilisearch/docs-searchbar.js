@@ -39,7 +39,7 @@ class DocsSearchBar {
     queryHook = false,
     handleSelected = false,
     enhancedSearchInput = false,
-    layout = 'columns'
+    layout = 'columns',
   }) {
     DocsSearchBar.checkArguments({
       hostUrl,
@@ -54,7 +54,7 @@ class DocsSearchBar {
       queryHook,
       handleSelected,
       enhancedSearchInput,
-      layout
+      layout,
     })
 
     this.apiKey = apiKey
@@ -66,14 +66,14 @@ class DocsSearchBar {
       attributesToHighlight: ['*'],
       attributesToCrop: ['content'],
       cropLength: 30,
-      ...meilisearchOptions
+      ...meilisearchOptions,
     }
     this.queryDataCallback = queryDataCallback || null
     this.autocompleteOptions = {
       debug,
       hint: false,
       autoselect: true,
-      ...autocompleteOptions
+      ...autocompleteOptions,
     }
     const inputAriaLabel =
       this.input &&
@@ -87,15 +87,16 @@ class DocsSearchBar {
       this.autocompleteOptions.cssClasses.prefix || 'dsb'
     this.autocompleteOptions.cssClasses.root =
       this.autocompleteOptions.cssClasses.root || 'meilisearch-autocomplete'
-    this.autocompleteOptions.keyboardShortcuts = this.parseHotkeysAutocompleteOptions(
-      this.autocompleteOptions.keyboardShortcuts
-    ) || ['s', 191]
+    this.autocompleteOptions.keyboardShortcuts =
+      this.parseHotkeysAutocompleteOptions(
+        this.autocompleteOptions.keyboardShortcuts
+      ) || ['s', 191]
 
     this.isSimpleLayout = layout === 'simple'
 
     this.client = new MeiliSearch({
       host: hostUrl,
-      apiKey: this.apiKey
+      apiKey: this.apiKey,
     })
 
     if (enhancedSearchInput) {
@@ -108,9 +109,9 @@ class DocsSearchBar {
         templates: {
           suggestion: DocsSearchBar.getSuggestionTemplate(this.isSimpleLayout),
           footer: templates.footer,
-          empty: DocsSearchBar.getEmptyTemplate()
-        }
-      }
+          empty: DocsSearchBar.getEmptyTemplate(),
+        },
+      },
     ])
 
     const customHandleSelected = handleSelected
@@ -277,7 +278,7 @@ class DocsSearchBar {
           utils.getHighlightedValue(hit, 'lvl3'),
           utils.getHighlightedValue(hit, 'lvl4'),
           utils.getHighlightedValue(hit, 'lvl5'),
-          utils.getHighlightedValue(hit, 'lvl6')
+          utils.getHighlightedValue(hit, 'lvl6'),
         ])
         .join(
           '<span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>'
@@ -306,7 +307,7 @@ class DocsSearchBar {
         subcategory,
         title: displayTitle,
         text,
-        url
+        url,
       }
     })
   }

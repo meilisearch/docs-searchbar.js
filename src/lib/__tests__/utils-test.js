@@ -8,8 +8,8 @@ describe('utils', () => {
         name: 'foo',
         hierarchy: {
           lvl0: 'bar',
-          lvl1: 'baz'
-        }
+          lvl1: 'baz',
+        },
       }
 
       // When
@@ -25,8 +25,8 @@ describe('utils', () => {
         name: 'foo',
         hierarchy: {
           lvl0: 'bar',
-          lvl1: 'baz'
-        }
+          lvl1: 'baz',
+        },
       }
 
       // When
@@ -43,8 +43,8 @@ describe('utils', () => {
         lvl0: 42,
         hierarchy: {
           lvl0: 'bar',
-          lvl1: 'baz'
-        }
+          lvl1: 'baz',
+        },
       }
 
       // When
@@ -57,7 +57,7 @@ describe('utils', () => {
     it('should do nothing if no such key', () => {
       // Given
       const input = {
-        name: 'foo'
+        name: 'foo',
       }
 
       // When
@@ -70,7 +70,7 @@ describe('utils', () => {
       // Given
       const input = {
         name: 'foo',
-        hierarchy: 42
+        hierarchy: 42,
       }
 
       // When
@@ -91,7 +91,7 @@ describe('utils', () => {
         { name: 'Jeremy', category: 'sales' },
         { name: 'AlexS', category: 'devs' },
         { name: 'AlexK', category: 'sales' },
-        { name: 'AlexK', category: 'constructor' }
+        { name: 'AlexK', category: 'constructor' },
       ]
 
       // When
@@ -103,20 +103,20 @@ describe('utils', () => {
         devs: [
           { name: 'Tim', category: 'devs' },
           { name: 'Vincent', category: 'devs' },
-          { name: 'AlexS', category: 'devs' }
+          { name: 'AlexS', category: 'devs' },
         ],
         sales: [
           { name: 'Ben', category: 'sales' },
           { name: 'Jeremy', category: 'sales' },
-          { name: 'AlexK', category: 'sales' }
-        ]
+          { name: 'AlexK', category: 'sales' },
+        ],
       })
     })
     it('group by key considering lowercase forms', () => {
       // Given
       const input = [
         { name: 'Tim', category: 'devs' },
-        { name: 'Vincent', category: 'DeVs' }
+        { name: 'Vincent', category: 'DeVs' },
       ]
 
       // When
@@ -126,8 +126,8 @@ describe('utils', () => {
       expect(actual).toEqual({
         devs: [
           { name: 'Tim', category: 'devs' },
-          { name: 'Vincent', category: 'DeVs' }
-        ]
+          { name: 'Vincent', category: 'DeVs' },
+        ],
       })
     })
     it('throw an error if key does not exist', () => {
@@ -138,7 +138,7 @@ describe('utils', () => {
         { name: 'Ben' },
         { name: 'Jeremy' },
         { name: 'AlexS' },
-        { name: 'AlexK' }
+        { name: 'AlexK' },
       ]
 
       // When
@@ -154,7 +154,7 @@ describe('utils', () => {
       const input = {
         foo: 42,
         bar: true,
-        baz: 'yep'
+        baz: 'yep',
       }
 
       // Given
@@ -186,13 +186,13 @@ describe('utils', () => {
         devs: [
           { name: 'Tim', category: 'dev' },
           { name: 'Vincent', category: 'dev' },
-          { name: 'AlexS', category: 'dev' }
+          { name: 'AlexS', category: 'dev' },
         ],
         sales: [
           { name: 'Ben', category: 'sales' },
           { name: 'Jeremy', category: 'sales' },
-          { name: 'AlexK', category: 'sales' }
-        ]
+          { name: 'AlexK', category: 'sales' },
+        ],
       }
 
       // When
@@ -205,7 +205,7 @@ describe('utils', () => {
         { name: 'AlexS', category: 'dev', isTop: false },
         { name: 'Ben', category: 'sales', isTop: true },
         { name: 'Jeremy', category: 'sales', isTop: false },
-        { name: 'AlexK', category: 'sales', isTop: false }
+        { name: 'AlexK', category: 'sales', isTop: false },
       ])
     })
   })
@@ -228,9 +228,9 @@ describe('utils', () => {
       // Given
       const input = {
         _formatted: {
-          text: '<mark>foo</mark>'
+          text: '<mark>foo</mark>',
         },
-        text: 'foo'
+        text: 'foo',
       }
 
       // When
@@ -243,9 +243,9 @@ describe('utils', () => {
       // Given
       const input = {
         _formatted: {
-          text: {}
+          text: {},
         },
-        text: 'foo'
+        text: 'foo',
       }
 
       // When
@@ -257,7 +257,7 @@ describe('utils', () => {
     it('should return the default key if no highlight results', () => {
       // Given
       const input = {
-        text: 'foo'
+        text: 'foo',
       }
 
       // When
@@ -272,7 +272,7 @@ describe('utils', () => {
     it('should return the key value if no snippet returned', () => {
       // Given
       const input = {
-        text: 'Foo'
+        text: 'Foo',
       }
 
       // When
@@ -285,10 +285,10 @@ describe('utils', () => {
       // Given
       const input = {
         _formatted: {
-          content: '<mark>Bar</mark>'
+          content: '<mark>Bar</mark>',
         },
         text: 'Foo',
-        content: 'Bar'
+        content: 'Bar',
       }
 
       // When
@@ -301,9 +301,9 @@ describe('utils', () => {
       // Given
       const input = {
         _formatted: {
-          text: 'this is the <mark>end</mark> of a sentence.'
+          text: 'this is the <mark>end</mark> of a sentence.',
         },
-        text: 'this is the end of a sentence.'
+        text: 'this is the end of a sentence.',
       }
 
       // When
@@ -316,9 +316,9 @@ describe('utils', () => {
       // Given
       const input = {
         _formatted: {
-          text: 'This is an <mark>finished</mark> sentence'
+          text: 'This is an <mark>finished</mark> sentence',
         },
-        text: 'This is an <mark>finished</mark> sentence'
+        text: 'This is an <mark>finished</mark> sentence',
       }
 
       // When
@@ -334,8 +334,8 @@ describe('utils', () => {
       // Given
       const input = {
         foo: {
-          bar: 'baz'
-        }
+          bar: 'baz',
+        },
       }
 
       // When
@@ -348,8 +348,8 @@ describe('utils', () => {
       // Given
       const input = {
         foo: {
-          bar: 'baz'
-        }
+          bar: 'baz',
+        },
       }
 
       // When

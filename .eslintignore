@@ -2,3 +2,7 @@ coverage/
 dist/
 docs/dist
 dist-es5-module/
+node_modules/
+assets
+.github
+scripts

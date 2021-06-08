@@ -3,5 +3,5 @@ module.exports = {
   bail: true,
   resetMocks: true,
   restoreMocks: true,
-  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/docs/']
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/docs/'],
 }

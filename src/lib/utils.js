@@ -306,7 +306,7 @@ const utils = {
    */
   deepClone(object) {
     return JSON.parse(JSON.stringify(object))
-  }
+  },
 }
 
 export default utils

@@ -31,7 +31,7 @@ describe('DocsSearchBar', () => {
     window.console.warn = sinon.spy()
     Object.defineProperty(window, 'location', {
       writable: true,
-      value: { assign: jest.fn() }
+      value: { assign: jest.fn() },
     })
   })
 
@@ -51,7 +51,7 @@ describe('DocsSearchBar', () => {
         hostUrl: 'https://test.getmeili.com',
         apiKey: 'apiKey',
         indexUid: 'indexUID',
-        inputSelector: '#input'
+        inputSelector: '#input',
       }
 
       sinon.spy(DocsSearchBar, 'checkArguments')
@@ -94,9 +94,9 @@ describe('DocsSearchBar', () => {
       // Given
       const options = {
         meilisearchOptions: {
-          cropLength: 50
+          cropLength: 50,
         },
-        ...defaultOptions
+        ...defaultOptions,
       }
 
       // When
@@ -107,16 +107,16 @@ describe('DocsSearchBar', () => {
         limit: 5,
         attributesToCrop: ['content'],
         attributesToHighlight: ['*'],
-        cropLength: 50
+        cropLength: 50,
       })
     })
     it('should allow customize limit', () => {
       // Given
       const options = {
         meilisearchOptions: {
-          limit: 10
+          limit: 10,
         },
-        ...defaultOptions
+        ...defaultOptions,
       }
 
       // When
@@ -127,7 +127,7 @@ describe('DocsSearchBar', () => {
         limit: 10,
         attributesToHighlight: ['*'],
         attributesToCrop: ['content'],
-        cropLength: 30
+        cropLength: 30,
       })
     })
     it('should pass the input element as an instance property', () => {
@@ -148,7 +148,7 @@ describe('DocsSearchBar', () => {
       const options = {
         ...defaultOptions,
         meilisearchOptions: { anOption: 42 },
-        autocompleteOptions: { anOption: 44 }
+        autocompleteOptions: { anOption: 44 },
       }
 
       // When
@@ -163,11 +163,11 @@ describe('DocsSearchBar', () => {
         autoselect: true,
         cssClasses: {
           root: 'meilisearch-autocomplete',
-          prefix: 'dsb'
+          prefix: 'dsb',
         },
         anOption: 44,
         ariaLabel: 'search input',
-        keyboardShortcuts: ['s', 191]
+        keyboardShortcuts: ['s', 191],
       })
     })
     it('should instantiate meilisearch with the correct values', () => {
@@ -182,7 +182,7 @@ describe('DocsSearchBar', () => {
       expect(
         MeiliSearch.calledWith({
           host: 'https://test.getmeili.com',
-          apiKey: 'apiKey'
+          apiKey: 'apiKey',
         })
       ).toBe(true)
     })
@@ -190,7 +190,7 @@ describe('DocsSearchBar', () => {
       // Given
       const options = {
         ...defaultOptions,
-        autocompleteOptions: { anOption: '44' }
+        autocompleteOptions: { anOption: '44' },
       }
       const $input = $('<input name="foo" />')
       DocsSearchBar.getInputFromSelector.returns($input)
@@ -205,13 +205,13 @@ describe('DocsSearchBar', () => {
           anOption: '44',
           cssClasses: {
             root: 'meilisearch-autocomplete',
-            prefix: 'dsb'
+            prefix: 'dsb',
           },
           debug: false,
           hint: false,
           autoselect: true,
           ariaLabel: 'search input',
-          keyboardShortcuts: ['s', 191]
+          keyboardShortcuts: ['s', 191],
         })
       ).toBe(true)
     })
@@ -244,7 +244,7 @@ describe('DocsSearchBar', () => {
       // Given
       const options = {
         apiKey: 'apiKey',
-        indexUid: 'indexUID'
+        indexUid: 'indexUID',
       }
 
       // When
@@ -256,7 +256,7 @@ describe('DocsSearchBar', () => {
       // Given
       const options = {
         hostUrl: 'test.com',
-        indexUid: 'indexUID'
+        indexUid: 'indexUID',
       }
 
       // When
@@ -268,7 +268,7 @@ describe('DocsSearchBar', () => {
       // Given
       const options = {
         hostUrl: 'test.com',
-        apiKey: 'apiKey'
+        apiKey: 'apiKey',
       }
 
       // When
@@ -281,7 +281,7 @@ describe('DocsSearchBar', () => {
       const options = {
         hostUrl: 'test.com',
         apiKey: 'apiKey',
-        indexUid: 'indexUID'
+        indexUid: 'indexUID',
       }
       sinon.stub(DocsSearchBar, 'getInputFromSelector').returns(false)
 
@@ -339,9 +339,9 @@ describe('DocsSearchBar', () => {
         meilisearch: 'client',
         index: sinon.stub().returns({
           search: sinon.stub().returns({
-            then: sinon.spy()
-          })
-        })
+            then: sinon.spy(),
+          }),
+        }),
       }
       MeiliSearch = sinon.stub().returns(client)
       DocsSearchBar.__Rewire__('MeiliSearch', MeiliSearch)
@@ -350,7 +350,7 @@ describe('DocsSearchBar', () => {
         hostUrl: 'https://test.getmeili.com',
         indexUid: 'indexUID',
         apiKey: 'apiKey',
-        inputSelector: '#input'
+        inputSelector: '#input',
       })
     })
 
@@ -383,7 +383,7 @@ describe('DocsSearchBar', () => {
           limit: 5,
           attributesToHighlight: ['*'],
           attributesToCrop: ['content'],
-          cropLength: 30
+          cropLength: 30,
         }
         expect(client.index.calledWith('indexUID')).toBe(true)
         expect(
@@ -410,7 +410,7 @@ describe('DocsSearchBar', () => {
           limit: 5,
           attributesToHighlight: ['*'],
           attributesToCrop: ['content'],
-          cropLength: 30
+          cropLength: 30,
         }
         expect(
           client
@@ -429,13 +429,13 @@ describe('DocsSearchBar', () => {
         hostUrl: 'test.com',
         apiKey: 'key',
         indexUid: 'foo',
-        inputSelector: '#input'
+        inputSelector: '#input',
       }
 
       // When
       const dsb = new DocsSearchBar(options)
       dsb.autocomplete.trigger('autocomplete:selected', {
-        url: 'https://website.com/doc/page'
+        url: 'https://website.com/doc/page',
       })
 
       return new Promise((resolve) => {
@@ -453,22 +453,22 @@ describe('DocsSearchBar', () => {
         apiKey: 'key',
         indexUid: 'foo',
         inputSelector: '#input',
-        handleSelected: customHandleSelected
+        handleSelected: customHandleSelected,
       }
       const expectedInput = expect.objectContaining({
-        open: expect.any(Function)
+        open: expect.any(Function),
       })
       const expectedEvent = expect.objectContaining({
-        type: 'autocomplete:selected'
+        type: 'autocomplete:selected',
       })
       const expectedSuggestion = expect.objectContaining({
-        url: 'https://website.com/doc/page'
+        url: 'https://website.com/doc/page',
       })
 
       // When
       const dsb = new DocsSearchBar(options)
       dsb.autocomplete.trigger('autocomplete:selected', {
-        url: 'https://website.com/doc/page'
+        url: 'https://website.com/doc/page',
       })
 
       return new Promise((resolve) => {
@@ -487,7 +487,7 @@ describe('DocsSearchBar', () => {
         apiKey: 'key',
         indexUid: 'foo',
         inputSelector: '#input',
-        handleSelected: jest.fn()
+        handleSelected: jest.fn(),
       }
 
       // Building a dropdown with links inside
@@ -515,7 +515,7 @@ describe('DocsSearchBar', () => {
           hostUrl: 'test.com',
           apiKey: 'key',
           indexUid: 'foo',
-          inputSelector: '#input'
+          inputSelector: '#input',
         }
         const mockSetVal = jest.fn()
         const mockInput = { setVal: mockSetVal }
@@ -541,7 +541,7 @@ describe('DocsSearchBar', () => {
           hostUrl: 'test.com',
           apiKey: 'key',
           indexUid: 'foo',
-          inputSelector: '#input'
+          inputSelector: '#input',
         }
         const mockSetVal = jest.fn()
         const mockInput = { setVal: mockSetVal }
@@ -571,7 +571,7 @@ describe('DocsSearchBar', () => {
         hostUrl: 'test.com',
         apiKey: 'key',
         indexUid: 'foo',
-        inputSelector: '#input'
+        inputSelector: '#input',
       }
 
       // When
@@ -595,8 +595,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
-        }
+          hierarchy_lvl5: null,
+        },
       ]
 
       // When
@@ -614,7 +614,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Ruby',
@@ -622,7 +622,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Python',
@@ -630,8 +630,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
-        }
+          hierarchy_lvl5: null,
+        },
       ]
 
       // When
@@ -650,7 +650,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Python',
@@ -658,7 +658,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Ruby',
@@ -666,8 +666,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
-        }
+          hierarchy_lvl5: null,
+        },
       ]
 
       // When
@@ -687,7 +687,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Python',
@@ -695,7 +695,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Ruby',
@@ -703,8 +703,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
-        }
+          hierarchy_lvl5: null,
+        },
       ]
 
       // When
@@ -723,7 +723,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: 'Foo',
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Python',
@@ -731,7 +731,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Ruby',
@@ -739,7 +739,7 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: 'Bar',
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
+          hierarchy_lvl5: null,
         },
         {
           hierarchy_lvl0: 'Ruby',
@@ -747,8 +747,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
-        }
+          hierarchy_lvl5: null,
+        },
       ]
 
       // When
@@ -772,9 +772,9 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl5: null,
           _formatted: {
             hierarchy_lvl0: '<mark>Ruby</mark>',
-            hierarchy_lvl1: '<mark>API</mark>'
-          }
-        }
+            hierarchy_lvl1: '<mark>API</mark>',
+          },
+        },
       ]
 
       // When
@@ -793,8 +793,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: 'Foo',
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
-        }
+          hierarchy_lvl5: null,
+        },
       ]
 
       // When
@@ -812,8 +812,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
-        }
+          hierarchy_lvl5: null,
+        },
       ]
 
       // When
@@ -831,8 +831,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: null,
           hierarchy_lvl3: null,
           hierarchy_lvl4: null,
-          hierarchy_lvl5: null
-        }
+          hierarchy_lvl5: null,
+        },
       ]
 
       // When
@@ -850,8 +850,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl2: 'Geo-search',
           hierarchy_lvl3: 'Foo',
           hierarchy_lvl4: 'Bar',
-          hierarchy_lvl5: 'Baz'
-        }
+          hierarchy_lvl5: 'Baz',
+        },
       ]
 
       // When
@@ -880,9 +880,9 @@ describe('DocsSearchBar', () => {
             hierarchy_lvl2: '<mark>Geo-search</mark>',
             hierarchy_lvl3: '<mark>Foo</mark>',
             hierarchy_lvl4: '<mark>Bar</mark>',
-            hierarchy_lvl5: '<mark>Baz</mark>'
-          }
-        }
+            hierarchy_lvl5: '<mark>Baz</mark>',
+          },
+        },
       ]
 
       // When
@@ -906,9 +906,9 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl5: null,
           content: 'foo bar',
           _formatted: {
-            content: 'lorem <mark>foo</mark> bar ipsum.'
-          }
-        }
+            content: 'lorem <mark>foo</mark> bar ipsum.',
+          },
+        },
       ]
 
       // When
@@ -929,8 +929,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl5: null,
           content: 'foo bar',
           url: 'http://foo.bar/',
-          anchor: 'anchor'
-        }
+          anchor: 'anchor',
+        },
       ]
 
       // When
@@ -951,8 +951,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl5: null,
           content: 'foo bar',
           url: 'http://foo.bar/#anchor',
-          anchor: 'anchor'
-        }
+          anchor: 'anchor',
+        },
       ]
 
       // When
@@ -972,8 +972,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl4: null,
           hierarchy_lvl5: null,
           content: 'foo bar',
-          url: 'http://foo.bar/'
-        }
+          url: 'http://foo.bar/',
+        },
       ]
 
       // When
@@ -993,8 +993,8 @@ describe('DocsSearchBar', () => {
           hierarchy_lvl4: null,
           hierarchy_lvl5: null,
           content: 'foo bar',
-          anchor: 'anchor'
-        }
+          anchor: 'anchor',
+        },
       ]
 
       // When
@@ -1010,7 +1010,7 @@ describe('DocsSearchBar', () => {
       // Given
       const input = {
         url: 'url',
-        anchor: 'anchor'
+        anchor: 'anchor',
       }
 
       // When
@@ -1023,7 +1023,7 @@ describe('DocsSearchBar', () => {
     it('returns only the url if no anchor', () => {
       // Given
       const input = {
-        url: 'url'
+        url: 'url',
       }
 
       // When
@@ -1036,7 +1036,7 @@ describe('DocsSearchBar', () => {
     it('returns the anchor if no url', () => {
       // Given
       const input = {
-        anchor: 'anchor'
+        anchor: 'anchor',
       }
 
       // When
@@ -1050,7 +1050,7 @@ describe('DocsSearchBar', () => {
       // Given
       const input = {
         url: 'url#anchor',
-        anchor: 'anotheranchor'
+        anchor: 'anotheranchor',
       }
 
       // When
@@ -1086,7 +1086,7 @@ describe('DocsSearchBar', () => {
   describe('getSuggestionTemplate', () => {
     beforeEach(() => {
       const templates = {
-        suggestion: '<div></div>'
+        suggestion: '<div></div>',
       }
       DocsSearchBar.__Rewire__('templates', templates)
     })
@@ -1108,7 +1108,7 @@ describe('DocsSearchBar', () => {
       beforeEach(() => {
         render = sinon.spy()
         Hogan = {
-          compile: sinon.stub().returns({ render })
+          compile: sinon.stub().returns({ render }),
         }
         DocsSearchBar.__Rewire__('Hogan', Hogan)
       })

@@ -14,5 +14,5 @@ docsSearchBar({
     console.info(datasetNumber)
     console.info(context)
   },
-  debug: true // Set debug to true if you want to inspect the dropdown
+  debug: true, // Set debug to true if you want to inspect the dropdown
 })
