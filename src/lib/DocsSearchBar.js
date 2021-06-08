@@ -101,10 +101,12 @@ class DocsSearchBar {
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches
     const searchbox = document.querySelector('.docs-searchbar')
-    if (this.enableDarkMode && isSystemInDarkMode) {
-      searchbox.setAttribute('data-ds-theme', 'dark')
-    } else {
-      searchbox.setAttribute('data-ds-theme', 'ligh')
+    if (searchbox) {
+      if (this.enableDarkMode && isSystemInDarkMode) {
+        searchbox.setAttribute('data-ds-theme', 'dark')
+      } else {
+        searchbox.setAttribute('data-ds-theme', 'ligh')
+      }
     }
 
     this.client = new MeiliSearch({
