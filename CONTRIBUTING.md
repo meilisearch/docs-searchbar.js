@@ -73,7 +73,7 @@ yarn test:watch
 # Linter
 yarn lint
 # Linter with auto-correct
-yarn lint-fix
+yarn lint:fix
 # Prettier for Markdown (auto-correct)
 yarn format:md
 # Prettier for SCSS (auto-correct)
@@ -129,7 +129,7 @@ _[Read more about this](https://github.com/meilisearch/integration-guides/blob/m
 Make a PR modifying the files [`package.json`](/package.json) and [`src/lib/version.js`](/src/lib/version.js) with the right version.
 
 ```javascript
-"version": "X.X.X",
+'version': 'X.X.X',
 ```
 
 ```javascript
