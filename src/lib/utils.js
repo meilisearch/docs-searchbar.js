@@ -1,4 +1,4 @@
-import $ from './zepto';
+import $ from './zepto'
 
 const utils = {
   /*
@@ -24,14 +24,14 @@ const utils = {
    */
   mergeKeyWithParent(object, property) {
     if (object[property] === undefined) {
-      return object;
+      return object
     }
     if (typeof object[property] !== 'object') {
-      return object;
+      return object
     }
-    const newObject = $.extend({}, object, object[property]);
-    delete newObject[property];
-    return newObject;
+    const newObject = $.extend({}, object, object[property])
+    delete newObject[property]
+    return newObject
   },
   /*
    * Rename the keys containing a 'lvlX' into 'lvlX' only
@@ -53,15 +53,15 @@ const utils = {
    */
   renameKeysWithLevels(object, prefix) {
     return Object.keys(object).reduce((acc, key) => {
-      const result = acc;
+      const result = acc
       if (key.startsWith(prefix)) {
-        const newKey = key.substring(key.indexOf('lvl'));
-        result[newKey] = object[key];
+        const newKey = key.substring(key.indexOf('lvl'))
+        result[newKey] = object[key]
       } else {
-        result[key] = object[key];
+        result[key] = object[key]
       }
-      return result;
-    }, {});
+      return result
+    }, {})
   },
   /*
    * Replace string "null" by a null
@@ -70,14 +70,14 @@ const utils = {
    */
   replaceNullString(object) {
     return Object.keys(object).reduce((acc, key) => {
-      const result = acc;
+      const result = acc
       if (typeof object[key] === 'string' && object[key] === 'null') {
-        result[key] = null;
+        result[key] = null
       } else {
-        result[key] = object[key];
+        result[key] = object[key]
       }
-      return result;
-    }, {});
+      return result
+    }, {})
   },
 
   /*
@@ -112,23 +112,23 @@ const utils = {
    * @throws Error when one of the element does not have the specified property
    */
   groupBy(collection, property) {
-    const newCollection = {};
+    const newCollection = {}
     $.each(collection, (index, item) => {
       if (item[property] === undefined) {
-        throw new Error(`[groupBy]: Object has no key ${property}`);
+        throw new Error(`[groupBy]: Object has no key ${property}`)
       }
-      let key = item[property];
+      let key = item[property]
       if (typeof key === 'string') {
-        key = key.toLowerCase();
+        key = key.toLowerCase()
       }
       // fix #171 the given data type of docsSearchBar hits might be conflict with the properties of the native Object,
       // such as the constructor, so we need to do this check.
       if (!Object.prototype.hasOwnProperty.call(newCollection, key)) {
-        newCollection[key] = [];
+        newCollection[key] = []
       }
-      newCollection[key].push(item);
-    });
-    return newCollection;
+      newCollection[key].push(item)
+    })
+    return newCollection
   },
   /*
    * Return an array of all the values of the specified object
@@ -144,7 +144,7 @@ const utils = {
    * @return {array}
    */
   values(object) {
-    return Object.keys(object).map((key) => object[key]);
+    return Object.keys(object).map((key) => object[key])
   },
   /*
    * Flattens an array
@@ -156,17 +156,17 @@ const utils = {
    * @return {array}
    */
   flatten(array) {
-    const results = [];
+    const results = []
     array.forEach((value) => {
       if (!Array.isArray(value)) {
-        results.push(value);
-        return;
+        results.push(value)
+        return
       }
       value.forEach((subvalue) => {
-        results.push(subvalue);
-      });
-    });
-    return results;
+        results.push(subvalue)
+      })
+    })
+    return results
   },
   /*
    * Flatten all values of an object into an array, marking each first element of
@@ -201,11 +201,11 @@ const utils = {
     const values = this.values(object).map((collection) =>
       collection.map((item, index) => {
         // eslint-disable-next-line no-param-reassign
-        item[flag] = index === 0;
-        return item;
+        item[flag] = index === 0
+        return item
       })
-    );
-    return this.flatten(values);
+    )
+    return this.flatten(values)
   },
   /*
    * Removes all empty strings, null, false and undefined elements array
@@ -217,14 +217,14 @@ const utils = {
    * @return {array}
    */
   compact(array) {
-    const results = [];
+    const results = []
     array.forEach((value) => {
       if (!value) {
-        return;
+        return
       }
-      results.push(value);
-    });
-    return results;
+      results.push(value)
+    })
+    return results
   },
   /*
    * Returns the highlighted value of the specified key in the specified object.
@@ -248,9 +248,9 @@ const utils = {
       object._formatted[property] &&
       typeof object._formatted[property] === 'string'
     ) {
-      return this.replaceHtmlTagsToHighlight(object._formatted[property]);
+      return this.replaceHtmlTagsToHighlight(object._formatted[property])
     }
-    return object[property];
+    return object[property]
   },
   /*
    * Returns the formatted string with the right HTML tags to highlight in
@@ -261,7 +261,7 @@ const utils = {
   replaceHtmlTagsToHighlight(str) {
     return str
       .replace(/<em>/g, '<span class="docs-searchbar-suggestion--highlight">')
-      .replace(/<\/em>/g, '</span>');
+      .replace(/<\/em>/g, '</span>')
   },
   /*
    * Returns the snippeted value of the specified key in the specified object.
@@ -287,16 +287,16 @@ const utils = {
       !object._formatted[property] ||
       typeof object._formatted[property] !== 'string'
     ) {
-      return object[property];
+      return object[property]
     }
-    let snippet = this.replaceHtmlTagsToHighlight(object._formatted[property]);
+    let snippet = this.replaceHtmlTagsToHighlight(object._formatted[property])
     if (snippet[0] !== snippet[0].toUpperCase()) {
-      snippet = `…${snippet}`;
+      snippet = `…${snippet}`
     }
     if (['.', '!', '?'].indexOf(snippet[snippet.length - 1]) === -1) {
-      snippet = `${snippet}…`;
+      snippet = `${snippet}…`
     }
-    return snippet;
+    return snippet
   },
   /*
    * Deep clone an object.
@@ -305,8 +305,8 @@ const utils = {
    * @return {object}
    */
   deepClone(object) {
-    return JSON.parse(JSON.stringify(object));
-  },
-};
+    return JSON.parse(JSON.stringify(object))
+  }
+}
 
-export default utils;
+export default utils

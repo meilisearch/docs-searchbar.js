@@ -1,5 +1,5 @@
-import docsSearchBar from '../../../index';
-import '../../../src/styles/main.scss';
+import docsSearchBar from '../../../index'
+import '../../../src/styles/main.scss'
 
 docsSearchBar({
   // Test with MeiliSearch Documentation
@@ -8,11 +8,11 @@ docsSearchBar({
   indexUid: 'docs',
   inputSelector: '#q',
   handleSelected(input, event, suggestion, datasetNumber, context) {
-    console.info(input);
-    console.info(event);
-    console.info(suggestion);
-    console.info(datasetNumber);
-    console.info(context);
+    console.info(input)
+    console.info(event)
+    console.info(suggestion)
+    console.info(datasetNumber)
+    console.info(context)
   },
-  debug: true, // Set debug to true if you want to inspect the dropdown
-});
+  debug: true // Set debug to true if you want to inspect the dropdown
+})

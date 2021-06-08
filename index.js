@@ -1,3 +1,3 @@
-import docsSearchBar from './src/lib/main';
+import docsSearchBar from './src/lib/main'
 
-export default docsSearchBar;
+export default docsSearchBar

@@ -133,7 +133,7 @@ Make a PR modifying the files [`package.json`](/package.json) and [`src/lib/vers
 ```
 
 ```javascript
-export default "X.X.X";
+export default 'X.X.X'
 ```
 
 Once the changes are merged on `main`, you can publish the current draft release via the [GitHub interface](https://github.com/meilisearch/docs-searchbar.js/releases).

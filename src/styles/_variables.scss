@@ -16,7 +16,7 @@ $searchbox-config: (
   icon-color: #6d7e96,
   icon-background: #458ee1,
   icon-background-opacity: 0,
-  icon-clear-size: 8px,
+  icon-clear-size: 8px
 ) !default;
 
 $searchbox-config-dark: (
@@ -27,7 +27,7 @@ $searchbox-config-dark: (
   placeholder-color: #bbbbbb,
   text-color: #eaeaea,
   icon-color: #6d7e96,
-  icon-background: #458ee1,
+  icon-background: #458ee1
 ) !default;
 
 // DROPDOWN
@@ -54,7 +54,7 @@ $dropdown-config: (
   highlight-opacity: 0.1,
   highlight-type: underline,
   suggestion-background-color: #f8f8f8,
-  hover-color-opacity: 0.05,
+  hover-color-opacity: 0.05
 ) !default;
 
 // Dropdown dark mode
@@ -69,7 +69,7 @@ $dropdown-config-dark: (
   border-color: #5b6369,
   highlight-color: #3881ff,
   suggestion-background-color: #6b7278,
-  hover-color-opacity: 0.5,
+  hover-color-opacity: 0.5
 ) !default;
 
 $builder-height: 260px;

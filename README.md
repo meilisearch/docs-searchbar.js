@@ -80,12 +80,12 @@ If you already have your own scraper but you still want to use MeiliSearch and `
     <script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@{version}/dist/cdn/docs-searchbar.min.js"></script>
     <script>
       docsSearchBar({
-        hostUrl: "https://mymeilisearch.com",
-        apiKey: "XXX",
-        indexUid: "docs",
-        inputSelector: "#search-bar-input",
-        debug: true, // Set debug to true if you want to inspect the dropdown
-      });
+        hostUrl: 'https://mymeilisearch.com',
+        apiKey: 'XXX',
+        indexUid: 'docs',
+        inputSelector: '#search-bar-input',
+        debug: true // Set debug to true if you want to inspect the dropdown
+      })
     </script>
   </body>
 </html>
@@ -107,7 +107,7 @@ Read more about [MeiliSearch authentication](https://docs.meilisearch.com/refere
 In an ES+ environment:
 
 ```js
-import "docs-searchbar.js/dist/cdn/docs-searchbar.css";
+import 'docs-searchbar.js/dist/cdn/docs-searchbar.css'
 ```
 
 In a `HTML` file, the `link` tag should be added in your header:
@@ -148,14 +148,14 @@ docsSearchBar({
   handleSelected: function (input, event, suggestion, datasetNumber, context) {
     // Prevents the default behavior on click and rather opens the suggestion
     // in a new tab.
-    if (context.selectionMethod === "click") {
-      input.setVal("");
+    if (context.selectionMethod === 'click') {
+      input.setVal('')
 
-      const windowReference = window.open(suggestion.url, "_blank");
-      windowReference.focus();
+      const windowReference = window.open(suggestion.url, '_blank')
+      windowReference.focus()
     }
-  },
-});
+  }
+})
 ```
 
 Note that, by default, you can already open a new tab thanks to the CMD/CTRL + Click action.
@@ -181,9 +181,9 @@ For example, you might want to increase the number of results displayed in the d
 ```javascript
 docsSearchBar({
   meilisearchOptions: {
-    limit: 10,
-  },
-});
+    limit: 10
+  }
+})
 ```
 
 ##### More Examples <!-- omit in toc -->
