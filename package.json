@@ -19,7 +19,6 @@
     "playground:js": "yarn --cwd ./playgrounds/javascript && yarn --cwd ./playgrounds/javascript serve",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "prettier-ci": "prettier --check ./src/**/*.scss '**/*.md'",
     "test": "./scripts/test",
     "test:watch": "./scripts/test-watch"
   },
