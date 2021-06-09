@@ -4,4 +4,4 @@ module.exports = {
   resetMocks: true,
   restoreMocks: true,
   testPathIgnorePatterns: ['/node_modules/', '/dist/', '/docs/'],
-};
+}

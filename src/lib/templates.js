@@ -1,6 +1,6 @@
-const prefix = 'docs-searchbar';
-const suggestionPrefix = `${prefix}-suggestion`;
-const footerPrefix = `${prefix}-footer`;
+const prefix = 'docs-searchbar'
+const suggestionPrefix = `${prefix}-suggestion`
+const footerPrefix = `${prefix}-footer`
 
 const templates = {
   suggestion: `
@@ -111,6 +111,6 @@ const templates = {
   </svg>
 </div>
   `,
-};
+}
 
-export default templates;
+export default templates

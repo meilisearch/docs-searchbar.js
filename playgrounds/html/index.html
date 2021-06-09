@@ -4,14 +4,22 @@
     <meta charset="utf-8" />
     <meta name="color-scheme" content="dark light" />
     <title>Docs SearchBar playground</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="../../src/styles/main.scss" />
   </head>
   <body>
     <div class="container">
       <div class="col-md-12">
         <div class="searchbox">
-          <input type="search" placeholder="docs-searchbar input" class="form-control" id="q">
+          <input
+            type="search"
+            placeholder="docs-searchbar input"
+            class="form-control"
+            id="q"
+          />
         </div>
       </div>
     </div>
@@ -21,18 +29,19 @@
       docsSearchBar.default({
         // Test with MeiliSearch Documentation
         hostUrl: 'https://docs-search-bar.meilisearch.com',
-        apiKey: 'd79226ae89f29d4dadba8d0c30c240e435f584fb83a7ae573b13eb62edec35cd',
+        apiKey:
+          'd79226ae89f29d4dadba8d0c30c240e435f584fb83a7ae573b13eb62edec35cd',
         indexUid: 'docs',
         inputSelector: '#q',
         handleSelected(input, event, suggestion, datasetNumber, context) {
-          console.info(input);
-          console.info(event);
-          console.info(suggestion);
-          console.info(datasetNumber);
-          console.info(context);
+          console.info(input)
+          console.info(event)
+          console.info(suggestion)
+          console.info(datasetNumber)
+          console.info(context)
         },
-        debug: true // Set debug to true if you want to inspect the dropdown
-      });
+        debug: true, // Set debug to true if you want to inspect the dropdown
+      })
     </script>
     <style>
       .container {

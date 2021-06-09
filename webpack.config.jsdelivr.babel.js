@@ -1,5 +1,5 @@
-import webpack from 'webpack';
-import { join } from 'path';
+import webpack from 'webpack'
+import { join } from 'path'
 
 export default {
   mode: process.env.NODE_ENV || 'development',
@@ -31,4 +31,4 @@ export default {
       },
     }),
   ],
-};
+}

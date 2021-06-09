@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [ '12', '14' ]
+        node: ['12', '14']
     name: Tests (Node.js ${{ matrix.node }})
     steps:
       - uses: actions/checkout@v2
@@ -34,12 +34,8 @@ jobs:
     name: linter-check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: yarn install
-    - name: Run linter
-      run: yarn run lint
-    - name: Run prettier
-      run: yarn run prettier-ci
-      env:
-        CI: true
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: yarn install
+      - name: Run linter
+        run: yarn run lint
