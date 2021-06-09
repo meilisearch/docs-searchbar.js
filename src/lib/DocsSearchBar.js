@@ -105,7 +105,7 @@ class DocsSearchBar {
       if (this.enableDarkMode && isSystemInDarkMode) {
         searchbox.setAttribute('data-ds-theme', 'dark')
       } else {
-        searchbox.setAttribute('data-ds-theme', 'ligh')
+        searchbox.setAttribute('data-ds-theme', 'light')
       }
     }
 
