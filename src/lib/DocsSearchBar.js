@@ -97,18 +97,6 @@ class DocsSearchBar {
     this.isSimpleLayout = layout === 'simple'
     this.enableDarkMode = enableDarkMode
 
-    const isSystemInDarkMode =
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    const searchbox = document.querySelector('.docs-searchbar')
-    if (searchbox) {
-      if (this.enableDarkMode && isSystemInDarkMode) {
-        searchbox.setAttribute('data-ds-theme', 'dark')
-      } else {
-        searchbox.setAttribute('data-ds-theme', 'light')
-      }
-    }
-
     this.client = new MeiliSearch({
       host: hostUrl,
       apiKey: this.apiKey,
@@ -128,6 +116,18 @@ class DocsSearchBar {
         },
       },
     ])
+
+    const isSystemInDarkMode =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    const searchbox = document.querySelector('.searchbox')
+    console.log(searchbox)
+    if (searchbox) {
+      searchbox.setAttribute('data-ds-theme', 'light')
+      if (this.enableDarkMode && isSystemInDarkMode) {
+        searchbox.setAttribute('data-ds-theme', 'dark')
+      }
+    }
 
     const customHandleSelected = handleSelected
     this.handleSelected = customHandleSelected || this.handleSelected

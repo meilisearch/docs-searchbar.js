@@ -39,7 +39,7 @@
   $icon-clear-size: $font-size / 1.1,
   $dark-mode: false
 ) {
-  .searchbox {
+  & {
     display: inline-block;
     position: relative;
     width: $input-width;
