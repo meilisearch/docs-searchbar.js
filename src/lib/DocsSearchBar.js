@@ -40,6 +40,7 @@ class DocsSearchBar {
     handleSelected = false,
     enhancedSearchInput = false,
     layout = 'columns',
+    enableDarkMode = false,
   }) {
     DocsSearchBar.checkArguments({
       hostUrl,
@@ -55,6 +56,7 @@ class DocsSearchBar {
       handleSelected,
       enhancedSearchInput,
       layout,
+      enableDarkMode,
     })
 
     this.apiKey = apiKey
@@ -93,6 +95,19 @@ class DocsSearchBar {
       ) || ['s', 191]
 
     this.isSimpleLayout = layout === 'simple'
+    this.enableDarkMode = enableDarkMode
+
+    const isSystemInDarkMode =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    const searchbox = document.querySelector('.docs-searchbar')
+    if (searchbox) {
+      if (this.enableDarkMode && isSystemInDarkMode) {
+        searchbox.setAttribute('data-ds-theme', 'dark')
+      } else {
+        searchbox.setAttribute('data-ds-theme', 'light')
+      }
+    }
 
     this.client = new MeiliSearch({
       host: hostUrl,
@@ -163,6 +178,12 @@ class DocsSearchBar {
     if (!DocsSearchBar.getInputFromSelector(args.inputSelector)) {
       throw new Error(
         `Error: No input element in the page matches ${args.inputSelector}`,
+      )
+    }
+
+    if (typeof args.enableDarkMode !== 'boolean') {
+      throw new Error(
+        `Error: "enableDarkMode" must be of type: boolean. Found type: ${typeof args.inputSelector}`,
       )
     }
   }
