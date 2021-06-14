@@ -193,7 +193,7 @@ You can always edit the style of the searchbar to match the style of your websit
 
 ##### `enhancedSearchInput` <!-- omit in toc -->
 
-When set to `true`, a theme is applied on the search-box to improve its appearance. Its adds the .searchbox class which can be used to further customise the search-box.
+When set to `true`, a theme is applied to the search box to improve its appearance. It adds the `.searchbox` class which can be used to further customise the search box.
 
 ##### More Examples <!-- omit in toc -->
 
