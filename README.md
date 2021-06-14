@@ -188,7 +188,7 @@ docsSearchBar({
 
 ##### `enableDarkMode` <!-- omit in toc -->
 
-Allows you to display the searchbar in dark mode. It is useful if your website has dark mode support and you also want the searchbar to appear in a dark version. 
+Allows you to display the searchbar in dark mode. It is useful if your website has dark mode support and you also want the searchbar to appear in a dark version.
 You can always edit the style of the searchbar to match the style of your website.
 
 ##### More Examples <!-- omit in toc -->
@@ -255,6 +255,7 @@ If you want to know more about the development workflow or want to contribute, p
 Based on [Algolia DocSearch repository](https://github.com/algolia/docsearch) from [this commit](https://github.com/algolia/docsearch/commit/4c32b6f80b753f592de83351116664bf74b10297).<br>
 Due to a lot of future changes in this repository compared to the original one, we don't maintain it as an official fork.
 
+<hr>
 <hr>
 
 **MeiliSearch** provides and maintains many **SDKs and Integration tools** like this one. We want to provide everyone with an **amazing search experience for any kind of project**. If you want to contribute, make suggestions, or just know what's going on right now, visit us in the [integration-guides](https://github.com/meilisearch/integration-guides) repository.
