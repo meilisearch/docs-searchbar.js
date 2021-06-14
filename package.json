@@ -16,7 +16,7 @@
     "format:scss": "prettier --write ./src/**/*.scss",
     "format:md": "prettier --write '**/*.md'",
     "playground": "yarn --cwd ./playgrounds/html && yarn --cwd ./playgrounds/html serve",
-    "playground:html:build": "yarn --cwd ./playgrounds/html && yarn --cwd ./playgrounds/html build",
+    "playground:build": "yarn --cwd ./playgrounds/html && yarn --cwd ./playgrounds/html build",
     "playground:js": "yarn --cwd ./playgrounds/javascript && yarn --cwd ./playgrounds/javascript serve",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
