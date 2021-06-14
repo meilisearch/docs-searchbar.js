@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "parcel serve index.html --global docsSearchBar --open"
+    "serve": "parcel serve index.html --global docsSearchBar --open",
+    "build": "parcel build index.html --global docsSearchBar"
   },
   "author": "",
   "license": "ISC",
