@@ -15,4 +15,6 @@ docsSearchBar({
     console.info(context)
   },
   debug: true, // Set debug to true if you want to inspect the dropdown
+  enhancedSearchInput: true,
+  enableDarkMode: true,
 })

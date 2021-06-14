@@ -12,16 +12,12 @@
   <body>
     <div class="container">
       <div class="col-md-12">
-        <div class="docs-searchbar">
-          <div class="searchbox">
-            <input
-              type="search"
-              placeholder="docs-searchbar input"
-              class="form-control"
-              id="q"
-            />
-          </div>
-        </div>
+        <input
+          type="search"
+          placeholder="docs-searchbar input"
+          class="form-control"
+          id="q"
+        />
       </div>
     </div>
     <!-- at the end of the BODY -->
@@ -34,14 +30,14 @@
         margin: 10%;
       }
 
-      .searchbox[data-ds-theme] {
+      div [data-ds-theme] .searchbox {
         width: 60%;
         margin: auto;
         margin-top: 10%;
         display: block;
       }
 
-      .searchbox[data-ds-theme] input {
+      div [data-ds-theme] .searchbox input {
         height: 34px;
         border-radius: 4px;
         font-size: 14px;
