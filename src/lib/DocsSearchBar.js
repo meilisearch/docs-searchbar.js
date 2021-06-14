@@ -160,9 +160,9 @@ class DocsSearchBar {
     const parent = inputElement.parentNode
     const wrapper = document.createElement('div')
     wrapper.className += 'docs-searchbar-js'
-parent.replaceChild(wrapper, inputElement)
-wrapper.appendChild(inputElement)
-    
+    parent.replaceChild(wrapper, inputElement)
+    wrapper.appendChild(inputElement)
+
     const isSystemInDarkMode =
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches
