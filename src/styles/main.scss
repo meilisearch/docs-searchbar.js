@@ -4,15 +4,13 @@
 
 $searchbox: true !default;
 
-.searchbox {
-  @if ($searchbox == true) {
-    @include searchbox($searchbox-config...);
-  }
-  @include dropdown($dropdown-config...);
+@if ($searchbox == true) {
+  @include searchbox($searchbox-config...);
 }
+@include dropdown($dropdown-config...);
 // Dark mode
 
-.searchbox[data-ds-theme='dark'] {
+div[data-ds-theme='dark'] {
   @if ($searchbox == true) {
     @include searchbox($searchbox-config-dark...);
   }

@@ -21,14 +21,17 @@ $searchbox-config: (
 ) !default;
 
 $searchbox-config-dark: (
+  input-height: 32px,
+  text-color: #eaeaea,
   input-border-color: #686d71,
   input-focus-border-color: #919598,
   input-background: #444d52,
   input-focus-background: #444d52,
   placeholder-color: #bbbbbb,
-  text-color: #eaeaea,
+  icon-size: 14px,
   icon-color: #6d7e96,
   icon-background: #458ee1,
+  icon-background-opacity: 0,
   dark-mode: true,
 ) !default;
 

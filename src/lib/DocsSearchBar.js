@@ -102,6 +102,8 @@ class DocsSearchBar {
       apiKey: this.apiKey,
     })
 
+    DocsSearchBar.addThemeWrapper(inputSelector, this.enableDarkMode)
+
     if (enhancedSearchInput) {
       this.input = DocsSearchBar.injectSearchBox(this.input)
     }
@@ -116,18 +118,6 @@ class DocsSearchBar {
         },
       },
     ])
-
-    const isSystemInDarkMode =
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    const searchbox = document.querySelector('.searchbox')
-    console.log(searchbox)
-    if (searchbox) {
-      searchbox.setAttribute('data-ds-theme', 'light')
-      if (this.enableDarkMode && isSystemInDarkMode) {
-        searchbox.setAttribute('data-ds-theme', 'dark')
-      }
-    }
 
     const customHandleSelected = handleSelected
     this.handleSelected = customHandleSelected || this.handleSelected
@@ -156,6 +146,23 @@ class DocsSearchBar {
     if (enhancedSearchInput) {
       DocsSearchBar.bindSearchBoxEvent()
     }
+  }
+
+  static addThemeWrapper(inputSelector, enableDarkMode) {
+    const inputElement = document.getElementById(inputSelector.substring(1))
+    const parent = inputElement.parentNode
+    const wrapper = document.createElement('div')
+
+    const isSystemInDarkMode =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    wrapper.setAttribute(
+      'data-ds-theme',
+      inputElement && enableDarkMode && isSystemInDarkMode ? 'dark' : 'light',
+    )
+    parent.replaceChild(wrapper, inputElement)
+    wrapper.appendChild(inputElement)
   }
 
   /**

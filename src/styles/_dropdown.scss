@@ -129,410 +129,411 @@
     $text-size: 0.9em;
     $subtitle-size: 1em;
   }
-
-  &.meilisearch-autocomplete-right .dsb-dropdown-menu {
-    @include alignment-type(right);
-    &:before {
-      right: 48px;
+  .meilisearch-autocomplete {
+    &.meilisearch-autocomplete-right .dsb-dropdown-menu {
+      @include alignment-type(right);
+      &:before {
+        right: 48px;
+      }
     }
-  }
-  &.meilisearch-autocomplete-left .dsb-dropdown-menu {
-    @include alignment-type(left);
-    &:before {
-      left: 48px;
-    }
-  }
-
-  // Dropdown wrapper
-  .dsb-dropdown-menu {
-    position: relative;
-    top: -6px;
-    border-radius: $border-radius + px;
-    margin: 6px 0 0;
-    padding: 0;
-    text-align: left;
-    height: auto;
-    background: transparent;
-    border: none;
-    z-index: 999;
-    @include layout-width($layout-width);
-    @include shadow-type($box-shadow);
-
-    // Arrow
-    &:before {
-      display: block;
-      position: absolute;
-      content: '';
-      width: 14px;
-      height: 14px;
-      background: $background-color;
-      z-index: 1000;
-      top: -7px;
-      border-top: $border-width + px solid $border-color;
-      border-right: $border-width + px solid $border-color;
-      transform: rotate(-45deg);
-      border-radius: 2px;
-    }
-
-    .dsb-suggestions {
-      position: relative;
-      z-index: 1000;
-      margin-top: $padding/2;
-      & a:hover {
-        text-decoration: none;
+    &.meilisearch-autocomplete-left .dsb-dropdown-menu {
+      @include alignment-type(left);
+      &:before {
+        left: 48px;
       }
     }
 
-    .dsb-suggestion {
-      cursor: pointer;
+    // Dropdown wrapper
+    .dsb-dropdown-menu {
+      position: relative;
+      top: -6px;
+      border-radius: $border-radius + px;
+      margin: 6px 0 0;
+      padding: 0;
+      text-align: left;
+      height: auto;
+      background: transparent;
+      border: none;
+      z-index: 999;
+      @include layout-width($layout-width);
+      @include shadow-type($box-shadow);
 
-      &.dsb-cursor {
-        .docs-searchbar-suggestion.suggestion-layout-simple {
-          background-color: rgba($main-color, $hover-color-opacity);
+      // Arrow
+      &:before {
+        display: block;
+        position: absolute;
+        content: '';
+        width: 14px;
+        height: 14px;
+        background: $background-color;
+        z-index: 1000;
+        top: -7px;
+        border-top: $border-width + px solid $border-color;
+        border-right: $border-width + px solid $border-color;
+        transform: rotate(-45deg);
+        border-radius: 2px;
+      }
+
+      .dsb-suggestions {
+        position: relative;
+        z-index: 1000;
+        margin-top: $padding/2;
+        & a:hover {
+          text-decoration: none;
         }
+      }
 
-        .docs-searchbar-suggestion:not(.suggestion-layout-simple) {
-          .docs-searchbar-suggestion--content {
+      .dsb-suggestion {
+        cursor: pointer;
+
+        &.dsb-cursor {
+          .docs-searchbar-suggestion.suggestion-layout-simple {
             background-color: rgba($main-color, $hover-color-opacity);
+          }
+
+          .docs-searchbar-suggestion:not(.suggestion-layout-simple) {
+            .docs-searchbar-suggestion--content {
+              background-color: rgba($main-color, $hover-color-opacity);
+            }
           }
         }
       }
-    }
 
-    [class^='dsb-dataset-'] {
-      position: relative;
-      border: solid $border-width + px $border-color;
-      background: $background-color;
-      border-radius: $border-radius + px;
-      overflow: auto;
-      padding: 0 $padding/2 $padding/2;
-    }
-
-    // Inner-grid setup
-    * {
-      box-sizing: border-box;
-    }
-  }
-
-  // Each suggestion item is wrapped
-  .docs-searchbar-suggestion {
-    display: block;
-    position: relative;
-    padding: 0 $padding/2;
-    background: $background-color;
-    color: $title-color;
-    overflow: hidden;
-
-    @if $highlight-type == basic {
-      &--highlight {
-        color: $main-color;
-        background-color: rgba($main-color, $highlight-opacity);
-      }
-    } @else {
-      &--highlight {
-        color: set-highlight($highlight-opacity, $main-color);
-        background: rgba(mix($main-color, #fff, 60%), $highlight-opacity);
-        padding: 0em 0.05em;
-        @if $dark-mode {
-          color: lighten($main-color, 20%);
-        }
+      [class^='dsb-dataset-'] {
+        position: relative;
+        border: solid $border-width + px $border-color;
+        background: $background-color;
+        border-radius: $border-radius + px;
+        overflow: auto;
+        padding: 0 $padding/2 $padding/2;
       }
 
-      &--category-header
-        .docs-searchbar-suggestion--category-header-lvl0
-        .docs-searchbar-suggestion--highlight,
-      &--category-header
-        .docs-searchbar-suggestion--category-header-lvl1
-        .docs-searchbar-suggestion--highlight {
-        padding: 0 0 1px;
-        background: inherit;
-        box-shadow: inset 0 -2px 0 0 rgba($main-color, 0.8);
-        color: inherit;
-      }
-
-      &--text .docs-searchbar-suggestion--highlight {
-        padding: 0 0 1px;
-        background: inherit;
-        box-shadow: inset 0 -2px 0 0 rgba($main-color, 0.8);
-        color: inherit;
+      // Inner-grid setup
+      * {
+        box-sizing: border-box;
       }
     }
 
-    &--content {
-      display: block;
-      float: right;
-      width: 70%;
-      position: relative;
-      padding: $padding/3 0 $padding/3 $padding/1.5;
-      cursor: pointer;
-
-      &:before {
-        content: '';
-        position: absolute;
-        display: block;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        background: #ddd;
-        left: -1px;
-      }
-    }
-
-    &--category-header {
-      position: relative;
-      border-bottom: 1px solid #ddd;
-      display: none;
-      margin-top: $padding/2;
-      padding: $padding/4 0;
-      font-size: $header-size;
-      color: $header-color;
-      @if $dark-mode {
-        color: lighten($subtitle-color, 10%);
-      }
-    }
-
-    &--wrapper {
-      width: 100%;
-      float: left;
-      padding: $padding/2 0 0 0;
-    }
-
-    &--subcategory-column {
-      float: left;
-      width: 30%;
-      padding-left: 0;
-      text-align: right;
-      position: relative;
-      padding: $padding/3 $padding/1.5;
-      color: $subtitle-color;
-      font-size: $subtitle-size;
-      word-wrap: break-word;
-
-      &:before {
-        content: '';
-        position: absolute;
-        display: block;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        background: #ddd;
-        right: 0;
-      }
-    }
-
-    &--subcategory-inline {
-      display: none;
-    }
-
-    &--title {
-      margin-bottom: $padding/4;
-      color: $title-color;
-      font-size: $title-size;
-      font-weight: bold;
-    }
-
-    &--text {
-      display: desc($include-desc);
-      line-height: 1.2em;
-      font-size: $text-size;
-      color: $text-color;
-    }
-
-    &--no-results {
-      width: 100%;
-      padding: $padding/2 0;
-      text-align: center;
-      font-size: 1.2em;
-
-      &::before {
-        display: none;
-      }
-    }
-
-    code {
-      padding: 1px 5px;
-      font-size: 90%;
-      border: none;
-      color: #222222;
-      background-color: $code-background;
-      border-radius: 3px;
-      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
-      .docs-searchbar-suggestion--highlight {
-        background: none;
-      }
-    }
-
-    // Rules to display categories and subcategories
-    &.docs-searchbar-suggestion__main
-      .docs-searchbar-suggestion--category-header {
-      display: block;
-    }
-
-    &.docs-searchbar-suggestion__secondary {
-      display: block;
-    }
-
-    @media all and (min-width: #{$responsive-breakpoint}) {
-      .docs-searchbar-suggestion--subcategory-column {
-        display: block;
-      }
-    }
-    @media all and (max-width: #{$responsive-breakpoint}) {
-      .docs-searchbar-suggestion--subcategory-column {
-        display: inline-block;
-        width: auto;
-        text-align: left;
-        float: left;
-        padding: 0;
-        font-size: 0.9em;
-        font-weight: bold;
-        opacity: 0.5;
-        color: #02060c;
-        @if $dark-mode {
-          color: $subtitle-color;
-          opacity: unset;
-        }
-
-        &:before {
-          display: none;
-        }
-        &:after {
-          content: '|';
-        }
-      }
-      .docs-searchbar-suggestion--content {
-        display: inline-block;
-        width: auto;
-        text-align: left;
-        float: left;
-        padding: 0;
-
-        &:before {
-          display: none;
-        }
-      }
-    }
-  }
-
-  //Simple layout (no column)
-  .suggestion-layout-simple {
-    &.docs-searchbar-suggestion {
-      border-bottom: solid 1px #eee;
-      padding: $padding/2;
-      margin: 0;
-      @if $dark-mode {
-        border-bottom: solid 1px lighten($border-color, 10%);
-      }
-    }
-
+    // Each suggestion item is wrapped
     .docs-searchbar-suggestion {
-      &--content {
-        width: 100%;
-        padding: 0;
+      display: block;
+      position: relative;
+      padding: 0 $padding/2;
+      background: $background-color;
+      color: $title-color;
+      overflow: hidden;
 
-        &::before {
-          display: none;
+      @if $highlight-type == basic {
+        &--highlight {
+          color: $main-color;
+          background-color: rgba($main-color, $highlight-opacity);
+        }
+      } @else {
+        &--highlight {
+          color: set-highlight($highlight-opacity, $main-color);
+          background: rgba(mix($main-color, #fff, 60%), $highlight-opacity);
+          padding: 0em 0.05em;
+          @if $dark-mode {
+            color: lighten($main-color, 20%);
+          }
+        }
+
+        &--category-header
+          .docs-searchbar-suggestion--category-header-lvl0
+          .docs-searchbar-suggestion--highlight,
+        &--category-header
+          .docs-searchbar-suggestion--category-header-lvl1
+          .docs-searchbar-suggestion--highlight {
+          padding: 0 0 1px;
+          background: inherit;
+          box-shadow: inset 0 -2px 0 0 rgba($main-color, 0.8);
+          color: inherit;
+        }
+
+        &--text .docs-searchbar-suggestion--highlight {
+          padding: 0 0 1px;
+          background: inherit;
+          box-shadow: inset 0 -2px 0 0 rgba($main-color, 0.8);
+          color: inherit;
+        }
+      }
+
+      &--content {
+        display: block;
+        float: right;
+        width: 70%;
+        position: relative;
+        padding: $padding/3 0 $padding/3 $padding/1.5;
+        cursor: pointer;
+
+        &:before {
+          content: '';
+          position: absolute;
+          display: block;
+          top: 0;
+          height: 100%;
+          width: 1px;
+          background: #ddd;
+          left: -1px;
         }
       }
 
       &--category-header {
-        margin: 0;
-        padding: 0;
-        display: block;
-        width: 100%;
-        border: none;
-
-        &-lvl0,
-        &-lvl1 {
-          opacity: 0.6;
-          font-size: $text-size;
-          @if $dark-mode {
-            opacity: unset;
-            color: lighten($subtitle-color, 10%);
-          }
-        }
-
-        &-lvl1 {
-          &::before {
-            background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 20 38" xmlns="http://www.w3.org/2000/svg"><path d="M1.49 4.31l14 16.126.002-2.624-14 16.074-1.314 1.51 3.017 2.626 1.313-1.508 14-16.075 1.142-1.313-1.14-1.313-14-16.125L3.2.18.18 2.8l1.31 1.51z" fill-rule="evenodd" fill="%231D3657" /></svg>');
-            content: '';
-            width: 10px;
-            height: 10px;
-            display: inline-block;
-            @if $dark-mode {
-              filter: invert(1);
-            }
-          }
+        position: relative;
+        border-bottom: 1px solid #ddd;
+        display: none;
+        margin-top: $padding/2;
+        padding: $padding/4 0;
+        font-size: $header-size;
+        color: $header-color;
+        @if $dark-mode {
+          color: lighten($subtitle-color, 10%);
         }
       }
 
       &--wrapper {
         width: 100%;
         float: left;
-        margin: 0;
-        padding: 0;
+        padding: $padding/2 0 0 0;
       }
 
-      &--duplicate-content,
+      &--subcategory-column {
+        float: left;
+        width: 30%;
+        padding-left: 0;
+        text-align: right;
+        position: relative;
+        padding: $padding/3 $padding/1.5;
+        color: $subtitle-color;
+        font-size: $subtitle-size;
+        word-wrap: break-word;
+
+        &:before {
+          content: '';
+          position: absolute;
+          display: block;
+          top: 0;
+          height: 100%;
+          width: 1px;
+          background: #ddd;
+          right: 0;
+        }
+      }
+
       &--subcategory-inline {
-        display: none !important;
+        display: none;
       }
 
       &--title {
-        margin: 0;
-        color: $main-color;
+        margin-bottom: $padding/4;
+        color: $title-color;
         font-size: $title-size;
-        font-weight: normal;
-        @if $dark-mode {
-          color: $text-color;
-        }
-
-        &::before {
-          content: '#';
-          font-weight: bold;
-          color: $main-color;
-          display: inline-block;
-          @if $dark-mode {
-            color: $text-color;
-          }
-        }
+        font-weight: bold;
       }
 
       &--text {
-        margin: $padding/4 0 0;
         display: desc($include-desc);
-        line-height: 1.4em;
-        padding: $padding/3 $padding/2;
-        background: $suggestion-background-color;
+        line-height: 1.2em;
         font-size: $text-size;
-        opacity: 0.8;
+        color: $text-color;
+      }
 
+      &--no-results {
+        width: 100%;
+        padding: $padding/2 0;
+        text-align: center;
+        font-size: 1.2em;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      code {
+        padding: 1px 5px;
+        font-size: 90%;
+        border: none;
+        color: #222222;
+        background-color: $code-background;
+        border-radius: 3px;
+        font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
         .docs-searchbar-suggestion--highlight {
-          color: darken($text-color, 15%);
+          background: none;
+        }
+      }
+
+      // Rules to display categories and subcategories
+      &.docs-searchbar-suggestion__main
+        .docs-searchbar-suggestion--category-header {
+        display: block;
+      }
+
+      &.docs-searchbar-suggestion__secondary {
+        display: block;
+      }
+
+      @media all and (min-width: #{$responsive-breakpoint}) {
+        .docs-searchbar-suggestion--subcategory-column {
+          display: block;
+        }
+      }
+      @media all and (max-width: #{$responsive-breakpoint}) {
+        .docs-searchbar-suggestion--subcategory-column {
+          display: inline-block;
+          width: auto;
+          text-align: left;
+          float: left;
+          padding: 0;
+          font-size: 0.9em;
           font-weight: bold;
-          box-shadow: none;
+          opacity: 0.5;
+          color: #02060c;
           @if $dark-mode {
-            color: lighten($text-color, 15%);
+            color: $subtitle-color;
+            opacity: unset;
+          }
+
+          &:before {
+            display: none;
+          }
+          &:after {
+            content: '|';
+          }
+        }
+        .docs-searchbar-suggestion--content {
+          display: inline-block;
+          width: auto;
+          text-align: left;
+          float: left;
+          padding: 0;
+
+          &:before {
+            display: none;
           }
         }
       }
     }
-  }
 
-  // powered by
-  .docs-searchbar-footer {
-    width: 180px;
-    height: 20px;
-    z-index: 2000;
-    margin-top: $padding/1.5;
-    float: right;
-    color: $text-color;
-  }
+    //Simple layout (no column)
+    .suggestion-layout-simple {
+      &.docs-searchbar-suggestion {
+        border-bottom: solid 1px #eee;
+        padding: $padding/2;
+        margin: 0;
+        @if $dark-mode {
+          border-bottom: solid 1px lighten($border-color, 10%);
+        }
+      }
 
-  .docs-searchbar-footer-logo {
-    margin-bottom: 4px;
-    @if $dark-mode {
-      filter: invert(1);
+      .docs-searchbar-suggestion {
+        &--content {
+          width: 100%;
+          padding: 0;
+
+          &::before {
+            display: none;
+          }
+        }
+
+        &--category-header {
+          margin: 0;
+          padding: 0;
+          display: block;
+          width: 100%;
+          border: none;
+
+          &-lvl0,
+          &-lvl1 {
+            opacity: 0.6;
+            font-size: $text-size;
+            @if $dark-mode {
+              opacity: unset;
+              color: lighten($subtitle-color, 10%);
+            }
+          }
+
+          &-lvl1 {
+            &::before {
+              background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 20 38" xmlns="http://www.w3.org/2000/svg"><path d="M1.49 4.31l14 16.126.002-2.624-14 16.074-1.314 1.51 3.017 2.626 1.313-1.508 14-16.075 1.142-1.313-1.14-1.313-14-16.125L3.2.18.18 2.8l1.31 1.51z" fill-rule="evenodd" fill="%231D3657" /></svg>');
+              content: '';
+              width: 10px;
+              height: 10px;
+              display: inline-block;
+              @if $dark-mode {
+                filter: invert(1);
+              }
+            }
+          }
+        }
+
+        &--wrapper {
+          width: 100%;
+          float: left;
+          margin: 0;
+          padding: 0;
+        }
+
+        &--duplicate-content,
+        &--subcategory-inline {
+          display: none !important;
+        }
+
+        &--title {
+          margin: 0;
+          color: $main-color;
+          font-size: $title-size;
+          font-weight: normal;
+          @if $dark-mode {
+            color: $text-color;
+          }
+
+          &::before {
+            content: '#';
+            font-weight: bold;
+            color: $main-color;
+            display: inline-block;
+            @if $dark-mode {
+              color: $text-color;
+            }
+          }
+        }
+
+        &--text {
+          margin: $padding/4 0 0;
+          display: desc($include-desc);
+          line-height: 1.4em;
+          padding: $padding/3 $padding/2;
+          background: $suggestion-background-color;
+          font-size: $text-size;
+          opacity: 0.8;
+
+          .docs-searchbar-suggestion--highlight {
+            color: darken($text-color, 15%);
+            font-weight: bold;
+            box-shadow: none;
+            @if $dark-mode {
+              color: lighten($text-color, 15%);
+            }
+          }
+        }
+      }
+    }
+
+    // powered by
+    .docs-searchbar-footer {
+      width: 180px;
+      height: 20px;
+      z-index: 2000;
+      margin-top: $padding/1.5;
+      float: right;
+      color: $text-color;
+    }
+
+    .docs-searchbar-footer-logo {
+      margin-bottom: 4px;
+      @if $dark-mode {
+        filter: invert(1);
+      }
     }
   }
 }
