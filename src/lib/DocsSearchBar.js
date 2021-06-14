@@ -148,11 +148,21 @@ class DocsSearchBar {
     }
   }
 
+  /**
+   * Wraps input selector in a docs-searchbar-js div
+   * @function addThemeWrapper
+   * @param  {string} inputSelector Selector of the input element
+   * @param  {bool} enableDarkMode Wether darkMode is enabled
+   * @returns {void}
+   */
   static addThemeWrapper(inputSelector, enableDarkMode) {
-    const inputElement = document.getElementById(inputSelector.substring(1))
+    const inputElement = document.querySelector(inputSelector)
     const parent = inputElement.parentNode
     const wrapper = document.createElement('div')
-
+    wrapper.className += 'docs-searchbar-js'
+parent.replaceChild(wrapper, inputElement)
+wrapper.appendChild(inputElement)
+    
     const isSystemInDarkMode =
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -161,8 +171,6 @@ class DocsSearchBar {
       'data-ds-theme',
       inputElement && enableDarkMode && isSystemInDarkMode ? 'dark' : 'light',
     )
-    parent.replaceChild(wrapper, inputElement)
-    wrapper.appendChild(inputElement)
   }
 
   /**
