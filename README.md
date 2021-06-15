@@ -201,7 +201,8 @@ docsSearchBar({
 ```
 
 Dark mode with `enableDarkMode` set to `true` and system mode set to `dark`:
-![docs-searchbar with dark mode](https://user-images.githubusercontent.com/30866152/121330419-4cce8b00-c916-11eb-8cdf-49a3a640ec43.png)
+
+![docs-searchbar with dark mode](assets/dark-mode.png)
 
 ##### `enhancedSearchInput` <!-- omit in toc -->
 
