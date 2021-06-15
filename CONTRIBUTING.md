@@ -122,10 +122,6 @@ _[Read more about this](https://github.com/meilisearch/integration-guides/blob/m
 This project integrates a tool to create automated changelogs.<br>
 _[Read more about this](https://github.com/meilisearch/integration-guides/blob/main/guides/release-drafter.md)._
 
-### Labels
-
-To chose the proper labels reade the [labels guide](https://github.com/meilisearch/integration-guides/blob/main/guides/release-drafter.md#how-does-the-release-drafter-work)). Labels impact the generated version for the next release.
-
 ### How to Publish the Release <!-- omit in TOC -->
 
 ⚠️ Before doing anything, make sure you got through the guide about [Releasing an Integration](https://github.com/meilisearch/integration-guides/blob/main/guides/integration-release.md).
