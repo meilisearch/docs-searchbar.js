@@ -6,10 +6,15 @@ version-resolver:
   major:
     labels:
       - 'breaking-change'
+  minor:
+    labels:
+      - 'feature'
   default: patch
 categories:
   - title: 'Breaking changes ⚠️'
     label: 'breaking-change'
+  - title: 'New features ⚡️'
+    label: 'feature'
 template: |
   ## Changes
 
