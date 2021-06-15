@@ -14,7 +14,7 @@ categories:
   - title: 'Breaking changes ⚠️'
     label: 'breaking-change'
   - title: 'New features ⚡️'
-    label: 'feature'
+    label: 'new-feature'
 template: |
   ## Changes
 
