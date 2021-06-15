@@ -8,13 +8,13 @@ version-resolver:
       - 'breaking-change'
   minor:
     labels:
-      - 'feature'
+      - 'new-feature'
   default: patch
 categories:
   - title: 'Breaking changes ⚠️'
     label: 'breaking-change'
   - title: 'New features ⚡️'
-    label: 'feature'
+    label: 'new-feature'
 template: |
   ## Changes
 
