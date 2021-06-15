@@ -129,7 +129,6 @@
     $text-size: 0.9em;
     $subtitle-size: 1em;
   }
-
   .meilisearch-autocomplete {
     &.meilisearch-autocomplete-right .dsb-dropdown-menu {
       @include alignment-type(right);

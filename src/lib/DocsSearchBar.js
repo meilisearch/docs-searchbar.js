@@ -97,22 +97,12 @@ class DocsSearchBar {
     this.isSimpleLayout = layout === 'simple'
     this.enableDarkMode = enableDarkMode
 
-    const isSystemInDarkMode =
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    const searchbox = document.querySelector('.docs-searchbar')
-    if (searchbox) {
-      if (this.enableDarkMode && isSystemInDarkMode) {
-        searchbox.setAttribute('data-ds-theme', 'dark')
-      } else {
-        searchbox.setAttribute('data-ds-theme', 'light')
-      }
-    }
-
     this.client = new MeiliSearch({
       host: hostUrl,
       apiKey: this.apiKey,
     })
+
+    DocsSearchBar.addThemeWrapper(inputSelector, this.enableDarkMode)
 
     if (enhancedSearchInput) {
       this.input = DocsSearchBar.injectSearchBox(this.input)
@@ -156,6 +146,31 @@ class DocsSearchBar {
     if (enhancedSearchInput) {
       DocsSearchBar.bindSearchBoxEvent()
     }
+  }
+
+  /**
+   * Wraps input selector in a docs-searchbar-js div
+   * @function addThemeWrapper
+   * @param  {string} inputSelector Selector of the input element
+   * @param  {bool} enableDarkMode Wether darkMode is enabled
+   * @returns {void}
+   */
+  static addThemeWrapper(inputSelector, enableDarkMode) {
+    const inputElement = document.querySelector(inputSelector)
+    const parent = inputElement.parentNode
+    const wrapper = document.createElement('div')
+    wrapper.className += 'docs-searchbar-js'
+    parent.replaceChild(wrapper, inputElement)
+    wrapper.appendChild(inputElement)
+
+    const isSystemInDarkMode =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    wrapper.setAttribute(
+      'data-ds-theme',
+      inputElement && enableDarkMode && isSystemInDarkMode ? 'dark' : 'light',
+    )
   }
 
   /**
