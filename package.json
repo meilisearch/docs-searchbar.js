@@ -62,7 +62,7 @@
   "dependencies": {
     "autocomplete.js": "^0.38.0",
     "hogan.js": "^3.0.2",
-    "meilisearch": "^0.18.2",
+    "meilisearch": "^0.19.0",
     "to-factory": "^1.0.0",
     "zepto": "^1.2.0"
   }
