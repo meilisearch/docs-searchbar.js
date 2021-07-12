@@ -260,7 +260,6 @@
 
       &--content {
         display: block;
-        float: right;
         width: 70%;
         position: relative;
         padding: $padding/3 0 $padding/3 $padding/1.5;
@@ -293,12 +292,12 @@
 
       &--wrapper {
         width: 100%;
-        float: left;
+        display: flex;
+        align-items: flex-start;
         padding: $padding/2 0 0 0;
       }
 
       &--subcategory-column {
-        float: left;
         width: 30%;
         padding-left: 0;
         text-align: right;
@@ -382,7 +381,6 @@
           display: inline-block;
           width: auto;
           text-align: left;
-          float: left;
           padding: 0;
           font-size: 0.9em;
           font-weight: bold;
@@ -404,7 +402,6 @@
           display: inline-block;
           width: auto;
           text-align: left;
-          float: left;
           padding: 0;
 
           &:before {
@@ -468,7 +465,6 @@
 
         &--wrapper {
           width: 100%;
-          float: left;
           margin: 0;
           padding: 0;
         }
@@ -525,8 +521,8 @@
       height: 20px;
       z-index: 2000;
       margin-top: $padding/1.5;
-      float: right;
       color: $text-color;
+      margin-left: auto;
     }
 
     .docs-searchbar-footer-logo {
