@@ -55,14 +55,14 @@
     "pretty-bytes-cli": "^2.0.0",
     "sinon": "^11.1.1",
     "uglify-js": "^3.13.8",
-    "webpack": "^5.39.0",
+    "webpack": "^5.51.1",
     "webpack-cli": "^4.7.0"
   },
   "peerDependencies": {},
   "dependencies": {
     "autocomplete.js": "^0.38.0",
     "hogan.js": "^3.0.2",
-    "meilisearch": "^0.18.2",
+    "meilisearch": "^0.20.0",
     "to-factory": "^1.0.0",
     "zepto": "^1.2.0"
   }
