@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Check release validity
-        run: sh scripts/check-release.sh
+        run: sh .github/scripts/check-release.sh
       - name: Build
         run: NODE_ENV=production yarn run build
       - name: Publish
