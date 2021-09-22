@@ -180,7 +180,7 @@ class DocsSearchBar {
    * @returns {void}
    */
   static checkArguments(args) {
-    if (!args.apiKey || !args.indexUid || !args.hostUrl) {
+    if (!args.indexUid || !args.hostUrl) {
       throw new Error(usage)
     }
 
