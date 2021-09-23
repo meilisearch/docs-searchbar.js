@@ -91,7 +91,7 @@ If you already have your own scraper but you still want to use MeiliSearch and `
 </html>
 ```
 
-The `hostUrl` and the `apiKey` fields are the credentials of your MeiliSearch instance.<br>
+The `hostUrl` and the `apiKey` (_optionnal_) fields are the credentials of your MeiliSearch instance.<br>
 `indexUid` is the index identifier in your MeiliSearch instance in which your website content is stored.<br>
 `inputSelector` is the `id` attribute of the HTML search input tag.
 
