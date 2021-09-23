@@ -277,7 +277,6 @@ class DocsSearchBar {
   // Given a list of hits returned by the API, will reformat them to be used in
   // a Hogan template
   static formatHits(receivedHits) {
-    console.log("WESH")
     const clonedHits = utils.deepClone(receivedHits)
     const hits = clonedHits.map((hit) => {
       if (hit._formatted) {
@@ -303,7 +302,7 @@ class DocsSearchBar {
       groupedHits[level] = flattenedHits
     })
     groupedHits = utils.flattenAndFlagFirst(groupedHits, 'isCategoryHeader')
-    console.log({ groupedHits });
+    console.log({ groupedHits })
     // Translate hits into smaller objects to be send to the template
     return groupedHits.map((hit) => {
       const url = DocsSearchBar.formatURL(hit)
