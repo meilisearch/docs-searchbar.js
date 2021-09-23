@@ -180,7 +180,7 @@ class DocsSearchBar {
    * @returns {void}
    */
   static checkArguments(args) {
-    if (!args.apiKey || !args.indexUid || !args.hostUrl) {
+    if (!args.inputSelector || !args.indexUid || !args.hostUrl) {
       throw new Error(usage)
     }
 
@@ -302,7 +302,6 @@ class DocsSearchBar {
       groupedHits[level] = flattenedHits
     })
     groupedHits = utils.flattenAndFlagFirst(groupedHits, 'isCategoryHeader')
-
     // Translate hits into smaller objects to be send to the template
     return groupedHits.map((hit) => {
       const url = DocsSearchBar.formatURL(hit)
