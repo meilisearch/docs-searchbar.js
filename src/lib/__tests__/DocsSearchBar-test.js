@@ -245,6 +245,7 @@ describe('DocsSearchBar', () => {
       const options = {
         apiKey: 'apiKey',
         indexUid: 'indexUID',
+        inputSelector: '#',
       }
 
       // When
@@ -252,7 +253,7 @@ describe('DocsSearchBar', () => {
         checkArguments(options)
       }).toThrow(/^Usage:/)
     })
-    it('should throw an error if no apiKey defined', () => {
+    it('should throw an error if no inputSelector defined', () => {
       // Given
       const options = {
         hostUrl: 'test.com',
@@ -268,7 +269,7 @@ describe('DocsSearchBar', () => {
       // Given
       const options = {
         hostUrl: 'test.com',
-        apiKey: 'apiKey',
+        inputSelector: '#',
       }
 
       // When
