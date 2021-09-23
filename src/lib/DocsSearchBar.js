@@ -302,7 +302,6 @@ class DocsSearchBar {
       groupedHits[level] = flattenedHits
     })
     groupedHits = utils.flattenAndFlagFirst(groupedHits, 'isCategoryHeader')
-    console.log({ groupedHits })
     // Translate hits into smaller objects to be send to the template
     return groupedHits.map((hit) => {
       const url = DocsSearchBar.formatURL(hit)
@@ -331,20 +330,6 @@ class DocsSearchBar {
         !isLvl2 && subcategory && subcategory !== '' && subcategory !== category
       const isLvl0 = !isLvl1 && !isLvl2
 
-      console.log({
-        isLvl0,
-        isLvl1,
-        isLvl2,
-        isLvl1EmptyOrDuplicate,
-        isCategoryHeader: hit.isCategoryHeader,
-        isSubCategoryHeader: hit.isSubCategoryHeader,
-        isTextOrSubcategoryNonEmpty,
-        category,
-        subcategory,
-        title: displayTitle,
-        text,
-        url,
-      })
       return {
         isLvl0,
         isLvl1,

@@ -283,6 +283,7 @@ describe('DocsSearchBar', () => {
         hostUrl: 'test.com',
         apiKey: 'apiKey',
         indexUid: 'indexUID',
+        inputSelector: '#',
       }
       sinon.stub(DocsSearchBar, 'getInputFromSelector').returns(false)
 
