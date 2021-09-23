@@ -30,7 +30,7 @@
   "license": "MIT",
   "repository": "meilisearch/docs-searchbar.js",
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
+    "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/register": "^7.15.3",
@@ -55,14 +55,14 @@
     "pretty-bytes-cli": "^2.0.0",
     "sinon": "^11.1.2",
     "uglify-js": "^3.14.1",
-    "webpack": "^5.51.1",
+    "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0"
   },
   "peerDependencies": {},
   "dependencies": {
     "autocomplete.js": "^0.38.0",
     "hogan.js": "^3.0.2",
-    "meilisearch": "^0.20.0",
+    "meilisearch": "^0.20.1",
     "to-factory": "^1.0.0",
     "zepto": "^1.2.0"
   }
