@@ -18,7 +18,8 @@ jobs:
           uses: cypress-io/github-action@v2
           with:
             # Your starting script
-            start: yarn start
+            # start: yarn start // commented because theres is no 'start' script in package.json
+            "playground": "yarn --cwd ./playgrounds/html && yarn --cwd ./playgrounds/html serve" 
         # Creates and uploads GitHub artifacts in case of failure
         - uses: actions/upload-artifact@v1
           if: failure()
