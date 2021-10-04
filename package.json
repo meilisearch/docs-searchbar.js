@@ -21,7 +21,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "./scripts/test",
-    "test:watch": "./scripts/test-watch"
+    "test:watch": "./scripts/test-watch",
+    "start:test": "concurrently --kill-others -s first \"yarn playground\" \"cypress open\"",
+    "start:test-headless": "concurrently --kill-others -s first \"yarn playground\" \"cypress run\""
   },
   "files": [
     "dist/"
@@ -39,6 +41,7 @@
     "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.1",
     "babel-plugin-rewire": "^1.2.0",
+    "concurrently": "^6.3.0",
     "cssnano": "^4.1.11",
     "cypress": "^8.5.0",
     "eslint": "^7.21.0",
