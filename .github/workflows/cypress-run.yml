@@ -1,3 +1,6 @@
+name cypress-run
+on: push
+jobs:
 cypress-run:
     runs-on: ubuntu-latest
     # Browser on which the tests are run
