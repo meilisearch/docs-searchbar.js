@@ -1,4 +1,4 @@
-name cypress-run
+name: cypress-run
 on: push
 jobs:
 cypress-run:
