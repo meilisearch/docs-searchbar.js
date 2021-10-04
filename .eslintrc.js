@@ -1,7 +1,7 @@
 /* Using eslint-config-algolia */
 /* eslint-disable import/no-commonjs */
 module.exports = {
-  extends: ['algolia', 'algolia/jest', 'plugin:prettier/recommended'],
+  extends: ['algolia', 'algolia/jest', 'plugin:prettier/recommended', 'plugin:cypress/recommended'],
   plugins: ['prettier'],
   rules: {
     'no-console': 0,
