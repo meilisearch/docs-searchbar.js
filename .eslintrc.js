@@ -7,7 +7,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:cypress/recommended',
   ],
-  plugins: ['prettier'],
+  plugins: ['prettier', 'cypress'],
   rules: {
     'no-console': 0,
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
