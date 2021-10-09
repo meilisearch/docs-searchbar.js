@@ -6,3 +6,8 @@ node_modules/
 assets
 .github
 scripts
+cypress/screenshots
+cypress/videos
+cypress/support
+cypress/plugins
+cypress/fixtures
