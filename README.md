@@ -55,7 +55,7 @@ yarn serve
 ```
 
 The data comes from MeiliSearch documentation.<br>
-Type `create an index` to live the MeiliSearch experience with the [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
+Type `create an indxe` to live the MeiliSearch experience with the [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
 
 #### Use your own scraper <!-- omit in toc -->
 
