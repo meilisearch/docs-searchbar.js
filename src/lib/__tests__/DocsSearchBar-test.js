@@ -230,8 +230,26 @@ describe('DocsSearchBar', () => {
 
   describe('checkArguments', () => {
     let checkArguments
+    let defaultOptions
+
     beforeEach(() => {
       checkArguments = DocsSearchBar.checkArguments
+      defaultOptions = {
+        hostUrl: 'https://test.getmeili.com',
+        apiKey: 'apiKey',
+        indexUid: 'indexUID',
+        inputSelector: '#input',
+        debug: false,
+        meilisearchOptions: {},
+        queryDataCallback: null,
+        autocompleteOptions: {},
+        transformData: false,
+        queryHook: false,
+        handleSelected: false,
+        enhancedSearchInput: false,
+        layout: 'columns',
+        enableDarkMode: false,
+      }
     })
 
     afterEach(() => {
@@ -242,11 +260,8 @@ describe('DocsSearchBar', () => {
 
     it('should throw an error if no hostUrl defined', () => {
       // Given
-      const options = {
-        apiKey: 'apiKey',
-        indexUid: 'indexUID',
-        inputSelector: '#',
-      }
+      const options = defaultOptions
+      delete options.hostUrl
 
       // When
       expect(() => {
@@ -255,10 +270,8 @@ describe('DocsSearchBar', () => {
     })
     it('should throw an error if no inputSelector defined', () => {
       // Given
-      const options = {
-        hostUrl: 'test.com',
-        indexUid: 'indexUID',
-      }
+      const options = defaultOptions
+      delete options.inputSelector
 
       // When
       expect(() => {
@@ -267,10 +280,8 @@ describe('DocsSearchBar', () => {
     })
     it('should throw an error if no indexUid defined', () => {
       // Given
-      const options = {
-        hostUrl: 'test.com',
-        inputSelector: '#',
-      }
+      const options = defaultOptions
+      delete options.indexUid
 
       // When
       expect(() => {
@@ -279,13 +290,92 @@ describe('DocsSearchBar', () => {
     })
     it('should throw an error if no selector matches', () => {
       // Given
-      const options = {
-        hostUrl: 'test.com',
-        apiKey: 'apiKey',
-        indexUid: 'indexUID',
-        inputSelector: '#',
-      }
+      const options = { ...defaultOptions, inputSelector: '#' }
       sinon.stub(DocsSearchBar, 'getInputFromSelector').returns(false)
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if enableDarkMode is not a boolean', () => {
+      // Given
+      const options = { ...defaultOptions, enableDarkMode: 'yes' }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if debug is not a boolean', () => {
+      // Given
+      const options = { ...defaultOptions, debug: null }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if enhancedSearchInput is not a boolean', () => {
+      // Given
+      const options = { ...defaultOptions, enhancedSearchInput: 'yes' }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if meilisearchOptions is not an object', () => {
+      // Given
+      const options = { ...defaultOptions, meilisearchOptions: 'not-an-object' }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if autocompleteOptions is not a object', () => {
+      // Given
+      const options = {
+        ...defaultOptions,
+        autocompleteOptions: 'not-an-object',
+      }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if queryDataCallback is not a function', () => {
+      // Given
+      const options = { ...defaultOptions, queryDataCallback: 'not-a-function' }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if transformData is not a function', () => {
+      // Given
+      const options = { ...defaultOptions, transformData: 'not-a-function' }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if queryHook is not a function', () => {
+      // Given
+      const options = { ...defaultOptions, queryHook: 'not-a-function' }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if handleSelected is not a function', () => {
+      // Given
+      const options = { ...defaultOptions, handleSelected: 'not-a-function' }
 
       // When
       expect(() => {
