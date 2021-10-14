@@ -1,4 +1,6 @@
 // Detect lightness
+@use "sass:math";
+
 @function detectLightness($color) {
   @if (lightness($color) > 60) {
     @return mix($color, #000, 90%);
@@ -177,7 +179,7 @@
       .dsb-suggestions {
         position: relative;
         z-index: 1000;
-        margin-top: $padding/2;
+        margin-top: $padding*0.5;
         & a:hover {
           text-decoration: none;
         }
@@ -205,7 +207,7 @@
         background: $background-color;
         border-radius: $border-radius + px;
         overflow: auto;
-        padding: 0 $padding/2 $padding/2;
+        padding: 0 $padding*0.5 $padding*0.5;
       }
 
       // Inner-grid setup
@@ -218,7 +220,7 @@
     .docs-searchbar-suggestion {
       display: block;
       position: relative;
-      padding: 0 $padding/2;
+      padding: 0 $padding*0.5;
       background: $background-color;
       color: $title-color;
       overflow: hidden;
@@ -262,7 +264,7 @@
         display: block;
         width: 70%;
         position: relative;
-        padding: $padding/3 0 $padding/3 $padding/1.5;
+        padding: math.div($padding, 3) 0 math.div($padding, 3) math.div($padding, 1.5);
         cursor: pointer;
 
         &:before {
@@ -281,8 +283,8 @@
         position: relative;
         border-bottom: 1px solid #ddd;
         display: none;
-        margin-top: $padding/2;
-        padding: $padding/4 0;
+        margin-top: $padding*0.5;
+        padding: $padding*0.25 0;
         font-size: $header-size;
         color: $header-color;
         @if $dark-mode {
@@ -294,7 +296,7 @@
         width: 100%;
         display: flex;
         align-items: flex-start;
-        padding: $padding/2 0 0 0;
+        padding: $padding*0.5 0 0 0;
       }
 
       &--subcategory-column {
@@ -302,7 +304,7 @@
         padding-left: 0;
         text-align: right;
         position: relative;
-        padding: $padding/3 $padding/1.5;
+        padding: math.div($padding, 3) math.div($padding, 1.5);
         color: $subtitle-color;
         font-size: $subtitle-size;
         word-wrap: break-word;
@@ -324,7 +326,7 @@
       }
 
       &--title {
-        margin-bottom: $padding/4;
+        margin-bottom: $padding*0.25;
         color: $title-color;
         font-size: $title-size;
         font-weight: bold;
@@ -339,7 +341,7 @@
 
       &--no-results {
         width: 100%;
-        padding: $padding/2 0;
+        padding: $padding*0.5 0;
         text-align: center;
         font-size: 1.2em;
 
@@ -415,7 +417,7 @@
     .suggestion-layout-simple {
       &.docs-searchbar-suggestion {
         border-bottom: solid 1px #eee;
-        padding: $padding/2;
+        padding: $padding*0.5;
         margin: 0;
         @if $dark-mode {
           border-bottom: solid 1px lighten($border-color, 10%);
@@ -495,10 +497,10 @@
         }
 
         &--text {
-          margin: $padding/4 0 0;
+          margin: $padding*0.25 0 0;
           display: desc($include-desc);
           line-height: 1.4em;
-          padding: $padding/3 $padding/2;
+          padding: math.div($padding, 3) $padding*0.5;
           background: $suggestion-background-color;
           font-size: $text-size;
           opacity: 0.8;
@@ -520,7 +522,7 @@
       width: 180px;
       height: 20px;
       z-index: 2000;
-      margin-top: $padding/1.5;
+      margin-top: math.div($padding, 1.5);
       color: $text-color;
       margin-left: auto;
     }
