@@ -1,8 +1,13 @@
 /* Using eslint-config-algolia */
 /* eslint-disable import/no-commonjs */
 module.exports = {
-  extends: ['algolia', 'algolia/jest', 'plugin:prettier/recommended'],
-  plugins: ['prettier'],
+  extends: [
+    'algolia',
+    'algolia/jest',
+    'plugin:prettier/recommended',
+    'plugin:cypress/recommended',
+  ],
+  plugins: ['prettier', 'cypress'],
   rules: {
     'no-console': 0,
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
