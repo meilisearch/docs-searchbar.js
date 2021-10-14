@@ -81,6 +81,8 @@ Each PR should pass the tests and the linter to be accepted.
 yarn test
 # With auto-reload
 yarn test:watch
+# End-to-end tests
+yarn test:e2e
 # Linter
 yarn lint
 # Linter with auto-correct
