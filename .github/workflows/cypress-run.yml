@@ -2,31 +2,37 @@ name: cypress-run
 on: push
 jobs:
   cypress-run:
-      runs-on: ubuntu-latest
-      # Browser on which the tests are run
-      container: cypress/browsers:node12.18.3-chrome87-ff82
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Setup node
-          uses: actions/setup-node@v1
-          with:
-            node-version: '12.x'
-        - name: Install dependencies
-          run: yarn
-        - name: Browser tests
-          uses: cypress-io/github-action@v2
-          with:
-            # Your starting script
-            start: yarn test:e2e
-        # Creates and uploads GitHub artifacts in case of failure
-        - uses: actions/upload-artifact@v1
-          if: failure()
-          with:
-            name: cypress-screenshots
-            path: cypress/screenshots
-        - uses: actions/upload-artifact@v1
-          if: failure()
-          with:
-            name: cypress-videos
-            path: cypress/videos
+    runs-on: ubuntu-latest
+    # Browser on which the tests are run
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./node_modules
+          key: ${{ hashFiles('yarn.lock') }}
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Install dependencies
+        run: yarn
+      - name: Browser tests
+        uses: cypress-io/github-action@v2
+        with:
+          # Your starting script
+          test: yarn playground
+      # Creates and uploads GitHub artifacts in case of failure
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
