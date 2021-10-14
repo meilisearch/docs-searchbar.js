@@ -19,12 +19,12 @@ jobs:
         with:
           node-version: "12.x"
       - name: Install dependencies
-        run: yarn
+        run: yarn --dev && yarn --cwd ./playgrounds/html
       - name: Browser tests
         uses: cypress-io/github-action@v2
         with:
           # Your starting script
-          test: yarn playground
+          start: yarn playground
       # Creates and uploads GitHub artifacts in case of failure
       - uses: actions/upload-artifact@v1
         if: failure()
