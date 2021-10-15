@@ -12,7 +12,7 @@
       $value: math.div($value * 16, 100%) * 1px;
     }
     $value: round($value);
-    @if ($value % 2 != 0) {
+    @if ($value % 2 != 0px) {
       $value: $value + 1;
     }
     @return $value;
