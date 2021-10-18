@@ -21,7 +21,7 @@ import { MeiliSearch } from 'meilisearch'
  * @param  {function}          [options.handleSelected]      This function is called when a suggestion is selected
  * @param  {function}          [options.enhancedSearchInput] When set to true, a theme is applied to the search box to improve its appearance
  * @param  {'column'|'simple'} [options.layout]              Layout of the search bar
- * @param  {boolean}           [options.enableDarkMode]      Allows you to display the searchbar in dark mode
+ * @param  {boolean|'always'}  [options.enableDarkMode]      Allows you to display the searchbar in dark mode. Can be forced with the string 'always'
  * @return {Object}
  */
 const usage = `Usage:
@@ -168,7 +168,7 @@ class DocsSearchBar {
    * Wraps input selector in a docs-searchbar-js div
    * @function addThemeWrapper
    * @param  {string} inputSelector Selector of the input element
-   * @param  {bool} enableDarkMode Wether darkMode is enabled
+   * @param  {boolean|'always'} enableDarkMode Wether darkMode is enabled
    * @returns {void}
    */
   static addThemeWrapper(inputSelector, enableDarkMode) {
@@ -179,14 +179,23 @@ class DocsSearchBar {
     parent.replaceChild(wrapper, inputElement)
     wrapper.appendChild(inputElement)
 
-    const isSystemInDarkMode =
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
+    let isSystemInDarkMode = false
+    if (inputElement && enableDarkMode === 'always') {
+      isSystemInDarkMode = true
+    } else if (inputElement && enableDarkMode && window.matchMedia) {
+      const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
+      isSystemInDarkMode = mediaQueryList.matches
 
-    wrapper.setAttribute(
-      'data-ds-theme',
-      inputElement && enableDarkMode && isSystemInDarkMode ? 'dark' : 'light',
-    )
+      const listener = function (e) {
+        wrapper.setAttribute('data-ds-theme', e.matches ? 'dark' : 'light')
+      }
+      if (mediaQueryList.addEventListener) {
+        mediaQueryList.addEventListener('change', listener)
+      } else if (mediaQueryList.addListener) {
+        mediaQueryList.addListener(listener)
+      }
+    }
+    wrapper.setAttribute('data-ds-theme', isSystemInDarkMode ? 'dark' : 'light')
   }
 
   /**
@@ -219,9 +228,19 @@ class DocsSearchBar {
       true,
     )
 
+    if (
+      args.enableDarkMode !== 'always' &&
+      args.enableDarkMode !== false &&
+      args.enableDarkMode !== true
+    ) {
+      throw new Error(
+        `Error: "enableDarkMode" must be either true, false, or 'always'. Supplied value: ${args.enableDarkMode}`,
+      )
+    }
+
     DocsSearchBar.typeCheck(
       args,
-      ['debug', 'enableDarkMode', 'enhancedSearchInput'],
+      ['debug', 'enhancedSearchInput'],
       'boolean',
       false,
     )
