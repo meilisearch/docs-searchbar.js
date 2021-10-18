@@ -256,7 +256,7 @@ class DocsSearchBar {
         const value = args[argument]
         if (typeof args[argument] !== type) {
           throw new Error(
-            `Error: "${argument}" must be of type: ${type}. Found type: ${typeof value} ${value}`,
+            `Error: "${argument}" must be of type: ${type}. Found type: ${typeof value}`,
           )
         }
       })
