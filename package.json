@@ -22,8 +22,8 @@
     "lint:fix": "eslint --fix .",
     "test": "./scripts/test",
     "test:watch": "./scripts/test-watch",
-    "start:test": "concurrently --kill-others -s first \"yarn playground\" \"cypress open\"",
-    "start:test-headless": "concurrently --kill-others -s first \"yarn playground\" \"cypress run\""
+    "test:e2e:watch": "concurrently --kill-others -s first \"yarn playground\" \"cypress open\"",
+    "test:e2e": "concurrently --kill-others -s first \"yarn playground\" \"cypress run\""
   },
   "files": [
     "dist/"
