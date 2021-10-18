@@ -20,6 +20,13 @@ describe(`My first test`, () => {
       .contains('Quick start')
   })
 
+  it('Should test all other subheadings', () => {
+    cy.get('div.dsb-suggestion:nth-child(2)') // the first entry should be "Quick start"
+      .contains('Download and launch')
+    cy.get('div.dsb-suggestion:nth-child(3)') // the first entry should be "Quick start"
+      .contains('Add documents')
+  })
+
   it('Should have valid placeholder text', () => {
     cy.get('#docs-searchbar-suggestion').should(
       'have.attr',
