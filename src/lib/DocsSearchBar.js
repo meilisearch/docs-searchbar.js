@@ -8,12 +8,20 @@ import { MeiliSearch } from 'meilisearch'
 /**
  * Adds an autocomplete dropdown to an input field
  * @function DocsSearchBar
- * @param  {string} options.hostUrl               URL where MeiliSearch instance is hosted
- * @param  {string} options.apiKey                Read-only API key
- * @param  {string} options.indexUid              UID of the index to target
- * @param  {string} options.inputSelector         CSS selector that targets the input
- * @param  {Object} [options.meilisearchOptions]  Options to pass the underlying MeiliSearch client
- * @param  {Object} [options.autocompleteOptions] Options to pass to the underlying autocomplete instance
+ * @param  {string}            options.hostUrl               URL where MeiliSearch instance is hosted
+ * @param  {string}            options.apiKey                Read-only API key
+ * @param  {string}            options.indexUid              UID of the index to target
+ * @param  {string}            options.inputSelector         CSS selector that targets the input
+ * @param  {boolean}           [options.debug]               When set to true, the dropdown will not be closed on blur
+ * @param  {Object}            [options.meilisearchOptions]  Options to pass the underlying MeiliSearch client
+ * @param  {function}          [options.queryDataCallback]   This function will be called when querying MeiliSearch
+ * @param  {Object}            [options.autocompleteOptions] Options to pass to the underlying autocomplete instance
+ * @param  {function}          [options.transformData]       An optional function to transform the hits
+ * @param  {function}          [options.queryHook]           An optional function to transform the query
+ * @param  {function}          [options.handleSelected]      This function is called when a suggestion is selected
+ * @param  {function}          [options.enhancedSearchInput] When set to true, a theme is applied to the search box to improve its appearance
+ * @param  {'column'|'simple'} [options.layout]              Layout of the search bar
+ * @param  {boolean}           [options.enableDarkMode]      Allows you to display the searchbar in dark mode
  * @return {Object}
  */
 const usage = `Usage:
@@ -22,8 +30,16 @@ const usage = `Usage:
   apiKey,
   indexUid,
   inputSelector,
-  [ meilisearchOptions ]
-  [ autocompleteOptions ]
+  [ debug ],
+  [ meilisearchOptions ],
+  [ queryDataCallback ],
+  [ autocompleteOptions ],
+  [ transformData ],
+  [ queryHook ],
+  [ handleSelected ],
+  [ enhancedSearchInput ],
+  [ layout ],
+  [ enableDarkMode ]
 })`
 class DocsSearchBar {
   constructor({
@@ -196,11 +212,54 @@ class DocsSearchBar {
       )
     }
 
-    if (typeof args.enableDarkMode !== 'boolean') {
+    DocsSearchBar.typeCheck(
+      args,
+      ['meilisearchOptions', 'autocompleteOptions'],
+      'object',
+      true,
+    )
+
+    DocsSearchBar.typeCheck(
+      args,
+      ['debug', 'enableDarkMode', 'enhancedSearchInput'],
+      'boolean',
+      false,
+    )
+
+    DocsSearchBar.typeCheck(
+      args,
+      ['queryDataCallback', 'transformData', 'queryHook', 'handleSelected'],
+      'function',
+      true,
+    )
+
+    if (args.layout && !['simple', 'columns'].includes(args.layout)) {
       throw new Error(
-        `Error: "enableDarkMode" must be of type: boolean. Found type: ${typeof args.inputSelector}`,
+        `Error: "layout" must be either 'columns' or 'simple'. Supplied value: ${args.layout}`,
       )
     }
+  }
+
+  /**
+   * Checks if the arguments defined in the check variable are of the supplied
+   * type
+   * @param {any[]} args all arguments
+   * @param {string[]} checkArguments array with the argument names to check
+   * @param {string} type required type for the arguments
+   * @param {boolean} optional don't check argument if it's falsy
+   * @returns {void}
+   */
+  static typeCheck(args, checkArguments, type, optional) {
+    checkArguments
+      .filter((argument) => !optional || args[argument])
+      .forEach((argument) => {
+        const value = args[argument]
+        if (typeof args[argument] !== type) {
+          throw new Error(
+            `Error: "${argument}" must be of type: ${type}. Found type: ${typeof value}`,
+          )
+        }
+      })
   }
 
   static injectSearchBox(input) {
