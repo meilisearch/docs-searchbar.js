@@ -21,9 +21,9 @@ describe(`My first test`, () => {
   })
 
   it('Should test all other subheadings', () => {
-    cy.get('div.dsb-suggestion:nth-child(2)') // the second entry should be "Quick start"
+    cy.get('div.dsb-suggestion:nth-child(2)') // the second entry should be "Download and launch"
       .contains('Download and launch')
-    cy.get('div.dsb-suggestion:nth-child(3)') // the third entry should be "Quick start"
+    cy.get('div.dsb-suggestion:nth-child(3)') // the third entry should be "Add documents"
       .contains('Add documents')
   })
 
