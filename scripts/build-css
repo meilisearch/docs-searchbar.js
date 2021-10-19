@@ -14,7 +14,7 @@ mkdir -p "$DIST_DIR"
 
 # ./dist/cdn/docs-searchbar.css
 echo "$LICENSE" > "$DIST_FILE";
-node-sass --output-style expanded ./src/styles/main.scss \
+sass --style expanded ./src/styles/main.scss \
   | postcss --use autoprefixer -o "$DIST_FILE"
 
 # copy styles
