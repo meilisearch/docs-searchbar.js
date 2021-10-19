@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
@@ -54,9 +54,9 @@ jobs:
             ./node_modules
           key: ${{ hashFiles('yarn.lock') }}
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: "14.x"
+          node-version: "16.x"
       - name: Install dependencies
         run: yarn --dev && yarn --cwd ./playgrounds/html
       - name: Browser tests
@@ -65,7 +65,7 @@ jobs:
           # Your starting script
           start: yarn playground
       # Creates and uploads GitHub artifacts in case of failure
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         if: failure()
         with:
           name: cypress-screenshots
