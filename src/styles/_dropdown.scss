@@ -52,17 +52,17 @@
 // Alignment type
 @mixin alignment-type($type) {
   @if $type == 'left' {
-    left: 0 !important;
-    right: inherit !important;
+    left: 0;
+    right: inherit;
   }
   @if $type == 'right' {
-    right: 0 !important;
-    left: inherit !important;
+    right: 0;
+    left: inherit;
   }
   @if $type == 'center' {
-    left: 0 !important;
-    right: 0 !important;
-    margin: auto !important;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 }
 
@@ -473,7 +473,7 @@
 
         &--duplicate-content,
         &--subcategory-inline {
-          display: none !important;
+          display: none;
         }
 
         &--title {

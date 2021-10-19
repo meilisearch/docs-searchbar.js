@@ -135,6 +135,12 @@ class DocsSearchBar {
       },
     ])
 
+    // We remove the inline styles of the wrapper element for left / right
+    $(`.${this.autocompleteOptions.cssClasses.root} > [role='listbox']`).css({
+      left: false,
+      right: false,
+    })
+
     const customHandleSelected = handleSelected
     this.handleSelected = customHandleSelected || this.handleSelected
 
