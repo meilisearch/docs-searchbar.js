@@ -187,7 +187,13 @@ class DocsSearchBar {
       isSystemInDarkMode = mediaQueryList.matches
 
       const listener = function (e) {
-        wrapper.setAttribute('data-ds-theme', e.matches ? 'dark' : 'light')
+        if (document.body.contains(wrapper)) {
+          wrapper.setAttribute('data-ds-theme', e.matches ? 'dark' : 'light')
+        } else if (mediaQueryList.removeEventListener) {
+          mediaQueryList.removeEventListener('change', listener)
+        } else if (mediaQueryList.removeListener) {
+          mediaQueryList.removeListener(listener)
+        }
       }
       if (mediaQueryList.addEventListener) {
         mediaQueryList.addEventListener('change', listener)
