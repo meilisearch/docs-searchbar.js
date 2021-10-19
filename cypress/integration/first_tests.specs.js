@@ -38,7 +38,7 @@ describe(`My first test`, () => {
   it('Should display a no results message when search results are empty', () => {
     cy.get('#docs-searchbar-suggestion').type(' empty results')
     cy.get('#meilisearch-autocomplete-listbox-0').should('be.visible')
-    cy.get('div.docs-searchbar-suggestion') // the first entry should be "Quick start"
+    cy.get('div.docs-searchbar-suggestion') // No Results message should be displayed instead
       .contains('No results found for query')
   })
 })
