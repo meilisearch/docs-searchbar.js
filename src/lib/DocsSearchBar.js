@@ -21,7 +21,7 @@ import { MeiliSearch } from 'meilisearch'
  * @param  {function}          [options.handleSelected]      This function is called when a suggestion is selected
  * @param  {function}          [options.enhancedSearchInput] When set to true, a theme is applied to the search box to improve its appearance
  * @param  {'column'|'simple'} [options.layout]              Layout of the search bar
- * @param  {boolean|'always'}  [options.enableDarkMode]      Allows you to display the searchbar in dark mode. Can be forced with the string 'always'
+ * @param  {boolean|'auto'}    [options.enableDarkMode]      Allows you to display the searchbar in dark mode. Option 'auto' automatically sets the mode based on the system mode
  * @return {Object}
  */
 const usage = `Usage:
@@ -174,7 +174,7 @@ class DocsSearchBar {
    * Wraps input selector in a docs-searchbar-js div
    * @function addThemeWrapper
    * @param  {string} inputSelector Selector of the input element
-   * @param  {boolean|'always'} enableDarkMode Wether darkMode is enabled
+   * @param  {boolean|'auto'} enableDarkMode Wether darkMode is enabled
    * @returns {void}
    */
   static addThemeWrapper(inputSelector, enableDarkMode) {
@@ -185,10 +185,8 @@ class DocsSearchBar {
     parent.replaceChild(wrapper, inputElement)
     wrapper.appendChild(inputElement)
 
-    let isSystemInDarkMode = false
-    if (inputElement && enableDarkMode === 'always') {
-      isSystemInDarkMode = true
-    } else if (inputElement && enableDarkMode && window.matchMedia) {
+    let isSystemInDarkMode = inputElement && enableDarkMode === true
+    if (inputElement && enableDarkMode === 'auto' && window.matchMedia) {
       const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
       isSystemInDarkMode = mediaQueryList.matches
 
@@ -241,12 +239,12 @@ class DocsSearchBar {
     )
 
     if (
-      args.enableDarkMode !== 'always' &&
+      args.enableDarkMode !== 'auto' &&
       args.enableDarkMode !== false &&
       args.enableDarkMode !== true
     ) {
       throw new Error(
-        `Error: "enableDarkMode" must be either true, false, or 'always'. Supplied value: ${args.enableDarkMode}`,
+        `Error: "enableDarkMode" must be either true, false, or 'auto'. Supplied value: ${args.enableDarkMode}`,
       )
     }
 
