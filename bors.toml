@@ -1,7 +1,8 @@
 status = [
     'linter-check',
     'Tests (Node.js 12)',
-    'Tests (Node.js 14)'
+    'Tests (Node.js 14)',
+    'cypress-run'
 ]
 # 1 hour timeout
 timeout-sec = 3600
