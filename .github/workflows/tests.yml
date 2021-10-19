@@ -15,12 +15,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['12', '14']
+        node: ["12", "14"]
     name: Tests (Node.js ${{ matrix.node }})
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
@@ -39,3 +39,39 @@ jobs:
         run: yarn install
       - name: Run linter
         run: yarn run lint
+
+  cypress-run:
+    runs-on: ubuntu-latest
+    # Browser on which the tests are run
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./node_modules
+          key: ${{ hashFiles('yarn.lock') }}
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: Install dependencies
+        run: yarn --dev && yarn --cwd ./playgrounds/html
+      - name: Browser tests
+        uses: cypress-io/github-action@v2
+        with:
+          # Your starting script
+          start: yarn playground
+      # Creates and uploads GitHub artifacts in case of failure
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
