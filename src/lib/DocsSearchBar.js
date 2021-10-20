@@ -21,7 +21,7 @@ import { MeiliSearch } from 'meilisearch'
  * @param  {function}          [options.handleSelected]      This function is called when a suggestion is selected
  * @param  {function}          [options.enhancedSearchInput] When set to true, a theme is applied to the search box to improve its appearance
  * @param  {'column'|'simple'} [options.layout]              Layout of the search bar
- * @param  {boolean|'auto'}    [options.enableDarkMode]      Allows you to display the searchbar in dark mode. Option 'auto' automatically sets the mode based on the system mode
+ * @param  {boolean|'auto'}    [options.enableDarkMode]      Allows you to enforce, light theme, dark theme, or auto mode on the searchbar.
  * @return {Object}
  */
 const usage = `Usage:
@@ -174,7 +174,7 @@ class DocsSearchBar {
    * Wraps input selector in a docs-searchbar-js div
    * @function addThemeWrapper
    * @param  {string} inputSelector Selector of the input element
-   * @param  {boolean|'auto'} enableDarkMode Wether darkMode is enabled
+   * @param  {boolean|'auto'} enableDarkMode Allows you to enforce, light theme, dark theme, or auto mode on the searchbar.
    * @returns {void}
    */
   static addThemeWrapper(inputSelector, enableDarkMode) {
@@ -185,8 +185,8 @@ class DocsSearchBar {
     parent.replaceChild(wrapper, inputElement)
     wrapper.appendChild(inputElement)
 
-    let isSystemInDarkMode = inputElement && enableDarkMode === true
-    if (inputElement && enableDarkMode === 'auto' && window.matchMedia) {
+    let isSystemInDarkMode = Boolean(enableDarkMode)
+    if (enableDarkMode === 'auto' && window.matchMedia) {
       const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
       isSystemInDarkMode = mediaQueryList.matches
 
@@ -199,6 +199,7 @@ class DocsSearchBar {
           mediaQueryList.removeListener(listener)
         }
       }
+
       if (mediaQueryList.addEventListener) {
         mediaQueryList.addEventListener('change', listener)
       } else if (mediaQueryList.addListener) {
