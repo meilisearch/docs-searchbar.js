@@ -189,18 +189,23 @@ docsSearchBar({
 ##### `enableDarkMode` <!-- omit in toc -->
 
 Allows you to display the searchbar in dark mode. It is useful if your website has dark mode support and you also want the searchbar to appear in a dark version.
-You can always edit the style of the searchbar to match the style of your website.
+You can always edit the style of the searchbar to match the style of your website. When the option `enableDarkMode` is set to `auto`, the searchbar automatically sets the mode to the system mode.
+
+`enableDarkMode` has three possible states:
+- `false`: enforce light mode.
+- `true`: enforce dark mode.
+- `auto`: system mode (light or dark).
 
 Example:
 
 ```javascript
 docsSearchBar({
   ...
-  enableDarkMode: true
+  enableDarkMode: 'auto'
 })
 ```
 
-Dark mode with `enableDarkMode` set to `true` and system mode set to `dark`:
+Dark mode with `enableDarkMode` set to `auto` and system mode set to `dark`:
 
 ![docs-searchbar with dark mode](assets/dark-mode.png)
 
