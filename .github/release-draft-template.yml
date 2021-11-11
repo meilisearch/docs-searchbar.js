@@ -19,8 +19,6 @@ categories:
     label: 'bug'
   - title: '🔒 Security'
     label: 'security'
-  - title: 'New features ⚡️'
-    label: 'new-feature'
 template: |
   $CHANGES
 
