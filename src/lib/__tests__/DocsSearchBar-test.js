@@ -1176,15 +1176,6 @@ describe('DocsSearchBar', () => {
   })
 
   describe('getSuggestionTemplate', () => {
-    beforeEach(() => {
-      const templates = {
-        suggestion: '<div></div>',
-      }
-      DocsSearchBar.__Rewire__('templates', templates)
-    })
-    afterEach(() => {
-      DocsSearchBar.__ResetDependency__('templates')
-    })
     it('should return a function', () => {
       // Given
 
@@ -1193,38 +1184,6 @@ describe('DocsSearchBar', () => {
 
       // Then
       expect(actual).toBeInstanceOf(Function)
-    })
-    describe('returned function', () => {
-      let Hogan
-      let render
-      beforeEach(() => {
-        render = sinon.spy()
-        Hogan = {
-          compile: sinon.stub().returns({ render }),
-        }
-        DocsSearchBar.__Rewire__('Hogan', Hogan)
-      })
-      it('should compile the suggestion template', () => {
-        // Given
-
-        // When
-        DocsSearchBar.getSuggestionTemplate()
-
-        // Then
-        expect(Hogan.compile.calledOnce).toBe(true)
-        expect(Hogan.compile.calledWith('<div></div>')).toBe(true)
-      })
-      it('should call render on a Hogan template', () => {
-        // Given
-        const actual = DocsSearchBar.getSuggestionTemplate()
-
-        // When
-        actual({ foo: 'bar' })
-
-        // Then
-        expect(render.calledOnce).toBe(true)
-        expect(render.args[0][0]).toEqual({ foo: 'bar' })
-      })
     })
   })
 })
