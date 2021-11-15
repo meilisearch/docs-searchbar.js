@@ -519,7 +519,8 @@
 
     // powered by
     .docs-searchbar-footer {
-      width: 180px;
+      width: 100%;
+      text-align: right;
       height: 20px;
       z-index: 2000;
       margin-top: math.div($padding, 1.5);
