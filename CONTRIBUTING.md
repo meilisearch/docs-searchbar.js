@@ -53,8 +53,6 @@ yarn serve
 
 Now, you can have all the files served on `localhost`, along with live-reload.
 
-
-
 ### Tests and Linter <!-- omit in TOC -->
 
 Each PR should pass the tests and the linter to be accepted.
