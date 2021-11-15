@@ -30,32 +30,56 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Installation and Usage](#installation-and-usage)
-  - [Before using the library](#before-using-the-library)
-  - [Basic Usage](#basic-usage)
-  - [Customization](#customization)
+- [🔧 Installation](#-installation)
+- [🎬 Getting Started](#-getting-started)
+- [Customization](#customization)
 - [Compatibility with MeiliSearch](#compatibility-with-meilisearch)
 - [Development Workflow and Contributing](#development-workflow-and-contributing)
 - [Credits](#credits)
 
-## Installation and Usage
+## Installation
 
-### Before using the library
+**With npm**:
+
+We only guarantee that the package works with `node` >= 12 and `node` < 15.
+```sh
+# With NPM
+npm install docs-searchbar.js
+# With Yarn
+yarn add docs-searchbar.js
+```
+
+**In your HTML**:
+
+Add the following script into your `HTML` file:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@{version}/dist/cdn/docs-searchbar.min.js"></script>
+```
+
+### 🏃‍♀️ Run MeiliSearch <!-- omit in toc -->
+
+There are many easy ways to [download and run a MeiliSearch instance](https://docs.meilisearch.com/reference/features/installation.html#download-and-launch).
+
+For example, using the `curl` command in [your Terminal](https://itconnect.uw.edu/learn/workshops/online-tutorials/web-publishing/what-is-a-terminal/):
+
+```bash
+# Install MeiliSearch
+curl -L https://install.meilisearch.com | sh
+
+# Launch MeiliSearch
+./meilisearch --master-key=masterKey
+```
+
+NB: you can also download MeiliSearch from **Homebrew** or **APT** or even run it using **Docker**.
+
+### Index your data <!-- omit in toc -->
 
 The goal of this library is to provide a front-end search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a MeiliSearch instance.
 
 Luckily, we provide all the tools that you need, and can help you through the whole process, if you follow [this guide](https://docs.meilisearch.com/create/how_to/search_bar_for_docs.html) 🚀
 
-However, as a first introduction, you might only want to test this library without connecting it to your website.<br>
-You can do it by running the playground provided in this repository:
-
-```bash
-yarn install
-yarn serve
-```
-
-The data comes from MeiliSearch documentation.<br>
-Type `create an indxe` to live the MeiliSearch experience with the [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
+Note: If you want to try out `docs-searchbar.js` as a first introduction, [try out our playground](./CONTRIBUTING.md#playground).
 
 #### Use your own scraper <!-- omit in toc -->
 
@@ -63,8 +87,32 @@ We recommend using the [`docs-scraper` tool](https://github.com/meilisearch/docs
 
 If you already have your own scraper but you still want to use MeiliSearch and `docs-searchbar.js`, check out [this discussion](https://github.com/meilisearch/docs-searchbar.js/issues/40).
 
-### Basic Usage
 
+### Getting Started
+
+#### ES module <!-- omit in toc -->
+
+Add an `input` tag with the attribute `id="search-bar-input` in one of your `HTML` file.
+
+```html
+<input type="search" id="search-bar-input" />
+```
+
+Then, import `docs-searchbar.js` and run the `docsSearchBar` function. For more explaination of the required parameters, see next section.
+```js
+import docsSearchBar from 'docs-searchbar.js'
+
+docsSearchBar({
+  hostUrl: 'https://mymeilisearch.com',
+  apiKey: 'XXX',
+  indexUid: 'docs',
+  inputSelector: '#search-bar-input',
+})
+```
+
+#### HTML <!-- omit in toc -->
+
+Add the following code to one of your `HTML` files.
 ```html
 <!DOCTYPE html>
 <html>
@@ -100,7 +148,7 @@ _Your documentation content is not indexed yet? Check out [this tutorial](https:
 **WARNING: We recommend providing the MeiliSearch public key, which is enough to perform search requests.<br>
 Read more about [MeiliSearch authentication](https://docs.meilisearch.com/reference/features/authentication.html).**
 
-#### Styling
+## Styling
 
 `docs-searchbar.js` comes with a css template. It has to be added in your project in the following way:
 
@@ -119,26 +167,26 @@ In a `HTML` file, the `link` tag should be added in your header:
 />
 ```
 
-### Customization
+## Customization
 
 The default behavior of this library fits perfectly for a documentation search bar, but you might need some customizations.
 
 - [Optional parameters](#optional-parameters-) (when calling `docsSearchBar` method)
 - [Styling](#styling-) (with CSS)
 
-#### Optional parameters <!-- omit in toc -->
+### Optional parameters <!-- omit in toc -->
 
 When calling the `docsSearchBar` method, you can add optional fields:
 
-##### `queryHook` <!-- omit in toc -->
+#### `queryHook` <!-- omit in toc -->
 
 `queryHook` takes a callback function as value. This function will be called on every keystroke to transform the typed keywords before querying MeiliSearch. By default, it does not do anything, but it is the perfect place for you to add some preprocessing or custom functionality.
 
-##### `transformData` <!-- omit in toc -->
+#### `transformData` <!-- omit in toc -->
 
 `transformData` takes a callback function as value. This function will be called on every hit before displaying them. By default, it does not do anything, but it lets you add any post-processing around the data you received from MeiliSearch.
 
-##### `handleSelected` <!-- omit in toc -->
+#### `handleSelected` <!-- omit in toc -->
 
 `handleSelected` takes a callback function a value. This function is called when a suggestion is selected (either from a click or a keystroke). By default, it displays anchor links to the results page. Here is an example to override this behavior:
 
@@ -172,7 +220,7 @@ The function is called with the following arguments:
 
 - `context`: additional information about the selection. Contains a `.selectionMethod` key that can be either `click`, `enterKey`, `tabKey` or `blur`, depending on how the suggestion was selected.
 
-##### `meilisearchOptions` <!-- omit in toc -->
+#### `meilisearchOptions` <!-- omit in toc -->
 
 You can forward search parameters to the MeiliSearch API by using the `meilisearchOptions` key. Checkout out the [MeiliSearch documentation about search parameters](https://docs.meilisearch.com/reference/features/search_parameters.html#search-parameters).
 
@@ -186,7 +234,7 @@ docsSearchBar({
 })
 ```
 
-##### `enableDarkMode` <!-- omit in toc -->
+#### `enableDarkMode` <!-- omit in toc -->
 
 Allows you to display the searchbar in dark mode. It is useful if your website has dark mode support and you also want the searchbar to appear in a dark version.
 You can always edit the style of the searchbar to match the style of your website. When the option `enableDarkMode` is set to `auto`, the searchbar automatically sets the mode to the system mode.
@@ -209,7 +257,7 @@ Dark mode with `enableDarkMode` set to `auto` and system mode set to `dark`:
 
 ![docs-searchbar with dark mode](assets/dark-mode.png)
 
-##### `enhancedSearchInput` <!-- omit in toc -->
+#### `enhancedSearchInput` <!-- omit in toc -->
 
 When set to `true`, a theme is applied to the search box to improve its appearance. It adds the `.searchbox` class which can be used to further customise the search box.
 
