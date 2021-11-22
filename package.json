@@ -54,10 +54,10 @@
     "eslint-plugin-prettier": "^3.3.0",
     "jest": "^26.6.3",
     "jsdom": "^18.0.0",
-    "sass": "^1.43.3",
     "postcss-cli": "^7.1.2",
     "prettier": "^2.0.5",
     "pretty-bytes-cli": "^2.0.0",
+    "sass": "^1.43.3",
     "sinon": "^11.1.2",
     "uglify-js": "^3.14.2",
     "webpack": "^5.58.2",
@@ -66,7 +66,7 @@
   "dependencies": {
     "autocomplete.js": "^0.38.0",
     "hogan.js": "^3.0.2",
-    "meilisearch": "^0.22.1",
+    "meilisearch": "^0.23.0",
     "to-factory": "^1.0.0",
     "zepto": "^1.2.0"
   }
