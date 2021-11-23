@@ -32,10 +32,10 @@
 
 - [🔧 Installation](#-installation)
 - [🎬 Getting Started](#-getting-started)
-- [Customization](#customization)
-- [Compatibility with MeiliSearch](#compatibility-with-meilisearch)
-- [Development Workflow and Contributing](#development-workflow-and-contributing)
-- [Credits](#credits)
+- [🎨 Customization](#customization)
+- [🤖 Compatibility with MeiliSearch](#compatibility-with-meilisearch)
+- [⚙️ Development Workflow and Contributing](#development-workflow-and-contributing)
+- [🥇 Credits](#credits)
 
 ## Installation
 
@@ -148,7 +148,7 @@ _Your documentation content is not indexed yet? Check out [this tutorial](https:
 **WARNING: We recommend providing the MeiliSearch public key, which is enough to perform search requests.<br>
 Read more about [MeiliSearch authentication](https://docs.meilisearch.com/reference/features/authentication.html).**
 
-## Styling
+### Styling
 
 `docs-searchbar.js` comes with a css template. It has to be added in your project in the following way:
 
@@ -167,7 +167,7 @@ In a `HTML` file, the `link` tag should be added in your header:
 />
 ```
 
-## Customization
+## 🎨 Customization
 
 The default behavior of this library fits perfectly for a documentation search bar, but you might need some customizations.
 
@@ -319,17 +319,17 @@ As a more concrete example, you can [check out the configuration](https://github
 
 Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L77-L177) applied in the MeiliSearch plugin for VuePress.
 
-## Compatibility with MeiliSearch
+## 🤖 Compatibility with MeiliSearch
 
 This package only guarantees the compatibility with the [version v0.23.0 of MeiliSearch](https://github.com/meilisearch/MeiliSearch/releases/tag/v0.23.0).
 
-## Development Workflow and Contributing
+## ⚙️ Development Workflow and Contributing
 
 Any new contribution is more than welcome in this project!
 
 If you want to know more about the development workflow or want to contribute, please visit our [contributing guidelines](/CONTRIBUTING.md) for detailed instructions!
 
-## Credits
+## 🥇 Credits
 
 Based on [Algolia DocSearch repository](https://github.com/algolia/docsearch) from [this commit](https://github.com/algolia/docsearch/commit/4c32b6f80b753f592de83351116664bf74b10297).<br>
 Due to a lot of future changes in this repository compared to the original one, we don't maintain it as an official fork.
