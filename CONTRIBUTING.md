@@ -38,28 +38,8 @@ To run this project, you will need:
 Install all the dependencies:
 
 ```bash
-yarn install
+yarn install --dev
 ```
-
-### Build <!-- omit in TOC -->
-
-```bash
-yarn build
-```
-
-This command will build all files in `./dist`. This includes regular and minified files for `<script>` inclusion, as well as classes `import`.
-
-The command itself is split into `yarn run build:js` and `yarn run build:css` if you want to build a subset.
-
-### Serve <!-- omit in TOC -->
-
-A playground is provided to test the library.
-
-```bash
-yarn serve
-```
-
-Now, you can have all the files served on `localhost`, along with live-reload.
 
 ### Tests and Linter <!-- omit in TOC -->
 
@@ -81,6 +61,30 @@ yarn format:md
 # Prettier for SCSS (auto-correct)
 yarn format:scss
 ```
+
+## Playground
+
+We provide a playground in this repository that hot-reloads on change. The playground points to a remote MeiliSearch server that contains the scraped [documentation of MeiliSearch](https://docs.meilisearch.com/).
+You can play arround with the options and or just try out the search.
+
+For example, type `create an indxe` to experience MeiliSearch [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
+
+To launch and open the playground:
+
+```bash
+yarn playground
+```
+
+### Build
+
+```bash
+yarn build
+```
+
+This command will build all files in `./dist`. This includes regular and minified files for `<script>` inclusion, as well as classes `import`.
+
+The command itself is split into `yarn run build:js` and `yarn run build:css` if you want to build a subset.
+
 
 ## Git Guidelines
 
