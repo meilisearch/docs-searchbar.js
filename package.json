@@ -41,7 +41,7 @@
     "babel-jest": "^27.0.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-rewire": "^1.2.0",
-    "concurrently": "^6.3.0",
+    "concurrently": "^6.4.0",
     "cssnano": "^4.1.11",
     "cypress": "^8.6.0",
     "eslint": "^7.21.0",
