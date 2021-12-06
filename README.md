@@ -321,7 +321,7 @@ Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-m
 
 ## 🤖 Compatibility with MeiliSearch
 
-This package only guarantees the compatibility with the [version v0.24.0 of MeiliSearch](https://github.com/meilisearch/MeiliSearch/releases/tag/v0.24.0).
+This package only guarantees the compatibility with the [version v0.25.0 of MeiliSearch](https://github.com/meilisearch/MeiliSearch/releases/tag/v0.25.0).
 
 ## ⚙️ Development Workflow and Contributing
 
