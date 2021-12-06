@@ -5,4 +5,5 @@ import version from './version'
 const docsSearchBar = toFactory(DocsSearchBar)
 docsSearchBar.version = version
 
+export { docsSearchBar }
 export default docsSearchBar

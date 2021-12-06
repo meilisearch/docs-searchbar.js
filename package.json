@@ -9,6 +9,7 @@
     "search-as-you-type"
   ],
   "main": "dist/npm/index.js",
+  "types": "dist/npm/index.d.ts",
   "scripts": {
     "build": "./scripts/build",
     "build:css": "./scripts/build-css",

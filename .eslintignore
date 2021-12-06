@@ -11,3 +11,4 @@ cypress/videos
 cypress/support
 cypress/plugins
 cypress/fixtures
+index.d.ts
