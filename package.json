@@ -35,7 +35,7 @@
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
-    "@babel/register": "^7.16.0",
+    "@babel/register": "^7.16.9",
     "autoprefixer": "^9.8.8",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.0.2",
