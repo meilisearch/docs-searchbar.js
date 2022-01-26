@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="MeiliSearch" width="200" height="200" />
+  <img src="assets/logo.svg" alt="Meilisearch" width="200" height="200" />
 </p>
 
 <h1 align="center">docs-searchbar.js</h1>
 
 <h4 align="center">
-  <a href="https://github.com/meilisearch/MeiliSearch">MeiliSearch</a> |
+  <a href="https://github.com/meilisearch/Meilisearch">Meilisearch</a> |
   <a href="https://docs.meilisearch.com">Documentation</a> |
   <a href="https://slack.meilisearch.com">Slack</a> |
   <a href="https://roadmap.meilisearch.com/tabs/1-under-consideration">Roadmap</a> |
@@ -20,20 +20,20 @@
   <a href="https://app.bors.tech/repositories/28906"><img src="https://bors.tech/images/badge_small.svg" alt="Bors enabled"></a>
 </p>
 
-**docs-searchbar.js** is a front-end SDK for **MeiliSearch** to handle your search bar documentation.
+**docs-searchbar.js** is a front-end SDK for **Meilisearch** to handle your search bar documentation.
 
-**MeiliSearch** is an open-source search engine. [Discover what MeiliSearch is!](https://github.com/meilisearch/MeiliSearch)
+**Meilisearch** is an open-source search engine. [Discover what Meilisearch is!](https://github.com/meilisearch/Meilisearch)
 
 ![docs-searchbar.js example](/assets/docs-searchbar-example.png)
 
-💡 If you use VuePress for your website, you should check out our [VuePress plugin for MeiliSearch](https://github.com/meilisearch/vuepress-plugin-meilisearch).
+💡 If you use VuePress for your website, you should check out our [VuePress plugin for Meilisearch](https://github.com/meilisearch/vuepress-plugin-meilisearch).
 
 ## Table of Contents <!-- omit in toc -->
 
 - [🔧 Installation](#-installation)
 - [🎬 Getting Started](#-getting-started)
 - [🎨 Customization](#customization)
-- [🤖 Compatibility with MeiliSearch](#compatibility-with-meilisearch)
+- [🤖 Compatibility with Meilisearch](#compatibility-with-meilisearch)
 - [⚙️ Development Workflow and Contributing](#development-workflow-and-contributing)
 - [🥇 Credits](#credits)
 
@@ -57,25 +57,25 @@ Add the following script into your `HTML` file:
 <script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@{version}/dist/cdn/docs-searchbar.min.js"></script>
 ```
 
-### 🏃‍♀️ Run MeiliSearch <!-- omit in toc -->
+### 🏃‍♀️ Run Meilisearch <!-- omit in toc -->
 
-There are many easy ways to [download and run a MeiliSearch instance](https://docs.meilisearch.com/reference/features/installation.html#download-and-launch).
+There are many easy ways to [download and run a Meilisearch instance](https://docs.meilisearch.com/reference/features/installation.html#download-and-launch).
 
 For example, using the `curl` command in [your Terminal](https://itconnect.uw.edu/learn/workshops/online-tutorials/web-publishing/what-is-a-terminal/):
 
 ```bash
-# Install MeiliSearch
+# Install Meilisearch
 curl -L https://install.meilisearch.com | sh
 
-# Launch MeiliSearch
+# Launch Meilisearch
 ./meilisearch --master-key=masterKey
 ```
 
-NB: you can also download MeiliSearch from **Homebrew** or **APT** or even run it using **Docker**.
+NB: you can also download Meilisearch from **Homebrew** or **APT** or even run it using **Docker**.
 
 ### Index your data <!-- omit in toc -->
 
-The goal of this library is to provide a front-end search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a MeiliSearch instance.
+The goal of this library is to provide a front-end search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a Meilisearch instance.
 
 Luckily, we provide all the tools that you need, and can help you through the whole process, if you follow [this guide](https://docs.meilisearch.com/create/how_to/search_bar_for_docs.html) 🚀
 
@@ -85,7 +85,7 @@ Note: If you want to try out `docs-searchbar.js` as a first introduction, [try o
 
 We recommend using the [`docs-scraper` tool](https://github.com/meilisearch/docs-scraper) to scrape your website, but this is not mandatory.
 
-If you already have your own scraper but you still want to use MeiliSearch and `docs-searchbar.js`, check out [this discussion](https://github.com/meilisearch/docs-searchbar.js/issues/40).
+If you already have your own scraper but you still want to use Meilisearch and `docs-searchbar.js`, check out [this discussion](https://github.com/meilisearch/docs-searchbar.js/issues/40).
 
 
 ### Getting Started
@@ -139,14 +139,14 @@ Add the following code to one of your `HTML` files.
 </html>
 ```
 
-The `hostUrl` and the `apiKey` (_optional_) fields are the credentials of your MeiliSearch instance.<br>
-`indexUid` is the index identifier in your MeiliSearch instance in which your website content is stored.<br>
+The `hostUrl` and the `apiKey` (_optional_) fields are the credentials of your Meilisearch instance.<br>
+`indexUid` is the index identifier in your Meilisearch instance in which your website content is stored.<br>
 `inputSelector` is the `id` attribute of the HTML search input tag.
 
 _Your documentation content is not indexed yet? Check out [this tutorial](https://docs.meilisearch.com/create/how_to/search_bar_for_docs.html)._
 
-**WARNING: We recommend providing the MeiliSearch public key, which is enough to perform search requests.<br>
-Read more about [MeiliSearch authentication](https://docs.meilisearch.com/reference/features/authentication.html).**
+**WARNING: We recommend providing the Meilisearch public key, which is enough to perform search requests.<br>
+Read more about [Meilisearch authentication](https://docs.meilisearch.com/reference/features/authentication.html).**
 
 ### Styling
 
@@ -180,11 +180,11 @@ When calling the `docsSearchBar` method, you can add optional fields:
 
 #### `queryHook` <!-- omit in toc -->
 
-`queryHook` takes a callback function as value. This function will be called on every keystroke to transform the typed keywords before querying MeiliSearch. By default, it does not do anything, but it is the perfect place for you to add some preprocessing or custom functionality.
+`queryHook` takes a callback function as value. This function will be called on every keystroke to transform the typed keywords before querying Meilisearch. By default, it does not do anything, but it is the perfect place for you to add some preprocessing or custom functionality.
 
 #### `transformData` <!-- omit in toc -->
 
-`transformData` takes a callback function as value. This function will be called on every hit before displaying them. By default, it does not do anything, but it lets you add any post-processing around the data you received from MeiliSearch.
+`transformData` takes a callback function as value. This function will be called on every hit before displaying them. By default, it does not do anything, but it lets you add any post-processing around the data you received from Meilisearch.
 
 #### `handleSelected` <!-- omit in toc -->
 
@@ -222,7 +222,7 @@ The function is called with the following arguments:
 
 #### `meilisearchOptions` <!-- omit in toc -->
 
-You can forward search parameters to the MeiliSearch API by using the `meilisearchOptions` key. Checkout out the [MeiliSearch documentation about search parameters](https://docs.meilisearch.com/reference/features/search_parameters.html#search-parameters).
+You can forward search parameters to the Meilisearch API by using the `meilisearchOptions` key. Checkout out the [Meilisearch documentation about search parameters](https://docs.meilisearch.com/reference/features/search_parameters.html#search-parameters).
 
 For example, you might want to increase the number of results displayed in the dropdown:
 
@@ -274,7 +274,7 @@ docsSearchBar({
 
 Here is a basic [HTML file](playground/index.html) used in the playground of this repository.
 
-As a more concrete example, you can [check out the configuration](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L64) applied in the MeiliSearch plugin for VuePress.
+As a more concrete example, you can [check out the configuration](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeilisearchBox.vue#L64) applied in the Meilisearch plugin for VuePress.
 
 #### Styling <!-- omit in toc -->
 
@@ -317,11 +317,11 @@ As a more concrete example, you can [check out the configuration](https://github
 
 ##### More Examples <!-- omit in toc -->
 
-Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeiliSearchBox.vue#L77-L177) applied in the MeiliSearch plugin for VuePress.
+Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeilisearchBox.vue#L77-L177) applied in the Meilisearch plugin for VuePress.
 
-## 🤖 Compatibility with MeiliSearch
+## 🤖 Compatibility with Meilisearch
 
-This package only guarantees the compatibility with the [version v0.24.0 of MeiliSearch](https://github.com/meilisearch/MeiliSearch/releases/tag/v0.24.0).
+This package only guarantees the compatibility with the [version v0.24.0 of Meilisearch](https://github.com/meilisearch/Meilisearch/releases/tag/v0.24.0).
 
 ## ⚙️ Development Workflow and Contributing
 
@@ -336,4 +336,4 @@ Due to a lot of future changes in this repository compared to the original one, 
 
 <hr>
 
-**MeiliSearch** provides and maintains many **SDKs and Integration tools** like this one. We want to provide everyone with an **amazing search experience for any kind of project**. If you want to contribute, make suggestions, or just know what's going on right now, visit us in the [integration-guides](https://github.com/meilisearch/integration-guides) repository.
+**Meilisearch** provides and maintains many **SDKs and Integration tools** like this one. We want to provide everyone with an **amazing search experience for any kind of project**. If you want to contribute, make suggestions, or just know what's going on right now, visit us in the [integration-guides](https://github.com/meilisearch/integration-guides) repository.
