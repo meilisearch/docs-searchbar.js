@@ -274,7 +274,7 @@ docsSearchBar({
 
 Here is a basic [HTML file](playground/index.html) used in the playground of this repository.
 
-As a more concrete example, you can [check out the configuration](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeilisearchBox.vue#L64) applied in the Meilisearch plugin for VuePress.
+As a more concrete example, you can [check out the configuration](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/main/MeiliSearchBox.vue#L60) applied in the Meilisearch plugin for VuePress.
 
 #### Styling <!-- omit in toc -->
 
@@ -317,7 +317,7 @@ As a more concrete example, you can [check out the configuration](https://github
 
 ##### More Examples <!-- omit in toc -->
 
-Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/bf2210e131eb5630f632d514f35710ee6576ec7a/MeilisearchBox.vue#L77-L177) applied in the Meilisearch plugin for VuePress.
+Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-meilisearch/blob/main/MeiliSearchBox.vue#L82) applied in the Meilisearch plugin for VuePress.
 
 ## 🤖 Compatibility with Meilisearch
 
