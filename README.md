@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="Meilisearch" width="200" height="200" />
+  <img src="https://github.com/meilisearch/integration-guides/blob/main/assets/logos/logo.svg" alt="Meilisearch" width="200" height="200" />
 </p>
 
 <h1 align="center">docs-searchbar.js</h1>
 
 <h4 align="center">
-  <a href="https://github.com/meilisearch/Meilisearch">Meilisearch</a> |
+  <a href="https://github.com/meilisearch/meilisearch">Meilisearch</a> |
   <a href="https://docs.meilisearch.com">Documentation</a> |
   <a href="https://slack.meilisearch.com">Slack</a> |
   <a href="https://roadmap.meilisearch.com/tabs/1-under-consideration">Roadmap</a> |
@@ -22,7 +22,7 @@
 
 **docs-searchbar.js** is a front-end SDK for **Meilisearch** to handle your search bar documentation.
 
-**Meilisearch** is an open-source search engine. [Discover what Meilisearch is!](https://github.com/meilisearch/Meilisearch)
+**Meilisearch** is an open-source search engine. [Discover what Meilisearch is!](https://github.com/meilisearch/meilisearch)
 
 ![docs-searchbar.js example](/assets/docs-searchbar-example.png)
 
@@ -321,7 +321,7 @@ Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-m
 
 ## 🤖 Compatibility with Meilisearch
 
-This package only guarantees the compatibility with the [version v0.24.0 of Meilisearch](https://github.com/meilisearch/Meilisearch/releases/tag/v0.24.0).
+This package only guarantees the compatibility with the [version v0.24.0 of Meilisearch](https://github.com/meilisearch/meilisearch/releases/tag/v0.24.0).
 
 ## ⚙️ Development Workflow and Contributing
 

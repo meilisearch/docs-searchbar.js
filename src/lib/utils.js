@@ -238,7 +238,7 @@ const utils = {
    * }, 'text');
    * =>
    * '<em>foo</em>'
-   * @param {object} object Hit object returned by the MeiliSearch API
+   * @param {object} object Hit object returned by the Meilisearch API
    * @param {string} property Object key to look for
    * @return {string}
    **/
@@ -277,7 +277,7 @@ const utils = {
    * }, 'text');
    * =>
    * '<em>This is an unfinished sentence</em>…'
-   * @param {object} object Hit object returned by the MeiliSearch API
+   * @param {object} object Hit object returned by the Meilisearch API
    * @param {string} property Object key to look for
    * @return {string}
    **/

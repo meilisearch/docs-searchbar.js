@@ -461,7 +461,7 @@ describe('DocsSearchBar', () => {
     })
 
     describe('the returned function', () => {
-      it('calls the MeiliSearch client with the correct parameters', () => {
+      it('calls the Meilisearch client with the correct parameters', () => {
         // Given
         const actual = docsSearchBar.getAutocompleteSource()
 
@@ -485,7 +485,7 @@ describe('DocsSearchBar', () => {
     })
 
     describe('when queryHook is used', () => {
-      it('calls the MeiliSearch client with the correct parameters', () => {
+      it('calls the Meilisearch client with the correct parameters', () => {
         // Given
         const actual = docsSearchBar.getAutocompleteSource(
           false,
