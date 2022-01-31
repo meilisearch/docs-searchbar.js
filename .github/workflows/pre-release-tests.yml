@@ -1,0 +1,76 @@
+# Testing the code base against the Meilisearch pre-releases
+name: Pre-Release Tests
+
+# Will only run for PRs and pushes to bump-meilisearch-v*
+on:
+  push:
+    branches: [bump-meilisearch-v*]
+  pull_request:
+    branches: [bump-meilisearch-v*]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["12", "14"]
+    name: Tests (Node.js ${{ matrix.node }})
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn run build
+      - name: Run tests
+        run: yarn run test
+
+  cypress-run:
+    runs-on: ubuntu-latest
+    # Browser on which the tests are run
+    container: cypress/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./node_modules
+          key: ${{ hashFiles('yarn.lock') }}
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: Install dependencies
+        run: yarn --dev && yarn --cwd ./tests/env/browser
+      - name: Grep latest version of Meilisearch
+        run: |
+          echo "MEILISEARCH_LATEST=$(curl https://raw.githubusercontent.com/meilisearch/integration-guides/main/scripts/get-latest-meilisearch-rc.sh | sh)" >> $GITHUB_ENV
+      - name: Download Meilisearch
+        run: |
+          curl https://github.com/meilisearch/meilisearch/releases/download/${{ env.MEILISEARCH_LATEST }}/meilisearch-linux-amd64 --output meilisearch --location
+          chmod +x meilisearch
+      - name: Run Meilisearch
+        run: |
+          ./meilisearch --master-key=masterKey --no-analytics true &
+      - name: Browser tests
+        uses: cypress-io/github-action@v2
+        with:
+          # Your starting script
+          start: yarn test:browser
+      # Creates and uploads GitHub artifacts in case of failure
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
