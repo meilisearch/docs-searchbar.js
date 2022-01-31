@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.12",
-    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.16.9",
     "autoprefixer": "^9.8.8",
     "babel-eslint": "^10.1.0",
