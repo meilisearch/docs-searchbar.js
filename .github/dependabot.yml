@@ -17,6 +17,8 @@ updates:
       - dependency-name: "*prettier*"
       - dependency-name: "*jest*"
       - dependency-name: "pretty-bytes-cli"
+      - dependency-name: "concurrently"
+      - dependency-name: "cypress"
 - package-ecosystem: npm
   directory: "/playground/javascript"
   schedule:
