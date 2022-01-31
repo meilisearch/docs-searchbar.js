@@ -7,13 +7,13 @@ import { MeiliSearch } from 'meilisearch'
 /**
  * Adds an autocomplete dropdown to an input field
  * @function DocsSearchBar
- * @param  {string}            options.hostUrl               URL where MeiliSearch instance is hosted
+ * @param  {string}            options.hostUrl               URL where Meilisearch instance is hosted
  * @param  {string}            options.apiKey                Read-only API key
  * @param  {string}            options.indexUid              UID of the index to target
  * @param  {string}            options.inputSelector         CSS selector that targets the input
  * @param  {boolean}           [options.debug]               When set to true, the dropdown will not be closed on blur
- * @param  {Object}            [options.meilisearchOptions]  Options to pass the underlying MeiliSearch client
- * @param  {function}          [options.queryDataCallback]   This function will be called when querying MeiliSearch
+ * @param  {Object}            [options.meilisearchOptions]  Options to pass the underlying Meilisearch client
+ * @param  {function}          [options.queryDataCallback]   This function will be called when querying Meilisearch
  * @param  {Object}            [options.autocompleteOptions] Options to pass to the underlying autocomplete instance
  * @param  {function}          [options.transformData]       An optional function to transform the hits
  * @param  {function}          [options.queryHook]           An optional function to transform the query
@@ -329,7 +329,7 @@ class DocsSearchBar {
 
   /**
    * Returns the `source` method to be passed to autocomplete.js. It will query
-   * the MeiliSearch index and call the callbacks with the formatted hits.
+   * the Meilisearch index and call the callbacks with the formatted hits.
    * @function getAutocompleteSource
    * @param  {function} transformData An optional function to transform the hits
    * @param {function} queryHook An optional function to transform the query

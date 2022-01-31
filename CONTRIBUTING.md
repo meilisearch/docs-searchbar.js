@@ -1,6 +1,6 @@
 # Contributing <!-- omit in TOC -->
 
-First of all, thank you for contributing to MeiliSearch! The goal of this document is to provide everything you need to know in order to contribute to MeiliSearch and its different integrations.
+First of all, thank you for contributing to Meilisearch! The goal of this document is to provide everything you need to know in order to contribute to Meilisearch and its different integrations.
 
 - [Assumptions](#assumptions)
 - [How to Contribute](#how-to-contribute)
@@ -11,8 +11,8 @@ First of all, thank you for contributing to MeiliSearch! The goal of this docume
 ## Assumptions
 
 1. **You're familiar with [GitHub](https://github.com) and the [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)(PR) workflow.**
-2. **You've read the MeiliSearch [documentation](https://docs.meilisearch.com) and the [README](/README.md).**
-3. **You know about the [MeiliSearch community](https://docs.meilisearch.com/learn/what_is_meilisearch/contact.html). Please use this for help.**
+2. **You've read the Meilisearch [documentation](https://docs.meilisearch.com) and the [README](/README.md).**
+3. **You know about the [Meilisearch community](https://docs.meilisearch.com/learn/what_is_meilisearch/contact.html). Please use this for help.**
 
 ## How to Contribute
 
@@ -64,10 +64,10 @@ yarn format:scss
 
 ## Playground
 
-We provide a playground in this repository that hot-reloads on change. The playground points to a remote MeiliSearch server that contains the scraped [documentation of MeiliSearch](https://docs.meilisearch.com/).
+We provide a playground in this repository that hot-reloads on change. The playground points to a remote Meilisearch server that contains the scraped [documentation of Meilisearch](https://docs.meilisearch.com/).
 You can play arround with the options and or just try out the search.
 
-For example, type `create an indxe` to experience MeiliSearch [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
+For example, type `create an indxe` to experience Meilisearch [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
 
 To launch and open the playground:
 
@@ -116,7 +116,7 @@ Some notes on GitHub PRs:
 
 ## Release Process (for internal team only)
 
-MeiliSearch tools follow the [Semantic Versioning Convention](https://semver.org/).
+Meilisearch tools follow the [Semantic Versioning Convention](https://semver.org/).
 
 ### Automation to Rebase and Merge the PRs <!-- omit in TOC -->
 

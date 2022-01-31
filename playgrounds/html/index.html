@@ -1,72 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="color-scheme" content="dark light" />
-    <title>Docs SearchBar playground</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="../../src/styles/main.scss" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="col-md-12">
-        <input
-          type="search"
-          placeholder="docs-searchbar input"
-          class="form-control"
-          id="q"
-        />
-      </div>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Docs SearchBar playground</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../src/styles/main.scss" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="col-md-12">
+      <input type="search" placeholder="docs-searchbar input" class="form-control" id="q" />
     </div>
-    <!-- at the end of the BODY -->
-    <script src="../../index.js"></script>
-    <script>
-      docsSearchBar.default({
-        // Test with MeiliSearch Documentation
-        hostUrl: 'https://docs-search-bar.meilisearch.com',
-        apiKey:
-          'd79226ae89f29d4dadba8d0c30c240e435f584fb83a7ae573b13eb62edec35cd',
-        indexUid: 'docs',
-        inputSelector: '#q',
-        handleSelected(input, event, suggestion, datasetNumber, context) {
-          console.info(input)
-          console.info(event)
-          console.info(suggestion)
-          console.info(datasetNumber)
-          console.info(context)
-        },
-        debug: true, // Set debug to true if you want to inspect the dropdown
-        enhancedSearchInput: true,
-        enableDarkMode: true
-      })
-    </script>
-    <style>
-      .container {
-        margin: 10%;
-      }
+  </div>
+  <!-- at the end of the BODY -->
+  <script src="../../index.js"></script>
+  <script>
+    docsSearchBar.default({
+      // Test with Meilisearch Documentation
+      hostUrl: 'https://docs-search-bar.meilisearch.com',
+      apiKey:
+        'd79226ae89f29d4dadba8d0c30c240e435f584fb83a7ae573b13eb62edec35cd',
+      indexUid: 'docs',
+      inputSelector: '#q',
+      handleSelected(input, event, suggestion, datasetNumber, context) {
+        console.info(input)
+        console.info(event)
+        console.info(suggestion)
+        console.info(datasetNumber)
+        console.info(context)
+      },
+      debug: true, // Set debug to true if you want to inspect the dropdown
+      enhancedSearchInput: true,
+      enableDarkMode: true
+    })
+  </script>
+  <style>
+    .container {
+      margin: 10%;
+    }
 
-      div [data-ds-theme] .searchbox {
-        width: 60%;
-        margin: auto;
-        margin-top: 10%;
-        display: block;
-      }
+    div [data-ds-theme] .searchbox {
+      width: 60%;
+      margin: auto;
+      margin-top: 10%;
+      display: block;
+    }
 
-      div [data-ds-theme] .searchbox input {
-        height: 34px;
-        border-radius: 4px;
-        font-size: 14px;
-      }
+    div [data-ds-theme] .searchbox input {
+      height: 34px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
 
-      @media (prefers-color-scheme: dark) {
-        body {
-          background-color: #152028;
-          color: #eaeaea;
-        }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #152028;
+        color: #eaeaea;
       }
-    </style>
-  </body>
+    }
+  </style>
+</body>
+
 </html>
