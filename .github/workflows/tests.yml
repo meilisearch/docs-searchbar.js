@@ -58,12 +58,19 @@ jobs:
         with:
           node-version: "14.x"
       - name: Install dependencies
-        run: yarn --dev && yarn --cwd ./playgrounds/html
+        run: yarn --dev && yarn --cwd ./tests/env/browser
+      - name: Download the latest stable version of Meilisearch
+        run: |
+          curl -L https://install.meilisearch.com | sh
+          chmod +x meilisearch
+      - name: Run Meilisearch
+        run: |
+          ./meilisearch --master-key=masterKey --no-analytics true &
       - name: Browser tests
         uses: cypress-io/github-action@v2
         with:
           # Your starting script
-          start: yarn playground
+          start: yarn test:browser
       # Creates and uploads GitHub artifacts in case of failure
       - uses: actions/upload-artifact@v2
         if: failure()

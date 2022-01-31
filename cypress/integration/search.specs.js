@@ -16,17 +16,15 @@ describe(`My first test`, () => {
   })
 
   it('Should check if autocomplete is visible during typing', () => {
-    cy.get('#docs-searchbar-suggestion').type('Quick')
+    cy.get('#docs-searchbar-suggestion').type('gett')
     cy.get('#meilisearch-autocomplete-listbox-0').should('be.visible')
     cy.get('div.dsb-suggestion:nth-child(1)') // the first entry should be "Quick start"
-      .contains('Quick start')
+      .contains('Getting started')
   })
 
   it('Should test all other subheadings', () => {
     cy.get('div.dsb-suggestion:nth-child(2)') // the second entry should be "Download and launch"
-      .contains('Download and launch')
-    cy.get('div.dsb-suggestion:nth-child(3)') // the third entry should be "Add documents"
-      .contains('Add documents')
+      .contains('FAQ')
   })
 
   it('Should have valid placeholder text', () => {

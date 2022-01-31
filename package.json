@@ -22,8 +22,9 @@
     "lint:fix": "eslint --fix .",
     "test": "./scripts/test",
     "test:watch": "./scripts/test-watch",
-    "test:e2e:watch": "concurrently --kill-others -s first \"yarn playground\" \"cypress open\"",
-    "test:e2e": "concurrently --kill-others -s first \"yarn playground\" \"cypress run\""
+    "test:browser": "yarn --cwd ./tests/env/browser && yarn --cwd ./tests/env/browser setup && yarn --cwd ./tests/env/browser serve",
+    "test:e2e:watch": "concurrently --kill-others -s first \"yarn test:browser\" \"cypress open\"",
+    "test:e2e": "concurrently --kill-others -s first \"yarn test:browser\" \"cypress run\""
   },
   "files": [
     "dist/"
