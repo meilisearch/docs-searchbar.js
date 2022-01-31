@@ -1,7 +1,7 @@
 {
   "name": "docs-searchbar.js",
   "version": "2.0.2",
-  "description": "Add a relevant search bar to your documentation using MeiliSearch",
+  "description": "Add a relevant search bar to your documentation using Meilisearch",
   "keywords": [
     "documentation",
     "searchbar",
@@ -29,7 +29,7 @@
   "files": [
     "dist/"
   ],
-  "author": "MeiliSearch <bonjour@meilisearch.com> (https://github.com/meilisearch/)",
+  "author": "Meilisearch <bonjour@meilisearch.com> (https://github.com/meilisearch/)",
   "license": "MIT",
   "repository": "meilisearch/docs-searchbar.js",
   "devDependencies": {

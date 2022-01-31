@@ -2,7 +2,7 @@ import docsSearchBar from '../../../index'
 import '../../../src/styles/main.scss'
 
 docsSearchBar({
-  // Test with MeiliSearch Documentation
+  // Test with Meilisearch Documentation
   hostUrl: 'https://docs-search-bar.meilisearch.com',
   apiKey: 'd79226ae89f29d4dadba8d0c30c240e435f584fb83a7ae573b13eb62edec35cd',
   indexUid: 'docs',
