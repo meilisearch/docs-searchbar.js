@@ -1,3 +1,5 @@
+/* eslint jest/expect-expect: ["off"]*/
+
 const HOST = `http://localhost:1234` // Please adjust to your own app port
 
 describe(`My first test`, () => {
