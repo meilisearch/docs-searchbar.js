@@ -90,7 +90,7 @@ const templates = {
     <div class="${footerPrefix}">
       Powered by
       <a href="https://www.meilisearch.com" target="_blank">
-        <img src="https://res.cloudinary.com/meilisearch/image/upload/v1582710599/Logo_fumols.svg" height="20" width="97" class="${footerPrefix}-logo"/>
+        <img src="https://res.cloudinary.com/meilisearch/image/upload/v1643647003/Logo/logo_text_mono.svg" height="20" width="97" class="${footerPrefix}-logo"/>
        </a>
     </div>
   `,
