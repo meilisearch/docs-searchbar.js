@@ -17,7 +17,7 @@
   <a href="https://www.npmjs.com/package/docs-searchbar.js"><img src="https://img.shields.io/npm/v/docs-searchbar.js.svg" alt="NPM version"></a>
   <a href="https://github.com/meilisearch/docs-searchbar.js/actions"><img src="https://github.com/meilisearch/docs-searchbar.js/workflows/Tests/badge.svg" alt="Test"></a>
   <a href="https://github.com/meilisearch/docs-searchbar.js/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-informational" alt="License"></a>
-  <a href="https://app.bors.tech/repositories/28906"><img src="https://bors.tech/images/badge_small.svg" alt="Bors enabled"></a>
+  <a href="https://ms-bors.herokuapp.com/repositories/11"><img src="https://bors.tech/images/badge_small.svg" alt="Bors enabled"></a>
 </p>
 
 **docs-searchbar.js** is a front-end SDK for **Meilisearch** to handle your search bar documentation.
