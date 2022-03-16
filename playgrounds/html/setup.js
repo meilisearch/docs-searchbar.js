@@ -1,5 +1,6 @@
 /* eslint camelcase: ["off"]*/
 /* eslint import/no-commonjs: ["off"]*/
+/* eslint import/no-extraneous-dependencies: ["off"]*/
 
 const { MeiliSearch } = require('meilisearch')
 
