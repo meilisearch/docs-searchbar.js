@@ -69,7 +69,13 @@ You can play arround with the options and or just try out the search.
 
 For example, type `create an indxe` to experience Meilisearch [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
 
-To launch and open the playground:
+To launch and open the playground you first need to setup your Meilisearch with some documents to have something on which we can search.
+
+```bash
+yarn playground:setup
+```
+
+Then you can start the playground.
 
 ```bash
 yarn playground

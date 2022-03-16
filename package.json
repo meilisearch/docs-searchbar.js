@@ -16,8 +16,7 @@
     "format:scss": "prettier --write ./src/**/*.scss",
     "format:md": "prettier --write '**/*.md'",
     "playground": "yarn --cwd ./playgrounds/html && yarn --cwd ./playgrounds/html serve",
-    "playground:build": "yarn --cwd ./playgrounds/html && yarn --cwd ./playgrounds/html build",
-    "playground:js": "yarn --cwd ./playgrounds/javascript && yarn --cwd ./playgrounds/javascript serve",
+    "playground:setup": "yarn --cwd ./playgrounds/html && yarn --cwd ./playgrounds/html setup",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "./scripts/test",
@@ -33,7 +32,7 @@
   "license": "MIT",
   "repository": "meilisearch/docs-searchbar.js",
   "devDependencies": {
-    "@babel/cli": "^7.16.8",
+    "@babel/cli": "^7.17.6",
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.16.9",
@@ -61,7 +60,7 @@
     "sass": "^1.49.0",
     "sinon": "^13.0.1",
     "uglify-js": "^3.15.0",
-    "webpack": "^5.68.0",
+    "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
