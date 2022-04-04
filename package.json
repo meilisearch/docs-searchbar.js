@@ -60,7 +60,7 @@
     "sass": "^1.49.9",
     "sinon": "^13.0.1",
     "uglify-js": "^3.15.3",
-    "webpack": "^5.70.0",
+    "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
