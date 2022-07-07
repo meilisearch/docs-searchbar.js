@@ -3,6 +3,7 @@
 import sinon from 'sinon'
 import $ from '../zepto'
 import DocsSearchBar from '../DocsSearchBar'
+import PACKAGE_VERSION from '../version'
 /**
  * Pitfalls:
  * Whenever you call new DocsSearchBar(), it will add the a new dropdown markup to
@@ -183,6 +184,7 @@ describe('DocsSearchBar', () => {
         MeiliSearch.calledWith({
           host: 'https://test.getmeili.com',
           apiKey: 'apiKey',
+          clientAgents: [`Meilisearch docs-searchbar.js (v${PACKAGE_VERSION})`],
         }),
       ).toBe(true)
     })
@@ -225,6 +227,27 @@ describe('DocsSearchBar', () => {
       // Then
       expect(autocomplete.on.calledTwice).toBe(true)
       expect(autocomplete.on.calledWith('autocomplete:selected')).toBe(true)
+    })
+
+    it('should have spread the user agents', () => {
+      // Given
+      const options = { ...defaultOptions, clientAgents: ['test'] }
+
+      // When
+      new DocsSearchBar(options)
+
+      // Then
+      expect(MeiliSearch.calledOnce).toBe(true)
+      expect(
+        MeiliSearch.calledWith({
+          host: 'https://test.getmeili.com',
+          apiKey: 'apiKey',
+          clientAgents: [
+            'test',
+            `Meilisearch docs-searchbar.js (v${PACKAGE_VERSION})`,
+          ],
+        }),
+      ).toBe(true)
     })
   })
 
@@ -376,6 +399,15 @@ describe('DocsSearchBar', () => {
     it('should throw an error if handleSelected is not a function', () => {
       // Given
       const options = { ...defaultOptions, handleSelected: 'not-a-function' }
+
+      // When
+      expect(() => {
+        checkArguments(options)
+      }).toThrow(/^Error:/)
+    })
+    it('should throw an error if clientAgents is not an array', () => {
+      // Given
+      const options = { ...defaultOptions, clientAgents: 'test' }
 
       // When
       expect(() => {

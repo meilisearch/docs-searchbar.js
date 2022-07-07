@@ -3,6 +3,7 @@ import templates from './templates'
 import utils from './utils'
 import $ from './zepto'
 import { MeiliSearch } from 'meilisearch'
+import { constructClientAgents } from './agents'
 
 /**
  * Adds an autocomplete dropdown to an input field
@@ -56,6 +57,7 @@ class DocsSearchBar {
     enhancedSearchInput = false,
     layout = 'columns',
     enableDarkMode = false,
+    clientAgents = [],
   }) {
     DocsSearchBar.checkArguments({
       hostUrl,
@@ -72,6 +74,7 @@ class DocsSearchBar {
       enhancedSearchInput,
       layout,
       enableDarkMode,
+      clientAgents,
     })
 
     this.apiKey = apiKey
@@ -115,6 +118,7 @@ class DocsSearchBar {
     this.client = new MeiliSearch({
       host: hostUrl,
       apiKey: this.apiKey,
+      clientAgents: constructClientAgents(clientAgents),
     })
 
     DocsSearchBar.addThemeWrapper(inputSelector, this.enableDarkMode)
@@ -255,6 +259,8 @@ class DocsSearchBar {
       false,
     )
 
+    DocsSearchBar.typeCheck(args, ['clientAgents'], 'array', true)
+
     DocsSearchBar.typeCheck(
       args,
       ['queryDataCallback', 'transformData', 'queryHook', 'handleSelected'],
@@ -267,6 +273,20 @@ class DocsSearchBar {
         `Error: "layout" must be either 'columns' or 'simple'. Supplied value: ${args.layout}`,
       )
     }
+  }
+  /**
+   * Throw a type error.
+   *
+   * @param  {string} argument - Name of the parameter
+   * @param  {string} type - Type the parameter should have
+   * @param  {string} value - Value the parameter has
+   *
+   * @returns {void}
+   */
+  static throwTypeError(argument, type, value) {
+    throw new Error(
+      `Error: "${argument}" must be of type: ${type}. Found type: ${typeof value}`,
+    )
   }
 
   /**
@@ -283,10 +303,12 @@ class DocsSearchBar {
       .filter((argument) => !optional || args[argument])
       .forEach((argument) => {
         const value = args[argument]
-        if (typeof args[argument] !== type) {
-          throw new Error(
-            `Error: "${argument}" must be of type: ${type}. Found type: ${typeof value}`,
-          )
+        if (type === 'array') {
+          if (!Array.isArray(args[argument])) {
+            DocsSearchBar.throwTypeError(argument, type, value)
+          }
+        } else if (typeof args[argument] !== type) {
+          DocsSearchBar.throwTypeError(argument, type, value)
         }
       })
   }
