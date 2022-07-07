@@ -57,15 +57,15 @@
     "postcss-cli": "^7.1.2",
     "prettier": "^2.0.5",
     "pretty-bytes-cli": "^2.0.0",
-    "sass": "^1.51.0",
+    "sass": "^1.53.0",
     "sinon": "^14.0.0",
-    "uglify-js": "^3.15.5",
+    "uglify-js": "^3.16.2",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
     "autocomplete.js": "^0.38.1",
-    "meilisearch": "^0.25.1",
+    "meilisearch": "^0.26.0",
     "to-factory": "^1.0.0",
     "zepto": "^1.2.0"
   }
