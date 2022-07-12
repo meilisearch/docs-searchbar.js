@@ -212,6 +212,6 @@ const { MeiliSearch } = require('meilisearch')
 
   const response = await index.addDocuments(dataset)
 
-  const task = await client.waitForTask(response.uid)
+  const task = await client.waitForTask(response.taskUid)
   console.log(task)
 })()
