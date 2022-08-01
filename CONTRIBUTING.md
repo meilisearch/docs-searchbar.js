@@ -152,6 +152,47 @@ Once the changes are merged on `main`, you can publish the current draft release
 
 GitHub Actions will be triggered and push the package to [npm](https://www.npmjs.com/package/docs-searchbar.js).
 
+#### Release a `beta` Version
+
+Here are the steps to release a beta version of this package:
+
+- Create a new branch containing the "beta" changes with the following format `xxx-beta` where `xxx` explains the context.
+
+  For example:
+    - When implementing a beta feature, create a branch `my-feature-beta` where you implement the feature.
+      ```bash
+        git checkout -b my-feature-beta
+      ```
+    - During the Meilisearch pre-release, create a branch originating from `bump-meilisearch-v*.*.*` named `meilisearch-v*.*.*-beta`. <br>
+    `v*.*.*` is the next version of the package, NOT the version of Meilisearch!
+
+      ```bash
+      git checkout bump-meilisearch-v*.*.*
+      git pull origin bump-meilisearch-v*.*.*
+      git checkout -b bump-meilisearch-v*.*.*-beta
+      ```
+
+- Change the version in [`package.json`](/package.json) and [`src/lib/version.js`](/src/lib/version.js) with `*.*.*-xxx-beta.0` and commit it to the `v*.*.*-beta` branch. None or multiple `-xxx`are valid. Examples:
+  - `v*.*.*-my-feature-beta.0`
+  - `v*.*.*-beta.0`
+
+- Go to the [GitHub interface for releasing](https://github.com/meilisearch/docs-searchbar.js/releases): on this page, click on `Draft a new release`.
+
+- Create a GitHub pre-release:
+  - Fill the description with the detailed changelogs
+  - Fill the title with `vX.X.X-beta.0`
+  - Fill the tag with `vX.X.X-beta.0`
+  - ⚠️ Select the `vX.X.X-beta.0` branch and NOT `main`
+  - ⚠️ Click on the "This is a pre-release" checkbox
+  - Click on "Publish release"
+
+GitHub Actions will be triggered and push the beta version to [npm](https://www.npmjs.com/package/docs-searchbar.js).
+
+💡 If you need to release a new beta for the same version (i.e. `vX.X.X-beta.1`):
+- merge the change into your beta branch
+- change the version name in `package.json`
+- creata a pre-release via the GitHub interface
+
 <hr>
 
 Thank you again for reading this through, we can not wait to begin to work with you if you made your way through this contributing guide ❤️

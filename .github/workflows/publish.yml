@@ -13,13 +13,17 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
           cache: 'yarn'
-      - name: Install dependencies
-        run: yarn install
       - name: Check release validity
         run: sh .github/scripts/check-release.sh
-      - name: Build
-        run: NODE_ENV=production yarn run build
-      - name: Publish
-        run: npm publish
+      - name: Check tag format
+        run: sh .github/scripts/check-tag-format.sh "${{ github.event.release.prerelease }}"
+      - name: Publish with latest tag
+        if: "!github.event.release.prerelease && !contains(github.ref, 'beta')"
+        run: npm publish .
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Publish with beta tag
+        if: "github.event.release.prerelease && contains(github.ref, 'beta')"
+        run: npm publish . --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
