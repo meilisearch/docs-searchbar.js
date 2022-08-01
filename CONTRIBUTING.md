@@ -172,9 +172,7 @@ Here are the steps to release a beta version of this package:
       git checkout -b bump-meilisearch-v*.*.*-beta
       ```
 
-- Change the version in [`package.json`](/package.json) and [`src/lib/version.js`](/src/lib/version.js) with `*.*.*-xxx-beta.0` and commit it to the `v*.*.*-beta` branch. None or multiple `-xxx`are valid. Examples:
-  - `v*.*.*-my-feature-beta.0`
-  - `v*.*.*-beta.0`
+- Change the version in [`package.json`](/package.json) and [`src/lib/version.js`](/src/lib/version.js) with `*.*.*-xxx-beta.0` and commit it to the `beta` branch.
 
 - Go to the [GitHub interface for releasing](https://github.com/meilisearch/docs-searchbar.js/releases): on this page, click on `Draft a new release`.
 
