@@ -2,11 +2,20 @@
 name: Pre-Release Tests
 
 # Will only run for PRs and pushes to bump-meilisearch-v*
+# on:
+#   push:
+#     branches: [bump-meilisearch-v*]
+#   pull_request:
+#     branches: [bump-meilisearch-v*]
+
 on:
-  push:
-    branches: [bump-meilisearch-v*]
   pull_request:
-    branches: [bump-meilisearch-v*]
+  push:
+    # trying and staging branches are for BORS config
+    branches:
+      - trying
+      - staging
+      - main
 
 jobs:
   meilisearch-version:
