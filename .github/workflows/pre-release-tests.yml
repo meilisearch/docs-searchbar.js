@@ -9,57 +9,42 @@ on:
     branches: [bump-meilisearch-v*]
 
 jobs:
-  tests:
+  meilisearch-version:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node: ["12", "14"]
-    name: Tests (Node.js ${{ matrix.node }})
+    outputs:
+      version: ${{ steps.grep-step.outputs.version }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Install dependencies
-        run: yarn install
-      - name: Build
-        run: yarn run build
-      - name: Run tests
-        run: yarn run test
-
+      - uses: actions/checkout@v3
+      - name: Grep docker beta version of Meilisearch
+        id: grep-step
+        run: |
+          MEILISEARCH_VERSION=$(curl https://raw.githubusercontent.com/meilisearch/integration-guides/main/scripts/get-latest-meilisearch-rc.sh | sh)
+          echo $MEILISEARCH_VERSION
+          echo ::set-output name=version::$MEILISEARCH_VERSION
   cypress-run:
     runs-on: ubuntu-latest
-    # Browser on which the tests are run
-    container: cypress/browsers:node12.18.3-chrome87-ff82
+    needs: ['meilisearch-version']
+    services:
+      meilisearch:
+        image: getmeili/meilisearch:${{ needs.meilisearch-version.outputs.version }}
+        env:
+          MEILI_MASTER_KEY: 'masterKey'
+          MEILI_NO_ANALYTICS: 'true'
+        ports:
+          - '7700:7700'
+    name: end-to-end-tests
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ./node_modules
-          key: ${{ hashFiles('yarn.lock') }}
+        uses: actions/checkout@v3
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: "14.x"
+          node-version: 16
+          cache: yarn
       - name: Install dependencies
         run: yarn --dev && yarn --cwd ./tests/env/browser
-      - name: Grep latest version of Meilisearch
-        run: |
-          echo "MEILISEARCH_LATEST=$(curl https://raw.githubusercontent.com/meilisearch/integration-guides/main/scripts/get-latest-meilisearch-rc.sh | sh)" >> $GITHUB_ENV
-      - name: Download Meilisearch
-        run: |
-          curl https://github.com/meilisearch/meilisearch/releases/download/${{ env.MEILISEARCH_LATEST }}/meilisearch-linux-amd64 --output meilisearch --location
-          chmod +x meilisearch
-      - name: Run Meilisearch
-        run: |
-          ./meilisearch --master-key=masterKey --no-analytics &
       - name: Browser tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v3
         with:
           # Your starting script
           start: yarn test:browser
@@ -74,3 +59,23 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos
+  integration_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['14', '15', '18']
+    name: integration-tests (Node.js ${{ matrix.node }})
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn run build
+      - name: Run tests
+        run: yarn run test

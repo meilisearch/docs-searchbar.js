@@ -30,7 +30,7 @@ First of all, thank you for contributing to Meilisearch! The goal of this docume
 
 To run this project, you will need:
 
-- Node.js >= v12 and node < 15
+- Node.js >= v12 and node =< 18
 - Yarn
 
 ### Install <!-- omit in TOC -->
