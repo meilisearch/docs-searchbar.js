@@ -249,6 +249,19 @@ describe('DocsSearchBar', () => {
         }),
       ).toBe(true)
     })
+
+    it('should accept the input element directly', () => {
+      const inputElement = document.getElementById('input')
+      const options = { ...defaultOptions, inputElement }
+      delete options.inputSelector
+
+      // When
+      const actual = new DocsSearchBar(options)
+
+      // Then
+      const $inputs = actual.input
+      expect($inputs[0]).toEqual(inputElement)
+    })
   })
 
   describe('checkArguments', () => {
@@ -291,7 +304,7 @@ describe('DocsSearchBar', () => {
         checkArguments(options)
       }).toThrow(/^Usage:/)
     })
-    it('should throw an error if no inputSelector defined', () => {
+    it('should throw an error if no inputSelector or inputElement defined', () => {
       // Given
       const options = defaultOptions
       delete options.inputSelector

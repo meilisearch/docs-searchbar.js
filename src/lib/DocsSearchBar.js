@@ -11,7 +11,8 @@ import { constructClientAgents } from './agents'
  * @param  {string}            options.hostUrl               URL where Meilisearch instance is hosted
  * @param  {string}            options.apiKey                Read-only API key
  * @param  {string}            options.indexUid              UID of the index to target
- * @param  {string}            options.inputSelector         CSS selector that targets the input
+ * @param  {string}            [options.inputSelector]       CSS selector that targets the input
+ * @param  {Element}           [options.inputElement]        Input element
  * @param  {boolean}           [options.debug]               When set to true, the dropdown will not be closed on blur
  * @param  {Object}            [options.meilisearchOptions]  Options to pass the underlying Meilisearch client
  * @param  {function}          [options.queryDataCallback]   This function will be called when querying Meilisearch
@@ -29,7 +30,8 @@ const usage = `Usage:
   hostUrl,
   apiKey,
   indexUid,
-  inputSelector,
+  [ inputSelector ],
+  [ inputElement ],
   [ debug ],
   [ meilisearchOptions ],
   [ queryDataCallback ],
@@ -46,7 +48,8 @@ class DocsSearchBar {
     hostUrl,
     apiKey,
     indexUid,
-    inputSelector,
+    inputSelector = '',
+    inputElement = null,
     debug = false,
     meilisearchOptions = {},
     queryDataCallback = null,
@@ -64,6 +67,7 @@ class DocsSearchBar {
       apiKey,
       indexUid,
       inputSelector,
+      inputElement,
       debug,
       meilisearchOptions,
       queryDataCallback,
@@ -80,7 +84,9 @@ class DocsSearchBar {
     this.apiKey = apiKey
     this.hostUrl = hostUrl
     this.indexUid = indexUid
-    this.input = DocsSearchBar.getInputFromSelector(inputSelector)
+    this.input = inputElement
+      ? $(inputElement)
+      : DocsSearchBar.getInputFromSelector(inputSelector)
     this.meilisearchOptions = {
       limit: 5,
       attributesToHighlight: ['*'],
@@ -121,7 +127,11 @@ class DocsSearchBar {
       clientAgents: constructClientAgents(clientAgents),
     })
 
-    DocsSearchBar.addThemeWrapper(inputSelector, this.enableDarkMode)
+    DocsSearchBar.addThemeWrapper(
+      inputElement,
+      inputSelector,
+      this.enableDarkMode,
+    )
 
     if (enhancedSearchInput) {
       this.input = DocsSearchBar.injectSearchBox(this.input)
@@ -176,17 +186,18 @@ class DocsSearchBar {
   /**
    * Wraps input selector in a docs-searchbar-js div
    * @function addThemeWrapper
+   * @param  {Element} inputElement Input Element
    * @param  {string} inputSelector Selector of the input element
    * @param  {boolean|'auto'} enableDarkMode Allows you to enforce, light theme, dark theme, or auto mode on the searchbar.
    * @returns {void}
    */
-  static addThemeWrapper(inputSelector, enableDarkMode) {
-    const inputElement = document.querySelector(inputSelector)
-    const parent = inputElement.parentNode
+  static addThemeWrapper(inputElement, inputSelector, enableDarkMode) {
+    const input = inputElement || document.querySelector(inputSelector)
+    const parent = input.parentNode
     const wrapper = document.createElement('div')
     wrapper.className += 'docs-searchbar-js'
-    parent.replaceChild(wrapper, inputElement)
-    wrapper.appendChild(inputElement)
+    parent.replaceChild(wrapper, input)
+    wrapper.appendChild(input)
 
     let isSystemInDarkMode = Boolean(enableDarkMode)
     if (enableDarkMode === 'auto' && window.matchMedia) {
@@ -219,17 +230,24 @@ class DocsSearchBar {
    * @returns {void}
    */
   static checkArguments(args) {
-    if (!args.inputSelector || !args.indexUid || !args.hostUrl) {
+    if (
+      (!args.inputSelector && !args.inputElement) ||
+      !args.indexUid ||
+      !args.hostUrl
+    ) {
       throw new Error(usage)
     }
 
-    if (typeof args.inputSelector !== 'string') {
+    if (args.inputSelector !== null && typeof args.inputSelector !== 'string') {
       throw new Error(
         `Error: inputSelector:${args.inputSelector}  must be a string. Each selector must match only one element and separated by ','`,
       )
     }
 
-    if (!DocsSearchBar.getInputFromSelector(args.inputSelector)) {
+    if (
+      !args.inputElement &&
+      !DocsSearchBar.getInputFromSelector(args.inputSelector)
+    ) {
       throw new Error(
         `Error: No input element in the page matches ${args.inputSelector}`,
       )
@@ -342,7 +360,7 @@ class DocsSearchBar {
    * @function getInputFromSelector
    * @param  {string} selector CSS selector that matches the search
    * input of the page
-   * @returns {void}
+   * @returns {zepto.Z|null} Matching input or null
    */
   static getInputFromSelector(selector) {
     const input = $(selector).filter('input')
