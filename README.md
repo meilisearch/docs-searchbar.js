@@ -36,12 +36,12 @@ To make it work, You need to have your documentation's content in a Meilisearch 
 
 - [🔧 Installation](#-installation)
 - [🎬 Getting Started](#-getting-started)
-- [🎨 Customization](#customization)
-- [🤖 Compatibility with Meilisearch](#compatibility-with-meilisearch)
-- [⚙️ Development Workflow and Contributing](#development-workflow-and-contributing)
-- [🥇 Credits](#credits)
+- [🎨 Customization](#-customization)
+- [🤖 Compatibility with Meilisearch](#-compatibility-with-meilisearch)
+- [⚙️ Development Workflow and Contributing](#%EF%B8%8F-development-workflow-and-contributing)
+- [🥇 Credits](#-credits)
 
-## Installation
+## 🔧 Installation
 
 **With npm**:
 
@@ -92,7 +92,7 @@ We recommend using the [`docs-scraper` tool](https://github.com/meilisearch/docs
 If you already have your own scraper but you still want to use Meilisearch and `docs-searchbar.js`, check out [this discussion](https://github.com/meilisearch/docs-searchbar.js/issues/40).
 
 
-### Getting Started
+## 🎬 Getting Started
 
 #### ES module <!-- omit in toc -->
 
