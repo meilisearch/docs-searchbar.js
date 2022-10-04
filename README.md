@@ -143,7 +143,7 @@ Add the following code to one of your `HTML` files.
 
 The `hostUrl` and the `apiKey` (_optional_) fields are the credentials of your Meilisearch instance.<br>
 `indexUid` is the index identifier in your Meilisearch instance in which your website content is stored.<br>
-`inputSelector` is the `id` attribute of the HTML search input tag.
+`inputSelector` is the `id` attribute of the HTML search input tag. As an alternative the dom element can be supplied with `inputElement` directly.
 
 _Your documentation content is not indexed yet? Check out [this tutorial](https://docs.meilisearch.com/create/how_to/search_bar_for_docs.html)._
 
