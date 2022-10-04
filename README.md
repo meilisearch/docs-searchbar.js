@@ -20,13 +20,11 @@
   <a href="https://ms-bors.herokuapp.com/repositories/11"><img src="https://bors.tech/images/badge_small.svg" alt="Bors enabled"></a>
 </p>
 
-**docs-searchbar.js** is a front-end SDK for **Meilisearch** to handle your search bar documentation. The goal of this library is to provide a front-end search bar into your own documentation.
+**docs-searchbar.js** is a front-end SDK for **Meilisearch** providing a search bar for your documentation.
 
-- Meilisearch is a RESTful search API. It aims to be a ready-to-go solution for everyone who wants a fast and relevant search experience for their end-users ⚡️🔎
+**docs-searchbar.js** comes with a css template. The default styling of this library fits a documentation search bar, but you can customize it.
 
-**docs-searchbar.js** comes with a css template. The default behavior of this library fits perfectly for a documentation search bar, but you can customize it according to your needs easily with few lines of code.
-
-To get started head over to our [documentaion](https://docs.meilisearch.com/). To make it work, You need to have your documentation's content in a Meilisearch instance. If not already the case, you can achieve this using [`docs-scraper`](https://github.com/meilisearch/docs-scraper/).
+To make it work, You need to have your documentation's content in a Meilisearch instance. If not already the case, you can achieve this using [`docs-scraper`](https://github.com/meilisearch/docs-scraper/).
 
 **Meilisearch** is an open-source search engine. [Discover what Meilisearch is!](https://github.com/meilisearch/meilisearch)
 
