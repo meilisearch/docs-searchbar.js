@@ -34,7 +34,7 @@
 - [🎬 Getting Started](#-getting-started)
 - [🎨 Customization](#-customization)
 - [🤖 Compatibility with Meilisearch](#-compatibility-with-meilisearch)
-- [⚙️ Development Workflow And Contributing](#%EF%B8%8F-development-workflow-and-contributing)
+- [⚙️ Development Workflow and Contributing](#%EF%B8%8F-development-workflow-and-contributing)
 - [🥇 Credits](#-credits)
 
 ## 🔧 Installation
@@ -323,7 +323,7 @@ Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-m
 
 This package only guarantees the compatibility with the [version v0.29.0 of Meilisearch](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.0).
 
-## ⚙️ Development Workflow And Contributing
+## ⚙️ Development Workflow and Contributing
 
 Any new contribution is more than welcome in this project!
 
