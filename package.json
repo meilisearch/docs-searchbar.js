@@ -1,6 +1,6 @@
 {
   "name": "docs-searchbar.js",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Add a relevant search bar to your documentation using Meilisearch",
   "keywords": [
     "documentation",
