@@ -20,11 +20,15 @@
   <a href="https://ms-bors.herokuapp.com/repositories/11"><img src="https://bors.tech/images/badge_small.svg" alt="Bors enabled"></a>
 </p>
 
-Meilisearch is an open-source smart search engine that helps you find what you're looking for faster. **docs-searchbar.js** is a front-end SDK for **Meilisearch** to handle your search bar documentation. This makes it easy to integrate and get started with Meilisearch and focus on your acutal product rather than spenidng hours on making search faster.The goal of this library is to provide a front-end search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a Meilisearch instance. We have all the tools necessary for the job and you can [try out our playground](./CONTRIBUTING.md#playground). 
+**docs-searchbar.js** is a front-end SDK for **Meilisearch** to handle your search bar documentation. The goal of this library is to provide a front-end search bar into your own documentation.
 
-docs-searchbar.js comes with a css template. The default behavior of this library fits perfectly for a documentation search bar, but you can customize it according to your needs easily with few lines of code.
+- Meilisearch is a RESTful search API. It aims to be a ready-to-go solution for everyone who wants a fast and relevant search experience for their end-users ⚡️🔎
 
-[Discover what Meilisearch is!](https://github.com/meilisearch/meilisearch)
+**docs-searchbar.js** comes with a css template. The default behavior of this library fits perfectly for a documentation search bar, but you can customize it according to your needs easily with few lines of code.
+
+To get started head over to our [documentaion](https://docs.meilisearch.com/). To make it work, You need to have your documentation's content in a Meilisearch instance. If not already the case, you can achieve this using [`docs-scraper`](https://github.com/meilisearch/docs-scraper/).
+
+**Meilisearch** is an open-source search engine. [Discover what Meilisearch is!](https://github.com/meilisearch/meilisearch)
 
 ![docs-searchbar.js example](/assets/docs-searchbar-example.png)
 
