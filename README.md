@@ -30,12 +30,12 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [🔧 Installation](#-installation)
-- [🎬 Getting Started](#-getting-started)
-- [🎨 Customization](#customization)
-- [🤖 Compatibility with Meilisearch](#compatibility-with-meilisearch)
-- [⚙️ Development Workflow and Contributing](#development-workflow-and-contributing)
-- [🥇 Credits](#credits)
+* [🔧 Installation](#-installation)
+* [🎬 Getting Started](#-getting-started)
+* [🎨 Customization](#customization)
+* [🤖 Compatibility with Meilisearch](#compatibility-with-meilisearch)
+* [⚙️ Development Workflow and Contributing](#development-workflow-and-contributing)
+* [🥇 Credits](#credits)
 
 ## Installation
 
