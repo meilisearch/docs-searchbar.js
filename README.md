@@ -30,14 +30,14 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-* [🔧 Installation](#-installation)
-* [🎬 Getting Started](#-getting-started)
-* [🎨 Customization](#customization)
-* [🤖 Compatibility with Meilisearch](#compatibility-with-meilisearch)
-* [⚙️ Development Workflow and Contributing](#development-workflow-and-contributing)
-* [🥇 Credits](#credits)
+- [🔧 Installation](#-installation)
+- [🎬 Getting Started](#-getting-started)
+- [🎨 Customization](#-customization)
+- [🤖 Compatibility with Meilisearch](#-compatibility-with-meilisearch)
+- [⚙️ Development Workflow And Contributing](#%EF%B8%8F-development-workflow-and-contributing)
+- [🥇 Credits](#-credits)
 
-## Installation
+## 🔧 Installation
 
 **With npm**:
 
@@ -88,7 +88,7 @@ We recommend using the [`docs-scraper` tool](https://github.com/meilisearch/docs
 If you already have your own scraper but you still want to use Meilisearch and `docs-searchbar.js`, check out [this discussion](https://github.com/meilisearch/docs-searchbar.js/issues/40).
 
 
-### Getting Started
+## 🎬 Getting Started
 
 #### ES module <!-- omit in toc -->
 
@@ -323,7 +323,7 @@ Here is the [CSS customization](https://github.com/meilisearch/vuepress-plugin-m
 
 This package only guarantees the compatibility with the [version v0.29.0 of Meilisearch](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.0).
 
-## ⚙️ Development Workflow and Contributing
+## ⚙️ Development Workflow And Contributing
 
 Any new contribution is more than welcome in this project!
 
