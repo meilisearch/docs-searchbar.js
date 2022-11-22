@@ -36,4 +36,4 @@ declare global {
   }
 }
 
-export default DocsSearchBar
+export default function docsSearchBar(options: Options): DocsSearchBar
