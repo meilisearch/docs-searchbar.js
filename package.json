@@ -57,7 +57,7 @@
     "postcss-cli": "^7.1.2",
     "prettier": "^2.0.5",
     "pretty-bytes-cli": "^2.0.0",
-    "sass": "^1.55.0",
+    "sass": "^1.56.1",
     "sinon": "^14.0.2",
     "uglify-js": "^3.17.4",
     "webpack": "^5.75.0",
