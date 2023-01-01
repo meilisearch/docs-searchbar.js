@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: yarn --dev && yarn --cwd ./tests/env/browser
       - name: Browser tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           # Your starting script
           start: yarn test:browser
