@@ -33,7 +33,7 @@
   "repository": "meilisearch/docs-searchbar.js",
   "devDependencies": {
     "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.20.2",
+    "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.19.4",
     "@babel/register": "^7.18.9",
     "autoprefixer": "^9.8.8",
