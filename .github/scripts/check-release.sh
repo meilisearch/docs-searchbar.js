@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Checking if current tag matches the package version
-current_tag=$(echo $GITHUB_REF | tr -d 'refs/tags/v')
+current_tag=$(echo $GITHUB_REF | cut -d '/' -f 3 | sed -r 's/^v//')
 file1='package.json'
 file2='src/lib/version.js'
 
