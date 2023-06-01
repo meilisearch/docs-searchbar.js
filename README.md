@@ -6,11 +6,11 @@
 
 <h4 align="center">
   <a href="https://github.com/meilisearch/meilisearch">Meilisearch</a> |
-  <a href="https://docs.meilisearch.com">Documentation</a> |
+  <a href="https://www.meilisearch.com/docs">Documentation</a> |
   <a href="https://discord.meilisearch.com">Discord</a> |
   <a href="https://roadmap.meilisearch.com/tabs/1-under-consideration">Roadmap</a> |
   <a href="https://www.meilisearch.com">Website</a> |
-  <a href="https://docs.meilisearch.com/faq">FAQ</a>
+  <a href="https://www.meilisearch.com/docs/faq">FAQ</a>
 </h4>
 
 <p align="center">
@@ -63,7 +63,7 @@ Add the following script into your `HTML` file:
 
 ### 🏃‍♀️ Run Meilisearch <!-- omit in toc -->
 
-There are many easy ways to [download and run a Meilisearch instance](https://docs.meilisearch.com/reference/features/installation.html#download-and-launch).
+There are many easy ways to [download and run a Meilisearch instance](https://www.meilisearch.com/docs/reference/features/installation.html#download-and-launch).
 
 For example, using the `curl` command in [your Terminal](https://itconnect.uw.edu/learn/workshops/online-tutorials/web-publishing/what-is-a-terminal/):
 
@@ -81,7 +81,7 @@ NB: you can also download Meilisearch from **Homebrew** or **APT** or even run i
 
 The goal of this library is to provide a front-end search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a Meilisearch instance.
 
-Luckily, we provide all the tools that you need, and can help you through the whole process, if you follow [this guide](https://docs.meilisearch.com/create/how_to/search_bar_for_docs.html) 🚀
+Luckily, we provide all the tools that you need, and can help you through the whole process, if you follow [this guide](https://www.meilisearch.com/docs/create/how_to/search_bar_for_docs.html) 🚀
 
 Note: If you want to try out `docs-searchbar.js` as a first introduction, [try out our playground](./CONTRIBUTING.md#playground).
 
@@ -147,10 +147,10 @@ The `hostUrl` and the `apiKey` (_optional_) fields are the credentials of your M
 `indexUid` is the index identifier in your Meilisearch instance in which your website content is stored.<br>
 `inputSelector` is the `id` attribute of the HTML search input tag. As an alternative the dom element can be supplied with `inputElement` directly.
 
-_Your documentation content is not indexed yet? Check out [this tutorial](https://docs.meilisearch.com/create/how_to/search_bar_for_docs.html)._
+_Your documentation content is not indexed yet? Check out [this tutorial](https://www.meilisearch.com/docs/create/how_to/search_bar_for_docs.html)._
 
 **WARNING: We recommend providing the Meilisearch public key, which is enough to perform search requests.<br>
-Read more about [Meilisearch authentication](https://docs.meilisearch.com/reference/features/authentication.html).**
+Read more about [Meilisearch authentication](https://www.meilisearch.com/docs/reference/features/authentication.html).**
 
 ### Styling
 
@@ -226,7 +226,7 @@ The function is called with the following arguments:
 
 #### `meilisearchOptions` <!-- omit in toc -->
 
-You can forward search parameters to the Meilisearch API by using the `meilisearchOptions` key. Checkout out the [Meilisearch documentation about search parameters](https://docs.meilisearch.com/reference/features/search_parameters.html#search-parameters).
+You can forward search parameters to the Meilisearch API by using the `meilisearchOptions` key. Checkout out the [Meilisearch documentation about search parameters](https://www.meilisearch.com/docs/reference/api/search#search-parameters#search-parameters).
 
 For example, you might want to increase the number of results displayed in the dropdown:
 

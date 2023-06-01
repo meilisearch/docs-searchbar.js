@@ -15,7 +15,7 @@ const { MeiliSearch } = require('meilisearch')
   const dataset = [
     {
       objectID: '32e3e560191d3d27d270cc142990ec7521c5e629',
-      url: 'https://docs.meilisearch.com#getting-started-with-meilisearch',
+      url: 'https://www.meilisearch.com/docs/learn/getting_started/installation',
       hierarchy_radio_lvl0: null,
       hierarchy_radio_lvl1: null,
       hierarchy_radio_lvl2: 'Getting started with MeiliSearch',
@@ -33,7 +33,7 @@ const { MeiliSearch } = require('meilisearch')
       anchor: 'getting-started-with-meilisearch',
       _formatted: {
         objectID: '32e3e560191d3d27d270cc142990ec7521c5e629',
-        url: 'https://docs.meilisearch.com#getting-started-with-meilisearch',
+        url: 'https://www.meilisearch.com/docs/learn/getting_started/installation',
         hierarchy_radio_lvl0: null,
         hierarchy_radio_lvl1: null,
         hierarchy_radio_lvl2: '<em>Getting</em> started with MeiliSearch',
@@ -53,7 +53,7 @@ const { MeiliSearch } = require('meilisearch')
     },
     {
       objectID: '94560645167be070996b97c509e1df72bac2cba4',
-      url: 'https://docs.meilisearch.com/faq.html#i-have-just-updated-meilisearch-and-i-am-getting-an-error-cannot-open-database-expected-meilisearch-engine-version',
+      url: 'https://www.meilisearch.com/docs/faq#i-have-just-updated-meilisearch-and-i-am-getting-an-error-cannot-open-database-expected-meilisearch-engine-version',
       hierarchy_radio_lvl0: null,
       hierarchy_radio_lvl1: null,
       hierarchy_radio_lvl2:
@@ -74,7 +74,7 @@ const { MeiliSearch } = require('meilisearch')
         'i-have-just-updated-meilisearch-and-i-am-getting-an-error-cannot-open-database-expected-meilisearch-engine-version',
       _formatted: {
         objectID: '94560645167be070996b97c509e1df72bac2cba4',
-        url: 'https://docs.meilisearch.com/faq.html#i-have-just-updated-meilisearch-and-i-am-getting-an-error-cannot-open-database-expected-meilisearch-engine-version',
+        url: 'https://www.meilisearch.com/docs/faq#i-have-just-updated-meilisearch-and-i-am-getting-an-error-cannot-open-database-expected-meilisearch-engine-version',
         hierarchy_radio_lvl0: null,
         hierarchy_radio_lvl1: null,
         hierarchy_radio_lvl2:
@@ -97,7 +97,7 @@ const { MeiliSearch } = require('meilisearch')
     },
     {
       objectID: '4411d6ab3488ebb7ec4b35b08f0839b5a51e19a5',
-      url: 'https://docs.meilisearch.com/learn/getting_started/#get-started-with-meilisearch',
+      url: 'https://www.meilisearch.com/docs/learn/getting_started/installation',
       hierarchy_radio_lvl0: null,
       hierarchy_radio_lvl1: 'Get started with MeiliSearch!',
       hierarchy_radio_lvl2: null,
@@ -115,7 +115,7 @@ const { MeiliSearch } = require('meilisearch')
       anchor: 'get-started-with-meilisearch',
       _formatted: {
         objectID: '4411d6ab3488ebb7ec4b35b08f0839b5a51e19a5',
-        url: 'https://docs.meilisearch.com/learn/getting_started/#get-started-with-meilisearch',
+        url: 'https://www.meilisearch.com/docs/learn/getting_started/installation',
         hierarchy_radio_lvl0: null,
         hierarchy_radio_lvl1: 'Get started with MeiliSearch!',
         hierarchy_radio_lvl2: null,
@@ -135,7 +135,7 @@ const { MeiliSearch } = require('meilisearch')
     },
     {
       objectID: '62a814a6ff1c33eebbe13e1b9278529f366ad929',
-      url: 'https://docs.meilisearch.com/learn/getting_started/whats_next.html#what-s-next',
+      url: 'https://www.meilisearch.com/docs/learn/getting_started/search_preview',
       hierarchy_radio_lvl0: null,
       hierarchy_radio_lvl1: "What's next?",
       hierarchy_radio_lvl2: null,
@@ -153,7 +153,7 @@ const { MeiliSearch } = require('meilisearch')
       anchor: 'what-s-next',
       _formatted: {
         objectID: '62a814a6ff1c33eebbe13e1b9278529f366ad929',
-        url: 'https://docs.meilisearch.com/learn/getting_started/whats_next.html#what-s-next',
+        url: 'https://www.meilisearch.com/docs/learn/getting_started/search_preview',
         hierarchy_radio_lvl0: null,
         hierarchy_radio_lvl1: "What's next?",
         hierarchy_radio_lvl2: null,
@@ -173,7 +173,7 @@ const { MeiliSearch } = require('meilisearch')
     },
     {
       objectID: 'ebfb0972d362287b0d54864884015e59b31a1096',
-      url: 'https://docs.meilisearch.com/learn/getting_started/installation.html#installation',
+      url: 'https://www.meilisearch.com/docs/learn/getting_started/installation',
       hierarchy_radio_lvl0: null,
       hierarchy_radio_lvl1: 'Installation',
       hierarchy_radio_lvl2: null,
@@ -191,7 +191,7 @@ const { MeiliSearch } = require('meilisearch')
       anchor: 'installation',
       _formatted: {
         objectID: 'ebfb0972d362287b0d54864884015e59b31a1096',
-        url: 'https://docs.meilisearch.com/learn/getting_started/installation.html#installation',
+        url: 'https://www.meilisearch.com/docs/learn/getting_started/installation',
         hierarchy_radio_lvl0: null,
         hierarchy_radio_lvl1: 'Installation',
         hierarchy_radio_lvl2: null,
