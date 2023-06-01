@@ -12,7 +12,7 @@ First of all, thank you for contributing to Meilisearch! The goal of this docume
 
 1. **You're familiar with [GitHub](https://github.com) and the [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)(PR) workflow.**
 2. **You've read the Meilisearch [documentation](https://docs.meilisearch.com) and the [README](/README.md).**
-3. **You know about the [Meilisearch community](https://docs.meilisearch.com/learn/what_is_meilisearch/contact.html). Please use this for help.**
+3. **You know about the [Meilisearch community](https://www.meilisearch.com/docs/learn/what_is_meilisearch/contact.html). Please use this for help.**
 
 ## How to Contribute
 
@@ -64,10 +64,10 @@ yarn format:scss
 
 ## Playground
 
-We provide a playground in this repository that hot-reloads on change. The playground points to a remote Meilisearch server that contains the scraped [documentation of Meilisearch](https://docs.meilisearch.com/).
+We provide a playground in this repository that hot-reloads on change. The playground points to a remote Meilisearch server that contains the scraped [documentation of Meilisearch](https://www.meilisearch.com/docs/).
 You can play arround with the options and or just try out the search.
 
-For example, type `create an indxe` to experience Meilisearch [typo tolerance](https://docs.meilisearch.com/reference/under_the_hood/typotolerance.html).
+For example, type `create an indxe` to experience Meilisearch [typo tolerance](https://www.meilisearch.com/docs/reference/under_the_hood/typotolerance.html).
 
 To launch and open the playground you first need to setup your Meilisearch with some documents to have something on which we can search.
 
