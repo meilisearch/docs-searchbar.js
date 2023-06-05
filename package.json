@@ -34,7 +34,7 @@
   "repository": "meilisearch/docs-searchbar.js",
   "devDependencies": {
     "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
+    "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.20.2",
     "@babel/register": "^7.18.9",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
