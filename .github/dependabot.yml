@@ -12,7 +12,7 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: weekly
+    interval: "monthly"
     time: "04:00"
   open-pull-requests-limit: 10
   labels:
@@ -31,7 +31,7 @@ updates:
 - package-ecosystem: npm
   directory: "/playground/javascript"
   schedule:
-    interval: weekly
+    interval: "monthly"
     time: "04:00"
   open-pull-requests-limit: 10
   labels:
@@ -44,7 +44,7 @@ updates:
 - package-ecosystem: npm
   directory: "/playground/html"
   schedule:
-    interval: weekly
+    interval: "monthly"
     time: "04:00"
   open-pull-requests-limit: 10
   labels:
