@@ -17,7 +17,7 @@ We invite you into using Tauri's [`meilisearch-docsearch`](https://github.com/ta
 
 We still accept bug fixes from the community but no more enhancements.
 
-Seeking immediate support? Please join us on our Discord channel.
+Seeking immediate support? Please join us on [our Discord channel](https://discord.meilisearch.com/).
 
 ---
 
