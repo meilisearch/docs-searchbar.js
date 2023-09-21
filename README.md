@@ -2,7 +2,24 @@
   <img src="https://github.com/meilisearch/integration-guides/blob/main/assets/logos/logo.svg" alt="Meilisearch" width="200" height="200" />
 </p>
 
-<h1 align="center">docs-searchbar.js</h1>
+<h1 align="center">DEPRECATED - docs-searchbar.js</h1>
+
+---
+
+🚨 DEPRECATION WARNING 🚨
+
+Dear Community,
+
+We'd like to share some updates regarding the future maintenance of this repository:
+
+Our team is small, and our availability will be reduced in the upcoming times. As such, we decided to deprecate this repository.
+We invite you into using Tauri's [`meilisearch-docsearch`](https://github.com/tauri-apps/meilisearch-docsearch) instead of this one.
+
+We still accept bug fixes from the community but no more enhancements.
+
+Seeking immediate support? Please join us on [our Discord channel](https://discord.meilisearch.com/).
+
+---
 
 <h4 align="center">
   <a href="https://github.com/meilisearch/meilisearch">Meilisearch</a> |
@@ -52,6 +69,7 @@ Say goodbye to server deployment and manual updates with [Meilisearch Cloud](htt
 **With npm**:
 
 We only guarantee that the package works with `node` >= 12 and `node` < 15.
+
 ```sh
 # With NPM
 npm install docs-searchbar.js
@@ -64,7 +82,7 @@ yarn add docs-searchbar.js
 Add the following script into your `HTML` file:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@{version}/dist/cdn/docs-searchbar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.js"></script>
 ```
 
 ### 🏃‍♀️ Run Meilisearch <!-- omit in toc -->
@@ -97,7 +115,6 @@ We recommend using the [`docs-scraper` tool](https://github.com/meilisearch/docs
 
 If you already have your own scraper but you still want to use Meilisearch and `docs-searchbar.js`, check out [this discussion](https://github.com/meilisearch/docs-searchbar.js/issues/40).
 
-
 ## 🎬 Getting Started
 
 #### ES module <!-- omit in toc -->
@@ -109,6 +126,7 @@ Add an `input` tag with the attribute `id="search-bar-input` in one of your `HTM
 ```
 
 Then, import `docs-searchbar.js` and run the `docsSearchBar` function. For more explaination of the required parameters, see next section.
+
 ```js
 import docsSearchBar from 'docs-searchbar.js'
 
@@ -123,19 +141,20 @@ docsSearchBar({
 #### HTML <!-- omit in toc -->
 
 Add the following code to one of your `HTML` files.
+
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/docs-searchbar.js@{version}/dist/cdn/docs-searchbar.min.css"
+      href="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.css"
     />
   </head>
 
   <body>
     <input type="search" id="search-bar-input" />
-    <script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@{version}/dist/cdn/docs-searchbar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.js"></script>
     <script>
       docsSearchBar({
         hostUrl: 'https://mymeilisearch.com',
@@ -250,6 +269,7 @@ Allows you to display the searchbar in dark mode. It is useful if your website h
 You can always edit the style of the searchbar to match the style of your website. When the option `enableDarkMode` is set to `auto`, the searchbar automatically sets the mode to the system mode.
 
 `enableDarkMode` has three possible states:
+
 - `false`: enforce light mode.
 - `true`: enforce dark mode.
 - `auto`: system mode (light or dark).
