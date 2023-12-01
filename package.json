@@ -70,7 +70,7 @@
   },
   "dependencies": {
     "autocomplete.js": "^0.38.1",
-    "meilisearch": "^0.32.5",
+    "meilisearch": "^0.36.0",
     "to-factory": "^1.0.0",
     "zepto": "^1.2.0"
   }
