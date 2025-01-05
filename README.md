@@ -52,17 +52,12 @@ To make it work, You need to have your documentation's content in a Meilisearch 
 
 ## Table of Contents <!-- omit in toc -->
 
-- [⚡ Supercharge your Meilisearch experience](#-supercharge-your-meilisearch-experience)
 - [🔧 Installation](#-installation)
-- [🎬 Getting Started](#-getting-started)
+- [🚀 Getting started](#-getting-started)
 - [🎨 Customization](#-customization)
 - [🤖 Compatibility with Meilisearch](#-compatibility-with-meilisearch)
 - [⚙️ Development Workflow and Contributing](#%EF%B8%8F-development-workflow-and-contributing)
 - [🥇 Credits](#-credits)
-
-## ⚡ Supercharge your Meilisearch experience
-
-Say goodbye to server deployment and manual updates with [Meilisearch Cloud](https://www.meilisearch.com/cloud?utm_campaign=oss&utm_source=github&utm_medium=docs-searchbar.js). Get started with a 14-day free trial! No credit card required.
 
 ## 🔧 Installation
 
@@ -85,21 +80,11 @@ Add the following script into your `HTML` file:
 <script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@latest/dist/cdn/docs-searchbar.min.js"></script>
 ```
 
-### 🏃‍♀️ Run Meilisearch <!-- omit in toc -->
+### Run Meilisearch <!-- omit in toc -->
 
-There are many easy ways to [download and run a Meilisearch instance](https://www.meilisearch.com/docs/reference/features/installation.html#download-and-launch).
+⚡️ **Launch, scale, and streamline in minutes with Meilisearch Cloud**—no maintenance, no commitment, cancel anytime. [Try it free now](https://cloud.meilisearch.com/login?utm_campaign=oss&utm_source=github&utm_medium=docs-searchbar.js).
 
-For example, using the `curl` command in [your Terminal](https://itconnect.uw.edu/learn/workshops/online-tutorials/web-publishing/what-is-a-terminal/):
-
-```bash
-# Install Meilisearch
-curl -L https://install.meilisearch.com | sh
-
-# Launch Meilisearch
-./meilisearch --master-key=masterKey
-```
-
-NB: you can also download Meilisearch from **Homebrew** or **APT** or even run it using **Docker**.
+🪨  Prefer to self-host? [Download and deploy](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch?utm_campaign=oss&utm_source=github&utm_medium=docs-searchbar.js) our fast, open-source search engine on your own infrastructure.
 
 ### Index your data <!-- omit in toc -->
 
@@ -115,7 +100,8 @@ We recommend using the [`docs-scraper` tool](https://github.com/meilisearch/docs
 
 If you already have your own scraper but you still want to use Meilisearch and `docs-searchbar.js`, check out [this discussion](https://github.com/meilisearch/docs-searchbar.js/issues/40).
 
-## 🎬 Getting Started
+
+## 🚀 Getting started
 
 #### ES module <!-- omit in toc -->
 
