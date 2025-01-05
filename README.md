@@ -85,6 +85,7 @@ Add the following script into your `HTML` file:
 ⚡️ **Launch, scale, and streamline in minutes with Meilisearch Cloud**—no maintenance, no commitment, cancel anytime. [Try it free now](https://cloud.meilisearch.com/login?utm_campaign=oss&utm_source=github&utm_medium=docs-searchbar.js).
 
 🪨  Prefer to self-host? [Download and deploy](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch?utm_campaign=oss&utm_source=github&utm_medium=docs-searchbar.js) our fast, open-source search engine on your own infrastructure.
+
 ### Index your data <!-- omit in toc -->
 
 The goal of this library is to provide a front-end search bar into your own documentation. To make that possible, you need to gather your website content in advance, and index it in a Meilisearch instance.
