@@ -40,12 +40,12 @@ jobs:
           # Your starting script
           start: yarn test:browser
       # Creates and uploads GitHub artifacts in case of failure
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-videos
