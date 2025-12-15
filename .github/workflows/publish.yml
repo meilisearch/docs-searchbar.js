@@ -3,6 +3,10 @@ on:
   release:
     types: [published]
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
 jobs:
   publish-npm:
     runs-on: ubuntu-18.04
@@ -12,7 +16,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-          cache: 'yarn'
+          cache: "yarn"
       - name: Check release validity
         run: sh .github/scripts/check-release.sh
       - name: Check tag format
@@ -24,10 +28,6 @@ jobs:
       - name: Publish with latest tag
         if: "!github.event.release.prerelease && !contains(github.ref, 'beta')"
         run: npm publish .
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - name: Publish with beta tag
         if: "github.event.release.prerelease && contains(github.ref, 'beta')"
         run: npm publish . --tag beta
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
